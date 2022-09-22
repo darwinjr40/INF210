@@ -14,6 +14,11 @@ void cargarTipoVector(TStringGrid*v, byte N){
   }
 }
 //---------------------------------------------------------------------------
+//	17	24	1	8	15
+//	23	5	7	14	16
+//	4	6	13	20	22
+//	10	12	19	21	3
+//	11	18	25	2	9
 void Magico(TStringGrid *A, byte m, byte n, byte &f, byte &c){
  if(n>0) { //1er caso base
    if(n==1) { //2do caso base
@@ -23,16 +28,34 @@ void Magico(TStringGrid *A, byte m, byte n, byte &f, byte &c){
    } else { //caso general
 	 Magico(A,m,n-1,f,c);
 	 if((n-1)%m==0)
-	  f++;
-	  else {
+	   f++;
+	 else {
 	   f = (f==0)? (m-1) : f-1;
-//		 f=m-1;
-//	   else
-//		 f--;
 	   c=(c+1)%m;
-	  }
+	 }
 	  A->Cells[c][f]=n;
    }
+  }
+}
+
+void Magicov1(TStringGrid *A, byte m,byte k, byte &i,byte &j){
+  if (m%2==0) //pre: debe ser dimension impar
+	throw new Exception ("Error:dimension par");
+  else {
+	if (k==1){ //caso base
+	  i=0;
+	  j=m/2;
+	  A->Cells[j][i] = k;
+	}else{//caso general
+	  Magicov1(A,m,k-1,i,j);
+	  if((k-1)%m==0) //multiplo de m
+		i++;
+	  else{//no multip
+		i = (i==0)? (m-1):(i-1); //contado
+		j = (j+1)%m; //contador circular ascendente
+	  }
+	  A->Cells[j][i] = k;
+	}
   }
 }
 //---------------------------------------------------------------------------
