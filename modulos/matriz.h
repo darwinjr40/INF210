@@ -17,6 +17,7 @@
 
 void cargarTipoVector(TStringGrid*v,byte N);
 
+
 void llenarf1(TStringGrid*v,byte fa,byte ca,byte cb,byte &k);
 void llenarc2(TStringGrid*v,byte fa,byte fb,byte cb,byte &k);
 void llenarf2(TStringGrid*v,byte fa,byte ca,byte cb,byte &k);
