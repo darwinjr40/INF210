@@ -248,3 +248,10 @@ void __fastcall TForm1::N20201segundaescala1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::Magico1Click(TObject *Sender)
+{
+	byte f, c, m = StringGrid1->RowCount;
+  Magico(StringGrid1,m,m*m,f,c);
+}
+//---------------------------------------------------------------------------
+

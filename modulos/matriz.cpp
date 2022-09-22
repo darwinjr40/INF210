@@ -14,6 +14,28 @@ void cargarTipoVector(TStringGrid*v, byte N){
   }
 }
 //---------------------------------------------------------------------------
+void Magico(TStringGrid *A, byte m, byte n, byte &f, byte &c){
+ if(n>0) { //1er caso base
+   if(n==1) { //2do caso base
+	 A->Cells[m/2][0]=1;
+	 c = m/2;
+	 f = 0;
+   } else { //caso general
+	 Magico(A,m,n-1,f,c);
+	 if((n-1)%m==0)
+	  f++;
+	  else {
+	   f = (f==0)? (m-1) : f-1;
+//		 f=m-1;
+//	   else
+//		 f--;
+	   c=(c+1)%m;
+	  }
+	  A->Cells[c][f]=n;
+   }
+  }
+}
+//---------------------------------------------------------------------------
 //	1	1	1	1	1	1	1
 //	2	3	3	3	3	3   1
 //	2   4	5	5	5	3	1
