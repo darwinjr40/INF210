@@ -167,6 +167,10 @@ object Form1: TForm1
         Caption = 'cargar en forma vector'
         OnClick = cargarenformavector1Click
       end
+      object Magico1: TMenuItem
+        Caption = 'Magico'
+        OnClick = Magico1Click
+      end
       object N201921: TMenuItem
         Caption = '2019_2 con'
         OnClick = N201921Click
