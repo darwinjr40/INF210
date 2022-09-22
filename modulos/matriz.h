@@ -20,6 +20,9 @@ void cargarTipoVector(TStringGrid*v,byte N);
 void Magico(TStringGrid *A, byte m, byte n, byte &f, byte &c);
 void Magicov1(TStringGrid *A, byte m,byte k, byte &i,byte &j);
 
+void cargarDentroToFueraCol(TStringGrid *v, byte f, byte ca, byte cb, byte x);
+void cargarDentroToFuera(TStringGrid *v, byte fa,byte fb);
+
 void llenarf1(TStringGrid*v,byte fa,byte ca,byte cb,byte &k);
 void llenarc2(TStringGrid*v,byte fa,byte fb,byte cb,byte &k);
 void llenarf2(TStringGrid*v,byte fa,byte ca,byte cb,byte &k);

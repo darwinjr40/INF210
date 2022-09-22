@@ -34,10 +34,10 @@ void __fastcall TForm1::prueba1Click(TObject *Sender)
 	wchar_t y = Edit1->Text[1];     //UNICODE   String
 
 //	Edit2->Text = BoolToStr(EsVocal(x), true);
-	if (x == 'Ã±') {
+	if (x == 'ñ') {
 		ShowMessage("ascii");
 	}
-	if (y == 'Ã±') {
+	if (y == 'ñ') {
 		ShowMessage("unicode");
 	}
 }
@@ -251,9 +251,7 @@ void __fastcall TForm1::N20201segundaescala1Click(TObject *Sender)
 void __fastcall TForm1::Magico1Click(TObject *Sender)
 {
 	byte f, c, m = StringGrid1->RowCount;
-//  Magico(StringGrid1,m,m*m,f,c);
-  Magicov1(StringGrid1,m,m*m,f,c);
+  Magico(StringGrid1,m,m*m,f,c);
 }
 //---------------------------------------------------------------------------
-
 

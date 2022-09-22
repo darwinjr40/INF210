@@ -107,7 +107,7 @@ void __fastcall TForm1::N201931Click(TObject *Sender)
   byte fa = 0;
   byte ca = 0;
   byte z=1;
-  cargarFila2019_3(StringGrid1, fa, fb, ca, cb, z);
+  cargarFila2019_32(StringGrid1, fa, fb, ca, cb, z);
 }
 //---------------------------------------------------------------------------
 
@@ -200,6 +200,68 @@ void __fastcall TForm1::Deliminarprimercaracterdecadapalabra1Click(TObject *Send
   AnsiString cadena = Edit1->Text;
   DeletePrimerCaracterDeUnaPalabraV2(cadena);
   Edit2->Text = cadena;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N202113Click(TObject *Sender)
+{
+	byte fa = 0;
+	byte fb = StringGrid1->RowCount - 1;
+	byte ca = 0;
+	byte cb = StringGrid1->ColCount - 1;
+	cargarFila2021_1(StringGrid1, fa, fb, ca, cb);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N202121Click(TObject *Sender)
+{
+	byte men,
+		 may,
+		 f = StringGrid1->RowCount,
+		 c = StringGrid1->ColCount;
+	MayorMenorFil2021_2(StringGrid1, f, c, men, may);
+	ShowMessage(men);
+	ShowMessage(may);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N20213202211Click(TObject *Sender)
+{
+	byte f = StringGrid1->RowCount;
+	byte c = StringGrid1->ColCount;
+	cargarFila2022_1(StringGrid1,f, c);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::cargarenformavector1Click(TObject *Sender)
+{
+  byte N = StringGrid1->RowCount;
+  cargarTipoVector(StringGrid1,N*N);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N20201segundaescala1Click(TObject *Sender)
+{
+   byte f, c, m = StringGrid1->RowCount;
+   byte k = (m*(m+1))/2;
+  cargar2020_1Segunda(StringGrid1,m , k, f, c );
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Magico1Click(TObject *Sender)
+{
+	byte f, c, m = StringGrid1->RowCount;
+//  Magico(StringGrid1,m,m*m,f,c);
+  Magicov1(StringGrid1,m,m*m,f,c);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::cargarbordes1Click(TObject *Sender)
+{
+  byte fa = 0;
+  byte fb = StringGrid1->RowCount - 1;
+  cargarDentroToFuera(StringGrid1, fa, fb);
 }
 //---------------------------------------------------------------------------
 

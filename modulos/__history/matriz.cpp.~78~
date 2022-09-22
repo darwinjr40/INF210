@@ -14,6 +14,11 @@ void cargarTipoVector(TStringGrid*v, byte N){
   }
 }
 //---------------------------------------------------------------------------
+//	17	24	1	8	15
+//	23	5	7	14	16
+//	4	6	13	20	22
+//	10	12	19	21	3
+//	11	18	25	2	9
 void Magico(TStringGrid *A, byte m, byte n, byte &f, byte &c){
  if(n>0) { //1er caso base
    if(n==1) { //2do caso base
@@ -23,16 +28,48 @@ void Magico(TStringGrid *A, byte m, byte n, byte &f, byte &c){
    } else { //caso general
 	 Magico(A,m,n-1,f,c);
 	 if((n-1)%m==0)
-	  f++;
-	  else {
-	   if(f==0)
-		 f=m-1;
-	   else
-		 f--;
+	   f++;
+	 else {
+	   f = (f==0)? (m-1) : f-1;
 	   c=(c+1)%m;
-	  }
+	 }
 	  A->Cells[c][f]=n;
    }
+  }
+}
+
+void Magicov1(TStringGrid *A, byte m,byte k, byte &i,byte &j){
+  if (m%2==0) //pre: debe ser dimension impar
+	throw new Exception ("Error:dimension par");
+  else {
+	if (k==1){ //caso base
+	  i=0;
+	  j=m/2;
+	  A->Cells[j][i] = k;
+	}else{//caso general
+	  Magicov1(A,m,k-1,i,j);
+	  if((k-1)%m==0) //multiplo de m
+		i++;
+	  else{//no multip
+		i = (i==0)? (m-1):(i-1); //contado
+		j = (j+1)%m; //contador circular ascendente
+	  }
+	  A->Cells[j][i] = k;
+	}
+  }
+}
+//---------------------------------------------------------------------------
+
+void cargarDentroToFuera(TStringGrid *v, byte fa,byte fb){
+  byte f = fb-fa+1;
+  if (f > 0) {
+	if (f == 1) 
+	  v->Cells[fa][fb]=1;	
+	else {
+	  cargarDentroToFuera(v, fa+1,fb-1);
+	  cargarCol2022_1(v, fa, fa, fb);
+	  cargarCol2022_1(v, fb, fa, fb);
+	}
   }
 }
 //---------------------------------------------------------------------------
@@ -44,11 +81,11 @@ void Magico(TStringGrid *A, byte m, byte n, byte &f, byte &c){
 //	2	4	4   4	4	4	1
 //	2	2	2	2	2	2   2
 void llenarf1(TStringGrid*v,byte fa,byte ca,byte cb,byte &k){
-	byte c = cb-ca+1;
-	if (c> 0) {
-	 llenarf1(v,fa,ca,cb-1,k);
-	 v->Cells[cb][fa]=k;
- }
+  byte c = cb-ca+1;
+  if (c> 0) {
+	llenarf1(v,fa,ca,cb-1,k);
+	v->Cells[cb][fa]=k;
+  }
 }
 void llenarc2(TStringGrid*v,byte fa,byte fb,byte cb,byte &k){
   byte f = fb-fa+1;
@@ -133,8 +170,8 @@ void cargar2020_1Segunda(TStringGrid *v, byte m, byte k, byte &f, byte &c){
 		c = c + 1;								  
 	  }
 	} else {
-	  if (c == 0) f = f - 1; else  c = c - 1;	
-    }
+	  if (c == 0) (f--); else  (c--);
+	}
   }
   v->Cells[c][f] = k;
 }

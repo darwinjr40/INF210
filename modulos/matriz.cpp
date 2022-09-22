@@ -59,6 +59,28 @@ void Magicov1(TStringGrid *A, byte m,byte k, byte &i,byte &j){
   }
 }
 //---------------------------------------------------------------------------
+void cargarDentroToFueraCol(TStringGrid *v, byte f, byte ca, byte cb, byte x){
+  byte c = cb-ca+1;
+  if (c > 0) {
+	cargarDentroToFueraCol(v, f, ca+1, cb, x);
+	v->Cells[ca][f] = x;
+	v->Cells[f][ca] = x;
+  }
+}
+
+void cargarDentroToFuera(TStringGrid *v, byte fa,byte fb){
+  byte f = fb-fa+1;
+  if (f > 0) {
+	if (f == 1) 
+	  v->Cells[fa][fb]=1;	
+	else {
+	  cargarDentroToFuera(v, fa+1,fb-1);
+	  cargarDentroToFueraCol(v, fa, fa, fb,(f+1)/2);
+	  cargarDentroToFueraCol(v, fb, fa, fb,(f+1)/2);
+	}
+  }
+}
+//---------------------------------------------------------------------------
 //	1	1	1	1	1	1	1
 //	2	3	3	3	3	3   1
 //	2   4	5	5	5	3	1
@@ -67,11 +89,11 @@ void Magicov1(TStringGrid *A, byte m,byte k, byte &i,byte &j){
 //	2	4	4   4	4	4	1
 //	2	2	2	2	2	2   2
 void llenarf1(TStringGrid*v,byte fa,byte ca,byte cb,byte &k){
-	byte c = cb-ca+1;
-	if (c> 0) {
-	 llenarf1(v,fa,ca,cb-1,k);
-	 v->Cells[cb][fa]=k;
- }
+  byte c = cb-ca+1;
+  if (c> 0) {
+	llenarf1(v,fa,ca,cb-1,k);
+	v->Cells[cb][fa]=k;
+  }
 }
 void llenarc2(TStringGrid*v,byte fa,byte fb,byte cb,byte &k){
   byte f = fb-fa+1;
@@ -156,8 +178,8 @@ void cargar2020_1Segunda(TStringGrid *v, byte m, byte k, byte &f, byte &c){
 		c = c + 1;								  
 	  }
 	} else {
-	  if (c == 0) f = f - 1; else  c = c - 1;	
-    }
+	  if (c == 0) (f--); else  (c--);
+	}
   }
   v->Cells[c][f] = k;
 }

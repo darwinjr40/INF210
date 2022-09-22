@@ -168,8 +168,12 @@ object Form1: TForm1
         OnClick = cargarenformavector1Click
       end
       object Magico1: TMenuItem
-        Caption = 'Magico'
+        Caption = 'Magico impar'
         OnClick = Magico1Click
+      end
+      object cargarbordes1: TMenuItem
+        Caption = 'cargar dentro hacia fuera'
+        OnClick = cargarbordes1Click
       end
       object N201921: TMenuItem
         Caption = '2019_2 con'
@@ -181,7 +185,6 @@ object Form1: TForm1
       end
       object N20201segundaescala1: TMenuItem
         Caption = '2020-1 segunda escala'
-        Default = True
         OnClick = N20201segundaescala1Click
       end
       object N202011: TMenuItem

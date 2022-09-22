@@ -180,12 +180,6 @@ void __fastcall TForm1::EliminarPrimerosElementos1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-
-
-
-
-
-
 void __fastcall TForm1::eliminarprimernumero1Click(TObject *Sender)
 {
 	 AnsiString cant = Edit2->Text;
@@ -251,7 +245,17 @@ void __fastcall TForm1::N20201segundaescala1Click(TObject *Sender)
 void __fastcall TForm1::Magico1Click(TObject *Sender)
 {
 	byte f, c, m = StringGrid1->RowCount;
-  Magico(StringGrid1,m,m*m,f,c);
+//  Magico(StringGrid1,m,m*m,f,c);
+  Magicov1(StringGrid1,m,m*m,f,c);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::cargarbordes1Click(TObject *Sender)
+{
+  byte fa = 0;
+  byte fb = StringGrid1->RowCount - 1;
+  cargarDentroToFuera(StringGrid1, fa, fb);
 }
 //---------------------------------------------------------------------------
 

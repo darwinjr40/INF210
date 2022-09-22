@@ -147,7 +147,7 @@ object Form1: TForm1
       end
     end
     object Dunnia1: TMenuItem
-      Caption = 'Dunnia'
+      Caption = 'M-Dunnia'
       object N202021: TMenuItem
         Caption = '2020_2 && 2021_1R'
         OnClick = N202021Click
@@ -162,18 +162,43 @@ object Form1: TForm1
       end
     end
     object matriz1: TMenuItem
-      Caption = 'matriz'
-      object N201931: TMenuItem
-        Caption = '2019_3'
-        OnClick = N201931Click
+      Caption = 'M-Contreras'
+      object cargarenformavector1: TMenuItem
+        Caption = 'cargar en forma vector'
+        OnClick = cargarenformavector1Click
       end
-      object N202011: TMenuItem
-        Caption = '2020_1'
-        OnClick = N202011Click
+      object Magico1: TMenuItem
+        Caption = 'Magico'
+        OnClick = Magico1Click
       end
       object N201921: TMenuItem
         Caption = '2019_2 con'
         OnClick = N201921Click
+      end
+      object N201931: TMenuItem
+        Caption = '2019_32'
+        OnClick = N201931Click
+      end
+      object N20201segundaescala1: TMenuItem
+        Caption = '2020-1 segunda escala'
+        Default = True
+        OnClick = N20201segundaescala1Click
+      end
+      object N202011: TMenuItem
+        Caption = '2020-2'
+        OnClick = N202011Click
+      end
+      object N202113: TMenuItem
+        Caption = '2021-1'
+        OnClick = N202113Click
+      end
+      object N202121: TMenuItem
+        Caption = '2021-2'
+        OnClick = N202121Click
+      end
+      object N20213202211: TMenuItem
+        Caption = '2021-3 ^ 2022-1'
+        OnClick = N20213202211Click
       end
     end
     object Vector2: TMenuItem
