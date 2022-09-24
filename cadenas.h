@@ -22,5 +22,7 @@ String Invertir(String x);
 void DeletePrimerCaracterDeUnaPalabra(AnsiString &x, bool sw);
 void DeletePrimerCaracterDeUnaPalabraV2(AnsiString &x, byte sw);
 void DeletePrimerCaracterDeUnaPalabraV2(AnsiString &x);
+
+void DeleteUltimoCaracterDeUnaPalabraV2(AnsiString &x, byte sw);
 //-----------------------------------------------------------
 #endif

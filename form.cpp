@@ -21,7 +21,8 @@ EL METODO YA SEA FUNCION O PROCEDIMIENTO
 void __fastcall TForm1::eliminarprimeraletradecadapalabra1Click(TObject *Sender)
 {
   AnsiString cad = Edit1->Text;
-  SacaraPrimeraLetra(cad);
+//  SacaraPrimeraLetra(cad);
+DeleteUltimoCaracterDeUnaPalabraV2(cad, 2);
   Edit2->Text = cad;
 }
 //---------------------------------------------------------------------------
@@ -34,7 +35,7 @@ void __fastcall TForm1::prueba1Click(TObject *Sender)
 	wchar_t y = Edit1->Text[1];     //UNICODE   String
 
 //	Edit2->Text = BoolToStr(EsVocal(x), true);
-	if (x == 'ñ') {
+	if (x == 'ñ') {  //comparaciones de caracteres es a nivel char.
 		ShowMessage("ascii");
 	}
 	if (y == 'ñ') {

@@ -159,8 +159,8 @@ String Invertir(String x){
   }
   return r;
 }
-bool EsAbecedario(char c){	
-	return (c >= 'a' && c<= 'z') 
+bool EsAbecedario(char c){
+	return (c >= 'a' && c<= 'z')
 		 ||(c >= 'A' && c<= 'Z');
 }
 
@@ -178,24 +178,51 @@ void DeletePrimerCaracterDeUnaPalabra(AnsiString &x, bool sw){
   }
 }
 
-//123hola456como789estas012
+//123ola456como789estas012
+//1 es el primer caracter
+//0 caracter no valido
+//sw =2, 	0       0       0       1   	0
+//e = 		'1'     '2'     '3'     ''
+//ban =		0;      0       1         h
+
 void DeletePrimerCaracterDeUnaPalabraV2(AnsiString &x, byte sw){
-  if (x != "") {	
-	if (sw == 2) 
-	  sw = (EsAbecedario(x[1]))? 1 : 0;   
+  if (x != "") {  //x.Length() > 0
+	if (sw == 2)
+	  sw = (EsAbecedario(x[1]))? (1) : (0);
 	char e = x[1];
 	x.Delete(1,1);
-	if (sw == 1) 
-	  DeletePrimerCaracterDeUnaPalabraV2(x, 0);    
+	if (sw == 1)
+	  DeletePrimerCaracterDeUnaPalabraV2(x, 0);
+	  //nada
 	else {
 	  byte ban = (!EsAbecedario(e) && x!="" && EsAbecedario(x[1])) ?
 			 1 : 0;
 	  DeletePrimerCaracterDeUnaPalabraV2(x, ban);
 	  x = (AnsiString)e + x;
-	}  
-  }		  
+	}
+  }
 }
 
 void DeletePrimerCaracterDeUnaPalabraV2(AnsiString &x){
   DeletePrimerCaracterDeUnaPalabraV2(x, 2);
+}
+
+
+void DeleteUltimoCaracterDeUnaPalabraV2(AnsiString &x, byte sw){
+  if (x != "") {  //x.Length() > 0
+	if (sw == 2)
+	  sw = (EsAbecedario(x[1]) && x.Length()==1)? (1) : (0);
+	char e = x[1];
+	x.Delete(1,1);
+	if (sw == 1)
+	  DeleteUltimoCaracterDeUnaPalabraV2(x, 0);
+	  //nada
+	else {
+	  byte ban = ((x!="" && EsAbecedario(x[1]) &&  x.Length()==1)
+			   || (x!="" && EsAbecedario(x[1]) && x.Length()>=2) && !EsAbecedario(x[2])) ?
+			 1 : 0;
+	  DeleteUltimoCaracterDeUnaPalabraV2(x, ban);
+	  x = (AnsiString)e + x;
+	}
+  }
 }

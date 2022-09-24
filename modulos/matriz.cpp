@@ -88,11 +88,11 @@ void cargarDentroToFuera(TStringGrid *v, byte fa,byte fb){
 //	2	4   6   6	6	3	1
 //	2	4	4   4	4	4	1
 //	2	2	2	2	2	2   2
-void llenarf1(TStringGrid*v,byte fa,byte ca,byte cb,byte &k){
+void llenarf1(TStringGrid*v,byte f,byte ca,byte cb,byte &k){
   byte c = cb-ca+1;
   if (c> 0) {
-	llenarf1(v,fa,ca,cb-1,k);
-	v->Cells[cb][fa]=k;
+	llenarf1(v,f,ca,cb-1,k);
+	v->Cells[cb][f]=k;
   }
 }
 void llenarc2(TStringGrid*v,byte fa,byte fb,byte cb,byte &k){
@@ -130,7 +130,7 @@ void cargar2019_2B(TStringGrid*v,byte fa,byte fb,byte ca,byte cb,byte &k){
 	  llenarc1(v,fa+1,fb,ca,k);
 	  k++;
 	  cargar2019_2B(v,fa+1,fb-1,ca+1,cb-1,k);
-    }
+	}
   }
 }
 //-------------------------------------------------------------
@@ -339,8 +339,6 @@ void cargarM2(TStringGrid * v, int f, int c, int m, int x){
 	cargarM2(v, f, c , m, x);
   }
 }
-
-
 
 
 void cargarM(TStringGrid * v,int m, int f, int ca, int k){
