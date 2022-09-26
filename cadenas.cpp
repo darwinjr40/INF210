@@ -232,14 +232,16 @@ void DeleteUltimoCaracterDeUnaPalabra(AnsiString &x){
   if (x != "") {  //x.Length() > 0
 	char e = x[1];
 	x.Delete(1,1);
-	if (!EsAbecedario(e)) {
+	if (EsAbecedario(e) && 
+		 (
+		   ( x!="" && !EsAbecedario(x[1])) ||
+		   (x=="")
+		 ) 
+		) {
 	  DeleteUltimoCaracterDeUnaPalabra(x);
-	  x = (AnsiString)e + x;		
-	} else if (x!="" && !EsAbecedario(x[1]) ) {//abc & !abc
-	  DeleteUltimoCaracterDeUnaPalabra(x);
-	} else if(x != ""){ //ambos abecedario
+	} else {
 	  DeleteUltimoCaracterDeUnaPalabra(x);
 	  x = (AnsiString)e + x;
-    }
+	}
   }
 }
