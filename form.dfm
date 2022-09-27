@@ -115,10 +115,6 @@ object Form1: TForm1
     Top = 8
     object cadenas1: TMenuItem
       Caption = 'cadena'
-      object eliminarprimeraletradecadapalabra1: TMenuItem
-        Caption = 'eliminar primera letra de cada palabra'
-        OnClick = eliminarprimeraletradecadapalabra1Click
-      end
       object prueba1: TMenuItem
         Caption = 'prueba'
         OnClick = prueba1Click
@@ -148,6 +144,10 @@ object Form1: TForm1
     end
     object Dunnia1: TMenuItem
       Caption = 'M-Dunnia'
+      object eliminarprimeraletradecadapalabra1: TMenuItem
+        Caption = '2022-1-eliminar primera letra de cada palabra    '
+        OnClick = eliminarprimeraletradecadapalabra1Click
+      end
       object N202021: TMenuItem
         Caption = '2020_2 && 2021_1R'
         OnClick = N202021Click

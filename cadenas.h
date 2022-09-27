@@ -19,7 +19,7 @@ String palabralarga(String x);
 String Invertir(String x);
 
 //dunnia
-void DeletePrimerCaracterDeUnaPalabra(AnsiString &x, bool sw);
+void DeletePrimerCaracterDeUnaPalabra(AnsiString &x);
 void DeletePrimerCaracterDeUnaPalabraV2(AnsiString &x, byte sw);
 void DeletePrimerCaracterDeUnaPalabraV2(AnsiString &x);
 

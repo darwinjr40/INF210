@@ -21,9 +21,8 @@ EL METODO YA SEA FUNCION O PROCEDIMIENTO
 void __fastcall TForm1::eliminarprimeraletradecadapalabra1Click(TObject *Sender)
 {
   AnsiString cad = Edit1->Text;
-//  SacaraPrimeraLetra(cad);
 //DeleteUltimoCaracterDeUnaPalabraV2(cad, 2);
-DeleteUltimoCaracterDeUnaPalabra(cad);
+  DeletePrimerCaracterDeUnaPalabra(cad);
   Edit2->Text = cad;
 }
 //---------------------------------------------------------------------------

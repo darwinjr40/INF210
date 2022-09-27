@@ -164,17 +164,18 @@ bool EsAbecedario(char c){
 		 ||(c >= 'A' && c<= 'Z');
 }
 
-void DeletePrimerCaracterDeUnaPalabra(AnsiString &x, bool sw){
+//x="123hola456como789estas012"
+//x="123ola456omo789stas012"
+void DeletePrimerCaracterDeUnaPalabra(AnsiString &x){
   if (x != "") {
-	bool ban = sw;
-	char e = x[1];
-	x.Delete(1,1);
-	if ((EsAbecedario(e) && sw ) 
-	 || (x!= "" && !EsAbecedario(e) && EsAbecedario(x[1]))) 
-		ban = !ban;
-	DeletePrimerCaracterDeUnaPalabra(x, ban);
+	byte n =  x.Length();
+	char e = x[n];
+	x.Delete(n,1);
+	bool sw = (EsAbecedario(e) && x=="") ||
+			  (EsAbecedario(e) && x!="" && !EsAbecedario(x[x.Length()]));
+	DeletePrimerCaracterDeUnaPalabra(x);
 	if (!sw)
-	 x = (AnsiString)e + x;	  
+	 x = x + AnsiString(e);
   }
 }
 
@@ -233,14 +234,9 @@ void DeleteUltimoCaracterDeUnaPalabra(AnsiString &x){
 	char e = x[1];
 	x.Delete(1,1);
 	bool sw = true;
-	if (EsAbecedario(e) && 
-		 (
-		   ( x!="" && !EsAbecedario(x[1])) ||
-		   (x=="")
-		 ) 
-		) {
+	if (EsAbecedario(e) &&
+	(x!="" && !EsAbecedario(x[1]) || x==""))
 	  sw = false;
-	}
 	DeleteUltimoCaracterDeUnaPalabra(x);
 	if (sw)
 	  x = (AnsiString)e + x;
