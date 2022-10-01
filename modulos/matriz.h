@@ -49,7 +49,7 @@ void cargarFila2022_1(TStringGrid *v, byte f, byte c);
 void cargarM1(TStringGrid * v, int f, int c, int m, int x);
 void cargarM2(TStringGrid * v, int f, int c, int m, int x);
 void cargarM(TStringGrid * v,int m, int f, int ca, int k);
-
+void cargar2022_1(TStringGrid * M,int m, int f, int c, int &x);
 
 //---------------------------------------------------------------------------
 

@@ -260,3 +260,11 @@ void __fastcall TForm1::cargarbordes1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::N202211Click(TObject *Sender)
+{
+  int m = StringGrid1->RowCount;
+  int x = 1;
+  cargar2022_1(StringGrid1, m, 0,0,x);
+}
+//---------------------------------------------------------------------------
+
