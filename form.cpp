@@ -268,3 +268,10 @@ void __fastcall TForm1::N202211Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::N20221B1Click(TObject *Sender)
+{
+	int m = StringGrid1->RowCount;
+	cargarFila2022_1B(StringGrid1, m, m);
+}
+//---------------------------------------------------------------------------
+

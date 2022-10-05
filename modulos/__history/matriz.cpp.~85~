@@ -352,23 +352,24 @@ void cargarM(TStringGrid * v,int m, int f, int ca, int k){
 	 cargarM(v, m, f, ca + 1, k - 1);
   }
 }
+
 //	1	2	3	4
 //	0	1	2	3
 //	0	0	1	2
 //	0	0	0	1
 void cargar2022_1(TStringGrid * M,int m, int f, int c, int &x){
   if (f < m) {
-	if (c < m) {
-	  if ( f > c) {
+	if (c == m) {
+	  c = 0;
+	  f = f + 1;
+	} else {
+	  if ( f > c)
 		M->Cells[c][f] = 0;
-	  } else {
+	  else {
 		M->Cells[c][f] = x;
 		x = (c == (m-1))?  (1) : (x + 1);
 	  }
 	  c++;
-	} else {
-	  c = 0;
-	  f = f + 1;
 	}
 	cargar2022_1(M, m, f, c, x);
   }

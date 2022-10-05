@@ -44,6 +44,9 @@ void MayorMenorCol2021_2(TStringGrid *v,byte f, byte c, byte &men, byte &may);
 //2021-3 ^ 2022-1
 void cargarCol2022_1(TStringGrid *v, byte f, byte ca, byte cb);
 void cargarFila2022_1(TStringGrid *v, byte f, byte c);
+//2022-1B
+void cargarCol2022_1B(TStringGrid *v, byte i, byte j, byte fa, byte fb);
+void cargarFila2022_1B(TStringGrid *v, byte f, byte c);
 
 //dunnia
 void cargarM1(TStringGrid * v, int f, int c, int m, int x);

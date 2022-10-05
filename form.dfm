@@ -207,6 +207,10 @@ object Form1: TForm1
         Caption = '2021-3 ^ 2022-1'
         OnClick = N20213202211Click
       end
+      object N20221B1: TMenuItem
+        Caption = '2022-1B'
+        OnClick = N20221B1Click
+      end
     end
     object Vector2: TMenuItem
       Caption = 'vector'

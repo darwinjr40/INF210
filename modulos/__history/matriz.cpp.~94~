@@ -288,7 +288,21 @@ void cargarFila2022_1(TStringGrid *v, byte f, byte c){
   }
 }
 //---------------------------------------------------------------------------
-
+void cargarCol2022_1B(TStringGrid *v, byte i, byte fa, byte fb){
+  byte f = fb-fa+1;
+  if (f > 0) {
+	cargarCol2022_1B(v, i, fa, fb-1);
+	v->Cells[fb+i][i] = f+1;
+//	v->Cells[i][f-ca+1] = f+1;
+  }
+}
+void cargarFila2022_1B(TStringGrid *v, byte f, byte m){
+  if (f > 0) {
+	cargarFila2022_1B(v, f-1, m);
+	ShowMessage(IntToStr(f-1) +","+ IntToStr(v->ColCount-1-(f-1))+","+ IntToStr(c-1));
+	cargarCol2022_1B(v, f-1, 0, f-1);
+  }
+}
 //---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
@@ -352,6 +366,7 @@ void cargarM(TStringGrid * v,int m, int f, int ca, int k){
 	 cargarM(v, m, f, ca + 1, k - 1);
   }
 }
+
 //	1	2	3	4
 //	0	1	2	3
 //	0	0	1	2
@@ -371,18 +386,5 @@ void cargar2022_1(TStringGrid * M,int m, int f, int c, int &x){
 	  c++;
 	}
 	cargar2022_1(M, m, f, c, x);
-//	if (c < m) {
-//	  if ( f > c) {
-//		M->Cells[c][f] = 0;
-//	  } else {
-//		M->Cells[c][f] = x;
-//		x = (c == (m-1))?  (1) : (x + 1);
-//	  }
-//	  c++;
-//	} else {
-//	  c = 0;
-//	  f = f + 1;
-//	}
-
   }
 }

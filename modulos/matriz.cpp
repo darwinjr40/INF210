@@ -288,7 +288,21 @@ void cargarFila2022_1(TStringGrid *v, byte f, byte c){
   }
 }
 //---------------------------------------------------------------------------
-
+void cargarCol2022_1B(TStringGrid *v, byte i, byte j, byte fa, byte fb){
+  byte f = fb-fa+1;
+  if (f > 0) {
+	cargarCol2022_1B(v, i, j, fa, fb-1);
+	v->Cells[j][fb] = i+1;
+	v->Cells[j+fb][i] = i+1;
+  }
+}
+void cargarFila2022_1B(TStringGrid *v, byte f, byte m){
+  if (f > 0) {
+	cargarFila2022_1B(v, f-1, m);
+//	ShowMessage(IntToStr(f-1) +","+ IntToStr(0)+","+ IntToStr(f-1));
+	cargarCol2022_1B(v, f-1,m-f, 0, f-1);
+  }
+}
 //---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
