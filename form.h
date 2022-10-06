@@ -58,6 +58,8 @@ __published:	// IDE-managed Components
 	TMenuItem *cargarbordes1;
 	TMenuItem *N202211;
 	TMenuItem *N20221B1;
+	TMenuItem *N20192A1;
+	TMenuItem *caracol1;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);
@@ -85,6 +87,8 @@ __published:	// IDE-managed Components
 	void __fastcall cargarbordes1Click(TObject *Sender);
 	void __fastcall N202211Click(TObject *Sender);
 	void __fastcall N20221B1Click(TObject *Sender);
+	void __fastcall N20192A1Click(TObject *Sender);
+	void __fastcall caracol1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);

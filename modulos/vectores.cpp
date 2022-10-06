@@ -234,7 +234,21 @@ void GenerarNumeroInvertidoV2(TStringGrid *v, byte a, byte b, Cardinal &x){
   }
 }
 
-
+AnsiString GenerarCadena2019_2A(TStringGrid *v, byte a, byte b){
+  byte n = b - a + 1; //n = 0
+  AnsiString r;
+  if (n == 0)
+	r = "";
+  else if(n == 1)
+	r = v->Cells[b][0];
+   else {
+	 r = GenerarCadena2019_2A(v, a, b-1);
+//	 Cardinal inv = invertir(v->Cells[b][0]);
+//	 r = inv + r;
+	 r = v->Cells[b][0] + r;
+  }
+  return r;
+}
 
 //dunnia--------------------------------------------------------
 

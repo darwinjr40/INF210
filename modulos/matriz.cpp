@@ -304,7 +304,54 @@ void cargarFila2022_1B(TStringGrid *v, byte f, byte m){
   }
 }
 //---------------------------------------------------------------------------
-
+//caracol
+void llenarf1Izq(TStringGrid*v,byte f,byte ca,byte cb,byte &k){
+  byte c = cb-ca+1;
+  if (c > 0) {
+	llenarf1Izq(v,f,ca,cb-1,k);
+	v->Cells[cb][f]=k;
+	k++;
+  }
+}
+void llenarc2Sup(TStringGrid*v,byte c, byte fa,byte fb,byte &k){
+  byte f = fb-fa+1;
+  if (f > 0) {
+	llenarc2Sup(v,c,fa,fb-1,k);
+	v->Cells[c][fb]=k;
+	k++;
+  }
+}
+void llenarf2Der(TStringGrid*v,byte f,byte ca,byte cb,byte &k){
+  byte c = cb-ca+1;
+  if (c> 0) {
+	llenarf2Der(v,f,ca+1,cb,k);
+	v->Cells[ca][f]=k;
+	k++;
+  }
+}
+void llenarc1Inf(TStringGrid*v,byte c,byte fa,byte fb,byte &k){
+	byte f = fb-fa+1;
+   if (f > 0) {
+	llenarc1Inf(v,c,fa+1,fb,k);
+	v->Cells[c][fa]=k;
+	k++;
+   }
+}
+void cargarCaracol(TStringGrid*v,byte fa,byte fb,byte ca,byte cb,byte &k){
+  byte f = fb-fa+1;
+  byte c = cb-ca+1;
+  if (f*c>0) {
+	if (f*c == 1)
+	  v->Cells[ca][fa]=k;
+	else{
+	  llenarf1Izq(v,fa,ca,cb-1,k);
+	  llenarc2Sup(v,cb,fa,fb-1,k);
+	  llenarf2Der(v,fb,ca+1,cb,k);
+	  llenarc1Inf(v,ca,fa+1,fb,k);
+	  cargarCaracol(v,fa+1,fb-1,ca+1,cb-1,k);
+	}
+  }
+}
 //---------------------------------------------------------------------------
 
 

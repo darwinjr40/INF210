@@ -275,3 +275,24 @@ void __fastcall TForm1::N20221B1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::N20192A1Click(TObject *Sender)
+{
+  byte a = Edit3->Text.ToInt();
+  byte b = Edit4->Text.ToInt();
+  AnsiString res = GenerarCadena2019_2A(StringGrid1, a, b);
+  ShowMessage(res);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::caracol1Click(TObject *Sender)
+{
+	//matriz cuadrada
+	byte fa = 0;
+	byte fb = StringGrid1->RowCount - 1;
+	byte ca = 0;
+	byte cb = StringGrid1->ColCount - 1;
+	byte k = 1;
+	cargarCaracol(StringGrid1, fa, fb, ca, cb, k);
+}
+//---------------------------------------------------------------------------
+

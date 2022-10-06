@@ -14,8 +14,6 @@ void CargarRandom(TStringGrid *v,byte n,byte a,byte b){
  }
 
 
-
-
 byte PosMayor(TStringGrid *v,byte n){
  byte p;
  if (n==0)
@@ -26,8 +24,7 @@ byte PosMayor(TStringGrid *v,byte n){
 	p = PosMayor(v,n-1);
 	Cardinal a = (v->Cells[n-1][0].ToInt());
 	Cardinal b = (v->Cells[p][0].ToInt());
-	if (b < a)
-	  p = n-1;
+	if (b < a) p = n-1;
  }
  return p;
 }
@@ -44,7 +41,7 @@ byte CantVocales(AnsiString x){
   } else if (x.Length() == 1) {
 	c = (EsVocal(x[1]))? (1) : (0);
   } else {
-	String y = x.SubString(x.Length()-1, 2);
+	AnsiString y = x.SubString(x.Length()-1, 2);
 	x.Delete(x.Length()-1, 2);
 	c = CantVocales(x);
 	if (EsVocal(y[1])) {
@@ -198,17 +195,17 @@ void EliminarPrimerosElementos(TStringGrid *v, byte &n, byte p, byte cant){
 }
 
 void EliminarPrimerosElementosV2(TStringGrid *v, Word &n, Word m){
-	if (n > 0) {
-		 if (m >= n) {
-			n = 0;
-		} else {
-			Word e = v->Cells[n-1][0].ToInt();
-			n--;
-			EliminarPrimerosElementosV2(v, n, m);
-			v->Cells[n][0] = e;
-			n++;
-		}
+  if (n > 0) {
+	 if (m >= n) {
+	  n = 0;
+	} else {
+	  Word e = v->Cells[n-1][0].ToInt();
+	  n--;
+	  EliminarPrimerosElementosV2(v, n, m);
+	  v->Cells[n][0] = e;
+	  n++;
 	}
+  }
 }
 
 void GenerarNumeroInvertido(TStringGrid *v, Word n, Cardinal &x){
@@ -225,11 +222,11 @@ void GenerarNumeroInvertido(TStringGrid *v, Word n, Cardinal &x){
 }
 void GenerarNumeroInvertidoV2(TStringGrid *v, byte a, byte b, Cardinal &x){
   byte n = b - a + 1;
-  if (n == 0) {
+  if (n == 0)
 	x = 0;
-  } else if(n == 1) {
+  else if(n == 1)
 	x = StrToInt(v->Cells[a][0]);
-  } else {
+   else {
 	 Cardinal e = StrToInt(v->Cells[a][0]);
 	 GenerarNumeroInvertidoV2(v, a+1, b, x);
 	 Word cantDig = (log10((double)e)+1);
@@ -239,7 +236,7 @@ void GenerarNumeroInvertidoV2(TStringGrid *v, byte a, byte b, Cardinal &x){
 
 
 
-//dunnia
+//dunnia--------------------------------------------------------
 
 AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){
   AnsiString s;
@@ -263,16 +260,16 @@ AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){
 //	int n = StringGrid1->ColCount;
 //	Double a = 0;
 //	Edit2->Text =   mayorPromedio(StringGrid1, 0, n, a);
-//}bool pertenece(TStringGrid * v, int i, int n, int x){  bool b;
-  if (i >= n) {
+//}bool pertenece(TStringGrid * v, int i, int n, int x){  bool b;
+  if (i >= n)
 	b =  false;
-  } else {
+  else {
 	if (v->Cells[i][0] == x) {
 	  b =  true;
 	} else {
 	  b = pertenece(v, i+1, n, x);
 	}
-  }
+   }
   return b;
 }
 

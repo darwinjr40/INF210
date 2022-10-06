@@ -47,6 +47,12 @@ void cargarFila2022_1(TStringGrid *v, byte f, byte c);
 //2022-1B
 void cargarCol2022_1B(TStringGrid *v, byte i, byte j, byte fa, byte fb);
 void cargarFila2022_1B(TStringGrid *v, byte f, byte c);
+//caracol
+void cargarCaracol(TStringGrid*v,byte fa,byte fb,byte ca,byte cb,byte &k);
+void llenarc1Inf(TStringGrid*v,byte c,byte fa,byte fb,byte &k);
+void llenarf2Der(TStringGrid*v,byte f,byte ca,byte cb,byte &k);
+void llenarc2Sup(TStringGrid*v,byte c, byte fa,byte fb,byte &k);
+void llenarf1Izq(TStringGrid*v,byte f,byte ca,byte cb,byte &k);
 
 //dunnia
 void cargarM1(TStringGrid * v, int f, int c, int m, int x);

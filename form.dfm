@@ -141,6 +141,10 @@ object Form1: TForm1
         Caption = 'D-eliminar primer caracter de cada palabra'
         OnClick = Deliminarprimercaracterdecadapalabra1Click
       end
+      object N20192A1: TMenuItem
+        Caption = '2019-2A'
+        OnClick = N20192A1Click
+      end
     end
     object Dunnia1: TMenuItem
       Caption = 'M-Dunnia'
@@ -180,7 +184,7 @@ object Form1: TForm1
         OnClick = cargarbordes1Click
       end
       object N201921: TMenuItem
-        Caption = '2019_2 con'
+        Caption = '2019_2B'
         OnClick = N201921Click
       end
       object N201931: TMenuItem
@@ -210,6 +214,10 @@ object Form1: TForm1
       object N20221B1: TMenuItem
         Caption = '2022-1B'
         OnClick = N20221B1Click
+      end
+      object caracol1: TMenuItem
+        Caption = 'caracol'
+        OnClick = caracol1Click
       end
     end
     object Vector2: TMenuItem
