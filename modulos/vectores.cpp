@@ -249,6 +249,15 @@ AnsiString GenerarCadena2019_2A(TStringGrid *v, byte a, byte b){
   }
   return r;
 }
+//--------------------------------------------------------
+
+void cargar2022_2A(Cardinal num, TStringGrid *v, byte &n){
+  if (num > 0){
+	v->Cells[n][0] = num %10;
+	n = n + 1;
+	cargar2022_2A(num/10, v, n);
+  }
+}
 
 //dunnia--------------------------------------------------------
 

@@ -168,6 +168,10 @@ object Form1: TForm1
         Caption = '2022-1'
         OnClick = N202211Click
       end
+      object PMadentroToFuera1: TMenuItem
+        Caption = 'P-M-adentroToFuera'
+        OnClick = PMadentroToFuera1Click
+      end
     end
     object matriz1: TMenuItem
       Caption = 'M-Contreras'
@@ -219,6 +223,10 @@ object Form1: TForm1
         Caption = 'caracol'
         OnClick = caracol1Click
       end
+      object N20221A1: TMenuItem
+        Caption = '2022-1A'
+        OnClick = N20221A1Click
+      end
     end
     object Vector2: TMenuItem
       Caption = 'vector'
@@ -233,6 +241,10 @@ object Form1: TForm1
       object generarnumeroconunvector1: TMenuItem
         Caption = 'generar numero con un vector'
         OnClick = generarnumeroconunvector1Click
+      end
+      object N20222Acargarvectorconlosdigitosdeunnumero1: TMenuItem
+        Caption = '2022-2A-cargar vector con los digitos de un numero'
+        OnClick = N20222Acargarvectorconlosdigitosdeunnumero1Click
       end
     end
   end

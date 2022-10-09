@@ -25,7 +25,7 @@ void EliminarPrimerosElementosV2(TStringGrid *v, Word &n, Word m); //2021-1 #2 =
 void GenerarNumeroInvertido(TStringGrid *v, Word n, Cardinal &x);
 void GenerarNumeroInvertidoV2(TStringGrid *v, byte a, byte b, Cardinal &x);//2021-1 #1 repechaje
 AnsiString GenerarCadena2019_2A(TStringGrid *v, byte a, byte b);
-
+void cargar2022_2A(Cardinal num, TStringGrid *v, byte &n);
 
 
 

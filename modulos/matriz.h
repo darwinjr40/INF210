@@ -53,12 +53,16 @@ void llenarc1Inf(TStringGrid*v,byte c,byte fa,byte fb,byte &k);
 void llenarf2Der(TStringGrid*v,byte f,byte ca,byte cb,byte &k);
 void llenarc2Sup(TStringGrid*v,byte c, byte fa,byte fb,byte &k);
 void llenarf1Izq(TStringGrid*v,byte f,byte ca,byte cb,byte &k);
-
-//dunnia
+//2022-2A
+void cargarCol2022_2A(TStringGrid *v, byte f, byte ca, byte cb, byte m);
+void cargarFila2022_2A(TStringGrid *v, byte f, byte c);
+//dunnia--------------------------------------
 void cargarM1(TStringGrid * v, int f, int c, int m, int x);
 void cargarM2(TStringGrid * v, int f, int c, int m, int x);
 void cargarM(TStringGrid * v,int m, int f, int ca, int k);
 void cargar2022_1(TStringGrid * M,int m, int f, int c, int &x);
+void cargarDentroToF(TStringGrid *v, unsigned int fa,unsigned int fb);
+void cargarDentroToFueraC(TStringGrid *v, unsigned int f, unsigned int ca, unsigned int cb, unsigned int x);
 
 //---------------------------------------------------------------------------
 

@@ -59,6 +59,12 @@ void Magicov1(TStringGrid *A, byte m,byte k, byte &i,byte &j){
   }
 }
 //---------------------------------------------------------------------------
+//	3	3	3	3	3
+//	3	2	2	2	3
+//	3	2   1   2	3
+//	3	2	2	2   3
+//	3	3	3	3	3
+
 void cargarDentroToFueraCol(TStringGrid *v, byte f, byte ca, byte cb, byte x){
   byte c = cb-ca+1;
   if (c > 0) {
@@ -288,6 +294,11 @@ void cargarFila2022_1(TStringGrid *v, byte f, byte c){
   }
 }
 //---------------------------------------------------------------------------
+//	5   4	3	2   1
+//	5   4	3	2	2
+//	5   4   3	3	3
+//	5   4   4	4	4
+//	5   5	5   5   5
 void cargarCol2022_1B(TStringGrid *v, byte i, byte j, byte fa, byte fb){
   byte f = fb-fa+1;
   if (f > 0) {
@@ -305,6 +316,11 @@ void cargarFila2022_1B(TStringGrid *v, byte f, byte m){
 }
 //---------------------------------------------------------------------------
 //caracol
+//	1	2	3	4	5
+//	16	17	18	19	6
+//	15	24	25	20	7
+//	14	23	22	21	8
+//	13  12  11	10  9
 void llenarf1Izq(TStringGrid*v,byte f,byte ca,byte cb,byte &k){
   byte c = cb-ca+1;
   if (c > 0) {
@@ -353,7 +369,26 @@ void cargarCaracol(TStringGrid*v,byte fa,byte fb,byte ca,byte cb,byte &k){
   }
 }
 //---------------------------------------------------------------------------
-
+//2022-1A
+//	5	5	5	5   5
+//	5	4	4	4	4
+//	5	4	3	3	3
+//	5	4	3	2	2
+//	5	4   3	2	1
+void cargarCol2022_2A(TStringGrid *v, byte f, byte ca, byte cb, byte m){
+  byte c = cb-ca+1;
+  if (c > 0) {
+	cargarCol2022_2A(v, f, ca, cb-1, m);
+	v->Cells[cb][f] = m - f;
+	v->Cells[f][cb] = m - f;
+  }
+}
+void cargarFila2022_2A(TStringGrid *v, byte f, byte c){
+  if (f > 0) {
+	cargarFila2022_2A(v, f-1, c);
+	cargarCol2022_2A(v, f-1, f-1, c-1, c);
+  }
+}
 
 
 
@@ -364,15 +399,15 @@ void cargarCaracol(TStringGrid*v,byte fa,byte fb,byte ca,byte cb,byte &k){
 //	0	1	2	3	4
 //	1	2	3	4   5
 void cargarM1(TStringGrid * v, int f, int c, int m, int x){
-		if (f < m) {
-			  v->Cells[c][f] = x;
-			if (c == (m - 1)) {
-					f = f + 1;
-					c = c - f - 1;
-					x = 0;
-			}
-			cargarM1(v, f, c + 1 , m, x + 1);
-		}
+  if (f < m) {
+	 v->Cells[c][f] = x;
+	if (c == (m - 1)) {
+		f = f + 1;
+		c = c - f - 1;
+		x = 0;
+	}
+	cargarM1(v, f, c + 1 , m, x + 1);
+  }
 }
 
 
@@ -401,7 +436,11 @@ void cargarM2(TStringGrid * v, int f, int c, int m, int x){
   }
 }
 
-
+//	4   3	2	1	0
+//		4	3	2   1
+//			4	3	2
+//				4   3
+//					4
 void cargarM(TStringGrid * v,int m, int f, int ca, int k){
   if (f < m) {
 	 if (ca == m) {
@@ -424,7 +463,7 @@ void cargar2022_1(TStringGrid * M,int m, int f, int c, int &x){
 	  c = 0;
 	  f = f + 1;
 	} else {
-	  if ( f > c)
+	  if ( f > c)  //i > j
 		M->Cells[c][f] = 0;
 	  else {
 		M->Cells[c][f] = x;
@@ -435,3 +474,34 @@ void cargar2022_1(TStringGrid * M,int m, int f, int c, int &x){
 	cargar2022_1(M, m, f, c, x);
   }
 }
+//---------------------------------------------------------
+//	1	1	1   1	1
+//	1	2	2	2   1
+//	1	2   3   2	1
+//	1	2	2	2   1
+//	1	1	1	1   1
+
+void cargarDentroToFueraC(TStringGrid *v, unsigned int f, unsigned int ca, unsigned int cb, unsigned int x){
+  byte c = cb-ca+1;
+  if (c > 0) {  //caso general
+	cargarDentroToFueraC(v, f, ca+1, cb, x);
+	v->Cells[ca][f] = x;
+	v->Cells[f][ca] = x;
+  }
+  //caso base, nada
+}
+
+void cargarDentroToF(TStringGrid *v, unsigned int fa, unsigned int fb){
+  byte f = fb-fa+1;  //3 - 0 +1 = 4
+  if (f > 0) {
+	if (f == 1)  //caso base
+	  v->Cells[fa][fb]=fa+1;
+	else { //caso general
+	  cargarDentroToF(v, fa+1,fb-1);
+	  cargarDentroToFueraC(v, fa, fa, fb, fa+1);
+	  cargarDentroToFueraC(v, fb, fa, fb, fa+1);
+	}
+  }
+}
+
+

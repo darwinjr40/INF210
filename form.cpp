@@ -296,3 +296,30 @@ void __fastcall TForm1::caracol1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::N20221A1Click(TObject *Sender)
+{
+	byte f = StringGrid1->RowCount;
+	byte c = StringGrid1->ColCount;
+	cargarFila2022_2A(StringGrid1, f, c);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N20222Acargarvectorconlosdigitosdeunnumero1Click(TObject *Sender)
+
+{
+  Cardinal num = Edit1->Text.ToInt();
+  byte n = 0;
+  cargar2022_2A(num, StringGrid1, n);
+  StringGrid1->ColCount = n;
+  StringGrid1->RowCount = 0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::PMadentroToFuera1Click(TObject *Sender)
+{
+  unsigned int fa = 0;
+  unsigned int fb = StringGrid1->RowCount - 1;
+  cargarDentroToF(StringGrid1, fa, fb);
+}
+//---------------------------------------------------------------------------
+
