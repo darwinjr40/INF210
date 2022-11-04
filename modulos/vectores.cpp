@@ -323,3 +323,35 @@ void Interseccion(TStringGrid * a, int n,TStringGrid * b, int m, String &x){
 //  Edit3->Text =	x;
 //}
 
+//MergeSort recursivo--------------------------------------------------------
+
+void  MergeSort(int *Vec,unsigned int bajo,unsigned int alto,unsigned int n){
+if(bajo< alto){//Paso Recursivo
+  unsigned int centro=(alto+bajo)/2;
+  MergeSort(Vec,bajo,centro,n);
+  MergeSort(Vec,centro+1,alto,n);
+  Mezcla(Vec,bajo,centro+1,alto,n);
+ }
+}
+
+void Mezcla(int *Vec,unsigned int bajo, unsigned int centro,unsigned int alto,unsigned int n){
+unsigned int ini_1=bajo;
+unsigned int fin_1=centro-1;
+ unsigned int ini_2= centro ;
+//fin_2=alto
+unsigned int pos= bajo;
+int *Tmp=new int[n];
+while (( ini_1 <=fin_1 )&&(ini_2<=alto)){
+  if(Vec[ini_1]<=Vec[ini_2]) Tmp[pos++]=  Vec[ini_1++];
+  else  Tmp[pos++]=  Vec[ini_2++];
+}
+while (ini_1<=fin_1)
+	Tmp[pos++]=Vec[ini_1++] ;
+while (ini_2<=alto)
+	Tmp[pos++]=Vec[ini_2++] ;
+ //Copiar de Tmp todos los elementos a Vec
+ for(pos=bajo;pos<=alto;pos++)
+   Vec[pos]=Tmp[pos];
+}
+
+//--------------------------------------------------------

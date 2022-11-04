@@ -33,5 +33,7 @@ void cargar2022_2A(Cardinal num, TStringGrid *v, byte &n);
 AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p);
 bool pertenece(TStringGrid * v, int i, int n, int x);
 void Interseccion(TStringGrid * a, int n,TStringGrid * b, int m, String &x);
+void  MergeSort(int *Vec,unsigned int bajo,unsigned int alto,unsigned int n);
+void Mezcla(int *Vec,unsigned int bajo, unsigned int centro,unsigned int alto,unsigned int n);
 //---------------------------------------------------------------------------
 #endif
