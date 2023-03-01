@@ -259,6 +259,26 @@ void cargar2022_2A(Cardinal num, TStringGrid *v, byte &n){
   }
 }
 
+//2022-3-parcial2-------------------------------------------------------
+void CargarFibonacci(TStringGrid *v, byte n){
+  CargarFibonacci(v, 0, n-1);
+}
+void CargarFibonacci(TStringGrid *v, byte a, byte b){
+  byte n = b - a + 1;
+  if ( n > 0) {
+	if (n == 1) {
+	  v->Cells[0][b] = 1;
+	} else if(n == 2) {
+	  v->Cells[b-1][0] = 1;
+	  v->Cells[b][0] = 1;
+	} else {
+	  CargarFibonacci(v, a, b-1);
+	  byte a = v->Cells[b-2][0].ToInt();
+	  byte b = v->Cells[b-1][0].ToInt();
+	  v->Cells[b][0] = a + b;	
+	}
+  }
+}
 //dunnia--------------------------------------------------------
 
 AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){
