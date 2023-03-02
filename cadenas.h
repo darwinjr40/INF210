@@ -11,12 +11,14 @@ void EliminarPrimerNumero(AnsiString &x);
 bool EsVocal(char c);
 bool esDigito(char z);
 bool EsAbecedario(char c, bool sw);
+bool EsPalabra(char x);
 AnsiString primerNum(AnsiString x);  //2020_2  #2
 Cardinal numMenor(String x);
 Cardinal numMayor(AnsiString x);
-String primerPal(String x);
+AnsiString primerPal(AnsiString x);
 String palabralarga(String x);
 String Invertir(String x);
+AnsiString UltimaPal(AnsiString x);
 
 //dunnia
 void DeletePrimerCaracterDeUnaPalabra(AnsiString &x);

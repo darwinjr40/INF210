@@ -63,6 +63,10 @@ __published:	// IDE-managed Components
 	TMenuItem *N20221A1;
 	TMenuItem *N20222Acargarvectorconlosdigitosdeunnumero1;
 	TMenuItem *PMadentroToFuera1;
+	TMenuItem *N20223cargarVectorConSerieFibonacci1;
+	TMenuItem *Numero1;
+	TMenuItem *numeroesprimo1;
+	TMenuItem *cargarVectorConPalabras1;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);
@@ -95,6 +99,9 @@ __published:	// IDE-managed Components
 	void __fastcall N20221A1Click(TObject *Sender);
 	void __fastcall N20222Acargarvectorconlosdigitosdeunnumero1Click(TObject *Sender);
 	void __fastcall PMadentroToFuera1Click(TObject *Sender);
+	void __fastcall N20223cargarVectorConSerieFibonacci1Click(TObject *Sender);
+	void __fastcall numeroesprimo1Click(TObject *Sender);
+	void __fastcall cargarVectorConPalabras1Click(TObject *Sender);
 
 private:	// User declarations
 public:		// User declarations

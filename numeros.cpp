@@ -89,7 +89,7 @@ void ordenarDigitos(Cardinal &n) {
 
 /*Escribir un proceso que lleve el menor de los digitos
 al inicio de un numero ej--> 382731-->138273     */
-MoverMenor(int &n){
+void MoverMenor(int &n){
  if(n > 9){
 	byte d = n % 10;
 	n = n / 10;
@@ -102,6 +102,34 @@ MoverMenor(int &n){
 	n = n * 10 + d;
  }
 }
+
+//algoritmo que verifica si un numero es primo
+bool VerificarPrimo(Cardinal n){
+	return VerificarPrimo(n, n / 2);
+}
+
+
+bool VerificarPrimo(Cardinal n, Cardinal i){
+  bool sw;
+//  if (i <= 1) {
+//	sw = (i == 1 || n == 1) ? true : false;
+//  } else if (n % i == 0) {
+//	sw = false;
+//  } else {
+//	sw = VerificarPrimo(n, i-1);
+//  }
+  if (i == 0)
+	sw =  false;
+  else if (i == 1)
+	sw = true;
+  else if (n % i == 0)
+	sw = false;
+  else
+	sw = VerificarPrimo(n, i-1);
+  return sw;
+}
+
+
 //dunnia------------------------------------------------
 //	int cantidad = Edit1->Text.ToInt(); //StrToInt(Edit1->Text)
 //	Edit2->Text = serie1(cantidad);

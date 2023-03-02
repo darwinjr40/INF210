@@ -246,6 +246,22 @@ object Form1: TForm1
         Caption = '2022-2A-cargar vector con los digitos de un numero'
         OnClick = N20222Acargarvectorconlosdigitosdeunnumero1Click
       end
+      object N20223cargarVectorConSerieFibonacci1: TMenuItem
+        Caption = '2022-3-cargarVectorConSerieFibonacci'
+        OnClick = N20223cargarVectorConSerieFibonacci1Click
+      end
+      object cargarVectorConPalabras1: TMenuItem
+        Caption = 'cargarVectorConPalabras'
+        OnClick = cargarVectorConPalabras1Click
+      end
+    end
+    object Numero1: TMenuItem
+      Caption = 'Numero'
+      Checked = True
+      object numeroesprimo1: TMenuItem
+        Caption = 'numero es primo'
+        OnClick = numeroesprimo1Click
+      end
     end
   end
 end

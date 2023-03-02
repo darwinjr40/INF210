@@ -20,7 +20,9 @@ AnsiString SumaOctal(Cardinal a, Cardinal b, Cardinal ac);
 String SumaOctal(Cardinal a, Cardinal b);
 void moverMayorFinal(Cardinal &n);
 void ordenarDigitos(Cardinal &n);
-MoverMenor(int &n); //2020-1  #1
+void MoverMenor(int &n); //2020-1  #1
+bool VerificarPrimo(Cardinal n);
+bool VerificarPrimo(Cardinal n, Cardinal i);
 //dunnia-------------------------
 double serie1 (int n);
 //---------------------------------------------------------------------------

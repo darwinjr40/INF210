@@ -323,3 +323,26 @@ void __fastcall TForm1::PMadentroToFuera1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::N20223cargarVectorConSerieFibonacci1Click(TObject *Sender)
+{
+ byte n = StringGrid1->ColCount;
+ CargarFibonacci(StringGrid1, n);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::numeroesprimo1Click(TObject *Sender)
+{
+ bool sw = VerificarPrimo(Edit1->Text.ToInt());
+ Edit2->Text = BoolToStr(sw, true);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::cargarVectorConPalabras1Click(TObject *Sender)
+{
+ String cad = Edit1->Text;
+ byte n;
+ CargarPalabras(StringGrid1,n , cad);
+ StringGrid1->ColCount = n;
+}
+//---------------------------------------------------------------------------
+

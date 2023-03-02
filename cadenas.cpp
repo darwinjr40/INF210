@@ -106,22 +106,46 @@ void EliminarPrimerNumero(AnsiString &x){
   }
 }
 
-String primerPal(String x){
- String c;
+bool EsPalabra(char x){
+	AnsiString conjunto = "abcdefghijklmnñopqrstuvwxyzáéíóú";
+	byte posicion =  conjunto.Pos(x);
+	return  posicion > 0;
+}
+
+AnsiString primerPal(AnsiString x){
+ AnsiString c;
  if (x == "") {
 	 c = "";
  }else{
-	wchar_t z = x[1];
+	char z = x[1];
 	x.Delete(1,1);
-	if (z == ' ') {
-	  if (c == "")       //variable de recursion vasio
-		c = primerPal(x);
-	}else{
-	  if ((x != "") && (x[1]!= ' ')) {
-		c = String(z) + primerPal(x);
-	  }else{
-		c = String(z);
+	if (EsPalabra(z)) {
+	  c = AnsiString(z);
+	  if ((x != "") && (EsPalabra(x[1]))) {
+		c = c + primerPal(x);
 	  }
+	}else{
+	  c = primerPal(x);
+	}
+ }
+ return c;
+}
+
+AnsiString UltimaPal(AnsiString x){
+ AnsiString c;
+ if (x == "") {
+	 c = "";
+ }else{
+	byte p = x.Length();
+	char z = x[p];
+	x.Delete(p,1);
+	if (EsPalabra(z)) {
+	  c = AnsiString(z);
+	  if ((x != "") && (EsPalabra(x[x.Length()]))) {
+		c = UltimaPal(x) + c;
+	  }
+	}else{
+	  c = UltimaPal(x);
 	}
  }
  return c;
@@ -159,6 +183,8 @@ String Invertir(String x){
   }
   return r;
 }
+
+
 bool EsAbecedario(char c){
 	return (c >= 'a' && c<= 'z')
 		 ||(c >= 'A' && c<= 'Z');

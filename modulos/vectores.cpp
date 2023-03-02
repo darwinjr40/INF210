@@ -3,6 +3,8 @@
 #pragma hdrstop
 
 #include "vectores.h"
+
+#include "cadenas.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -267,15 +269,37 @@ void CargarFibonacci(TStringGrid *v, byte a, byte b){
   byte n = b - a + 1;
   if ( n > 0) {
 	if (n == 1) {
-	  v->Cells[0][b] = 1;
+	  v->Cells[b][0] = 1;
 	} else if(n == 2) {
 	  v->Cells[b-1][0] = 1;
 	  v->Cells[b][0] = 1;
 	} else {
 	  CargarFibonacci(v, a, b-1);
-	  byte a = v->Cells[b-2][0].ToInt();
-	  byte b = v->Cells[b-1][0].ToInt();
-	  v->Cells[b][0] = a + b;	
+	  byte x = v->Cells[b-2][0].ToInt();
+	  byte y = v->Cells[b-1][0].ToInt();
+	  v->Cells[b][0] = x + y;	
+	}
+  }
+}
+/*carga unicamente con las palabras de un string
+entrada=>
+x ="hola123como,están.esta;mañana##%", v[], n;
+salida =>
+v["hola", "como", "están", "esta", "mañana"], n = 5;
+*/
+void CargarPalabras(TStringGrid *v, byte &n, AnsiString x){
+  if (x == "") {
+	n = 0;
+  } else {
+	AnsiString pal = UltimaPal(x);
+	if (pal == "") {
+	  n = 0;
+	} else {
+	  byte pos = x.Pos(pal);
+	  x.Delete(pos, x.Length());
+	  CargarPalabras(v, n, x);
+	  v->Cells[n][0] = pal;
+	  n++;
 	}
   }
 }
