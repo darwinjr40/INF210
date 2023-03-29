@@ -24,7 +24,7 @@ byte CantDigPares(Cardinal n){
   }
   return r;
 }
-
+//proceso que carga 2 variables por referencia{digito(mayor, menor)}
 void mayorMenor(Cardinal n, byte &may, byte &men) {
 	byte a, b;
 	if (n < 10) { //n = 1
