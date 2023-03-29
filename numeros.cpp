@@ -129,6 +129,22 @@ bool VerificarPrimo(Cardinal n, Cardinal i){
   return sw;
 }
 
+Cardinal GetDigParesAntesPar(Cardinal n){
+  Cardinal r;
+  if ( n < 10 ) {
+	r = 0;
+  } else { //asumimos que hay mas de 2 digitos
+	r = GetDigParesAntesPar(n / 10);
+	byte izq = (n /10) % 10;
+	byte der = (n % 10);
+	if ((izq % 2 == 0) && (der % 2 == 1)) {
+//	  r = r + 1;
+		r = r * 10 + izq;
+	}
+
+  }
+  return r;
+}
 
 //dunnia------------------------------------------------
 //	int cantidad = Edit1->Text.ToInt(); //StrToInt(Edit1->Text)

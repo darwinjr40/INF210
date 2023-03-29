@@ -23,6 +23,7 @@ void ordenarDigitos(Cardinal &n);
 void MoverMenor(int &n); //2020-1  #1
 bool VerificarPrimo(Cardinal n);
 bool VerificarPrimo(Cardinal n, Cardinal i);
+Cardinal GetDigParesAntesPar(Cardinal n);
 //dunnia-------------------------
 double serie1 (int n);
 //---------------------------------------------------------------------------
