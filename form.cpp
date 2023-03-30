@@ -346,3 +346,16 @@ void __fastcall TForm1::cargarVectorConPalabras1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::getmaymen1Click(TObject *Sender)
+{
+ Cardinal numero = 123;
+ byte mayor;
+ byte menor;
+ mayorMenor(numero, mayor, menor);
+ //salida
+ ShowMessage(mayor);
+ ShowMessage(menor);
+}
+//---------------------------------------------------------------------------
+
+

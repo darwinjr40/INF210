@@ -1,4 +1,4 @@
-﻿//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 
 #pragma hdrstop
 
@@ -108,7 +108,7 @@ void MoverMenor(int &n){
 
 //algoritmo que verifica si un numero es primo
 bool VerificarPrimo(Cardinal n){
-	return VerificarPrimo(n, n / 2);
+	return VerificarPrimo(n, n - 1);
 }
 
 

@@ -262,6 +262,10 @@ object Form1: TForm1
         Caption = 'numero es primo'
         OnClick = numeroesprimo1Click
       end
+      object getmaymen1: TMenuItem
+        Caption = 'get: may-men'
+        OnClick = getmaymen1Click
+      end
     end
   end
 end
