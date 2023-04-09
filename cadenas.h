@@ -27,5 +27,8 @@ void DeletePrimerCaracterDeUnaPalabraV2(AnsiString &x);
 
 void DeleteUltimoCaracterDeUnaPalabraV2(AnsiString &x, byte sw);
 void DeleteUltimoCaracterDeUnaPalabra(AnsiString &x);
+
+void EliminarVocales(AnsiString &x);
+byte GetCantidadVocales(AnsiString x);
 //-----------------------------------------------------------
 #endif

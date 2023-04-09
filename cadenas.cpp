@@ -268,3 +268,32 @@ void DeleteUltimoCaracterDeUnaPalabra(AnsiString &x){
 	  x = (AnsiString)e + x;
   }
 }
+
+
+
+void EliminarVocales(AnsiString &x){
+//caso base nada
+  if (x != "") { //caso general
+	char aux = x[1];
+	x.Delete(1,1);
+	EliminarVocales(x);
+	if (! EsVocal(aux)) {
+	  x = (AnsiString)aux + x;
+	}
+  }
+}
+
+byte GetCantidadVocales(AnsiString x){
+  byte res;
+  if (x == "") { //caso general
+	res = 0;
+  }else{
+	char aux = x[1];
+	x.Delete(1,1);
+	res = GetCantidadVocales(x);
+	if (EsVocal(aux)) {
+		res++;//	  res = res + 1;
+	}
+  }
+  return res;
+}
