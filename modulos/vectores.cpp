@@ -5,6 +5,8 @@
 #include "vectores.h"
 
 #include "cadenas.h"
+#include <iostream>
+#include <string>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -284,19 +286,22 @@ void CargarFibonacci(TStringGrid *v, byte a, byte b){
 /*carga unicamente con las palabras de un string
 entrada=>
 x ="hola123como,están.esta;mañana##%", v[], n;
+"hola11mañana23como,están.esta;mañana##"
 salida =>
 v["hola", "como", "están", "esta", "mañana"], n = 5;
+	 0       1        2       3        4
+	  - pos + 1
 */
 void CargarPalabras(TStringGrid *v, byte &n, AnsiString x){
-  if (x == "") {
+  if (x == "") { //caso base
 	n = 0;
-  } else {
+  } else {   //caso general
 	AnsiString pal = UltimaPal(x);
-	if (pal == "") {
+	if (pal == "") { //2do caso base
 	  n = 0;
 	} else {
 	  byte pos = x.Pos(pal);
-	  x.Delete(pos, x.Length());
+	  x.Delete(pos, x.Length()- pos + 1);
 	  CargarPalabras(v, n, x);
 	  v->Cells[n][0] = pal;
 	  n++;

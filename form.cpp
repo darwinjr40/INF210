@@ -341,8 +341,9 @@ void __fastcall TForm1::cargarVectorConPalabras1Click(TObject *Sender)
 {
  String cad = Edit1->Text;
  byte n;
- CargarPalabras(StringGrid1,n , cad);
+ CargarPalabras(StringGrid1, n , cad);
  StringGrid1->ColCount = n;
+// ShowMessage(UltimaPal(cad));
 }
 //---------------------------------------------------------------------------
 

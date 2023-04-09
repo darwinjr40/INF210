@@ -130,7 +130,7 @@ AnsiString primerPal(AnsiString x){
  }
  return c;
 }
-
+// x = "21hola213como12"  => "como"
 AnsiString UltimaPal(AnsiString x){
  AnsiString c;
  if (x == "") {
