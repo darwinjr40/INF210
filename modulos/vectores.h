@@ -29,6 +29,7 @@ void cargar2022_2A(Cardinal num, TStringGrid *v, byte &n);
 void CargarFibonacci(TStringGrid *v, byte a, byte b);
 void CargarFibonacci(TStringGrid *v, byte n);
 void CargarPalabras(TStringGrid *v, byte &n, AnsiString x);
+void CargarPalabrasV2(TStringGrid *v, byte &n, AnsiString x);
 
 //dunnia
 AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p);

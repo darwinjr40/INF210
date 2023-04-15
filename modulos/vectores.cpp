@@ -308,6 +308,25 @@ void CargarPalabras(TStringGrid *v, byte &n, AnsiString x){
 	}
   }
 }
+
+void CargarPalabrasV2(TStringGrid *v, byte &n, AnsiString x){
+  if (x == "") { //caso base
+	n = 0;
+  }else {   //caso general
+	byte dim = x.Length();
+	char e = x[dim];
+	x.Delete(dim, 1);
+	CargarPalabrasV2(v, n, x);
+	if (EsPalabra(e)) {
+	  if ((x=="") || (x != "" && !EsPalabra(x[x.Length()]))) {
+		v->Cells[n][0] = "";
+		n++;				  
+	  }
+	  v->Cells[n-1][0] = v->Cells[n-1][0] + (AnsiString)e;
+//	  v->Cells[n-1][0] += (AnsiString)e; //este no funciona	  
+	}
+  }
+}
 //dunnia--------------------------------------------------------
 
 AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){
