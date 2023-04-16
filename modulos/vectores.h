@@ -28,6 +28,7 @@ AnsiString GenerarCadena2019_2A(TStringGrid *v, byte a, byte b);
 void cargar2022_2A(Cardinal num, TStringGrid *v, byte &n);
 void CargarFibonacci(TStringGrid *v, byte a, byte b);
 void CargarFibonacci(TStringGrid *v, byte n);
+void CargarFibonacciV2(TStringGrid *v, byte &n, byte x);
 void CargarPalabras(TStringGrid *v, byte &n, AnsiString x);
 void CargarPalabrasV2(TStringGrid *v, byte &n, AnsiString x);
 

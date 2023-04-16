@@ -279,8 +279,27 @@ void CargarFibonacci(TStringGrid *v, byte a, byte b){
 	  CargarFibonacci(v, a, b-1);
 	  byte x = v->Cells[b-2][0].ToInt();
 	  byte y = v->Cells[b-1][0].ToInt();
-	  v->Cells[b][0] = x + y;	
+	  v->Cells[b][0] = x + y;
 	}
+  }
+}
+
+void CargarFibonacciV2(TStringGrid *v, byte &n, byte x){
+  if (x == 0)
+	n = 0;
+  else if (x <= 2) { //x < 3  [1,2]
+	 v->Cells[0][0] = 1;
+	 n = 1;
+	 if (x == 2) {
+	   v->Cells[n][0] = 1;
+	   n++;
+	 }
+  }else { //caso general
+	CargarFibonacciV2(v, n, x-1);
+	byte x = v->Cells[n-1][0].ToInt();
+	byte y = v->Cells[n-2][0].ToInt();
+	v->Cells[n][0] = x + y;
+    n++;
   }
 }
 /*carga unicamente con las palabras de un string
@@ -320,7 +339,7 @@ void CargarPalabrasV2(TStringGrid *v, byte &n, AnsiString x){
 	if (EsPalabra(e)) {
 	  if ((x=="") || (x != "" && !EsPalabra(x[x.Length()]))) {
 		v->Cells[n][0] = "";
-		n++;				  
+		n++;
 	  }
 	  v->Cells[n-1][0] = v->Cells[n-1][0] + (AnsiString)e;
 //	  v->Cells[n-1][0] += (AnsiString)e; //este no funciona	  

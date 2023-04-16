@@ -325,8 +325,12 @@ void __fastcall TForm1::PMadentroToFuera1Click(TObject *Sender)
 
 void __fastcall TForm1::N20223cargarVectorConSerieFibonacci1Click(TObject *Sender)
 {
- byte n = StringGrid1->ColCount;
- CargarFibonacci(StringGrid1, n);
+// byte n = StringGrid1->ColCount;
+// CargarFibonacci(StringGrid1, n);
+  byte dim = Edit3->Text.ToInt();
+  byte n;
+  CargarFibonacciV2(StringGrid1, n, dim);
+  StringGrid1->ColCount = n;
 }
 //---------------------------------------------------------------------------
 
@@ -358,8 +362,6 @@ void __fastcall TForm1::getmaymen1Click(TObject *Sender)
  ShowMessage(menor);
 }
 //---------------------------------------------------------------------------
-
-
 
 void __fastcall TForm1::prueba2Click(TObject *Sender)
 {
