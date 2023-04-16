@@ -297,3 +297,25 @@ byte GetCantidadVocales(AnsiString x){
   }
   return res;
 }
+
+bool EsAlfaOrNumOrEsp(char z){
+  AnsiString conjunto = "qwertyuiopasdfghjklzxcvbnm12345678990 ";
+  byte posicionBusq = conjunto.Pos(z);
+  return  posicionBusq > 0;  //true
+}
+
+byte GetCantidadNotAlfaOrNumOrEsp(AnsiString x){
+  byte resp;
+  if (x == "")
+	resp = 0;
+  else {
+	char c = x[1];
+	x.Delete(1,1);
+	resp = GetCantidadNotAlfaOrNumOrEsp(x);
+	if (! EsAlfaOrNumOrEsp(c)) {
+	 resp++;  //resp := resp + 1
+	}
+  }
+
+  return resp;
+}

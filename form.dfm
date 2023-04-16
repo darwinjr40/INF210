@@ -172,6 +172,10 @@ object Form1: TForm1
         Caption = 'P-M-adentroToFuera'
         OnClick = PMadentroToFuera1Click
       end
+      object prueba2: TMenuItem
+        Caption = 'prueba'
+        OnClick = prueba2Click
+      end
     end
     object matriz1: TMenuItem
       Caption = 'M-Contreras'

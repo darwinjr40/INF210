@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 //#include <vcl.h>
-
+//contreras
 void SacaraPrimeraLetra(AnsiString &x);
 void EliminarPrimerNumero(AnsiString &x);
 bool EsVocal(char c);
@@ -30,5 +30,7 @@ void DeleteUltimoCaracterDeUnaPalabra(AnsiString &x);
 
 void EliminarVocales(AnsiString &x);
 byte GetCantidadVocales(AnsiString x);
+bool EsAlfaOrNumOrEsp(char z);
+byte GetCantidadNotAlfaOrNumOrEsp(AnsiString x);
 //-----------------------------------------------------------
 #endif

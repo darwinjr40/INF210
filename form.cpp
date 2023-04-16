@@ -360,3 +360,12 @@ void __fastcall TForm1::getmaymen1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
+
+void __fastcall TForm1::prueba2Click(TObject *Sender)
+{
+  AnsiString cad = Edit3->Text;
+  byte res =  GetCantidadNotAlfaOrNumOrEsp(cad);
+  ShowMessage(res);
+}
+//---------------------------------------------------------------------------
+
