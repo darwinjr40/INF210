@@ -370,16 +370,32 @@ AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){
 //	int n = StringGrid1->ColCount;
 //	Double a = 0;
 //	Edit2->Text =   mayorPromedio(StringGrid1, 0, n, a);
-//}bool pertenece(TStringGrid * v, int i, int n, int x){  bool b;
+//}//(pertenece(vector, i=0, cantVector=3, ele)					 //i<= n					 //i := i + 1;bool pertenece(TStringGrid * v, int i, int n, int x){  bool b;
   if (i >= n)
 	b =  false;
   else {
-	if (v->Cells[i][0] == x) {
+	Cardinal elem = v->Cells[i][0].ToInt();//{columna}{fila}
+	if ( elem == x) {
 	  b =  true;
 	} else {
 	  b = pertenece(v, i+1, n, x);
 	}
    }
+  return b;
+}
+
+bool pertenece(TStringGrid * v, int n, int x){
+  bool b;
+  if (n == 0)
+	b = false;
+  else {
+	Cardinal elem = v->Cells[n-1][0].ToInt();
+	n = n - 1;
+	if (elem == x)
+	  b = true;
+	else
+	  b = pertenece(v, n, x);
+  }
   return b;
 }
 
@@ -390,14 +406,17 @@ AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){
 // int x = Edit1->Text.ToInt();
 // Edit2->Text = BoolToStr(pertenece(StringGrid1, 0, n, x), true);
 //}
+//x = '"  =>  x= "10 30"
 void Interseccion(TStringGrid * a, int n,TStringGrid * b, int m, String &x){
   if (n == 0) {
 	x = "";
   } else {
 	 Interseccion(a,n-1, b, m, x);
-	if (pertenece(b, 0, m, a->Cells[n-1][0].ToInt()) &&
-	   (x.Pos(a->Cells[n-1][0]) == 0))
-	  x = x + "  " + a->Cells[n-1][0] ;
+	 int ele = a->Cells[n-1][0].ToInt();
+	 byte posicion = x.Pos(ele);
+	 bool sw =  (posicion == 0);
+	if (pertenece(b, m, ele) && sw)
+	  x = x + "  " + ele ;
   }
 }
 

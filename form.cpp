@@ -66,6 +66,8 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	 StringGrid1->ColCount = Edit1->Text.ToInt();
 	 StringGrid1->RowCount = 1;
 
+	 StringGrid2->ColCount = Edit1->Text.ToInt();
+	 StringGrid2->RowCount = 1;
 }
 //---------------------------------------------------------------------------
 
@@ -368,6 +370,17 @@ void __fastcall TForm1::prueba2Click(TObject *Sender)
   AnsiString cad = Edit3->Text;
   byte res =  GetCantidadNotAlfaOrNumOrEsp(cad);
   ShowMessage(res);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::vectorinterseccion1Click(TObject *Sender)
+{
+  String cad;
+  byte n = StringGrid1->ColCount;
+  byte m = StringGrid2->ColCount;
+  Interseccion(StringGrid1, n, StringGrid2, m, cad);
+  ShowMessage(cad);
 }
 //---------------------------------------------------------------------------
 

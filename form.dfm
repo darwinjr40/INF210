@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 518
+  ClientHeight = 674
   ClientWidth = 932
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -57,7 +57,7 @@ object Form1: TForm1
     Left = 40
     Top = 200
     Width = 785
-    Height = 233
+    Height = 177
     DrawingStyle = gdsClassic
     FixedCols = 0
     FixedRows = 0
@@ -109,6 +109,23 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 7
+  end
+  object StringGrid2: TStringGrid
+    Left = 40
+    Top = 400
+    Width = 785
+    Height = 177
+    DrawingStyle = gdsClassic
+    FixedCols = 0
+    FixedRows = 0
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
+    ParentFont = False
+    TabOrder = 8
   end
   object MainMenu1: TMainMenu
     Left = 16
@@ -175,6 +192,10 @@ object Form1: TForm1
       object prueba2: TMenuItem
         Caption = 'prueba'
         OnClick = prueba2Click
+      end
+      object vectorinterseccion1: TMenuItem
+        Caption = 'vector-interseccion'
+        OnClick = vectorinterseccion1Click
       end
     end
     object matriz1: TMenuItem
