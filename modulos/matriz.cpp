@@ -208,7 +208,7 @@ void cargar2020_2(TStringGrid *v, byte m, byte k, byte &f, byte &c){
 		  if (f == 0) { //FILA INICIAL
 			 f =c + 1;
 			 c = 0;
-		 } else { //   CARGADO DIAGONA;
+		 } else { //   CARGADO DIAGONAL;
 			 c++;
 			 f--;
 		 }

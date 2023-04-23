@@ -31,6 +31,8 @@ void CargarFibonacci(TStringGrid *v, byte n);
 void CargarFibonacciV2(TStringGrid *v, byte &n, byte x);
 void CargarPalabras(TStringGrid *v, byte &n, AnsiString x);
 void CargarPalabrasV2(TStringGrid *v, byte &n, AnsiString x);
+void CargarToDigitosRep(TStringGrid *v, byte &n, Cardinal x);
+void CargarDigitosDeNumero(TStringGrid *v, byte &n, Cardinal x);
 
 //dunnia
 AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p);

@@ -384,3 +384,12 @@ void __fastcall TForm1::vectorinterseccion1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::cargarDigitosrep1Click(TObject *Sender)
+{
+  Cardinal nro = Edit1->Text.ToInt();
+  byte n;
+  CargarToDigitosRep(StringGrid1, n , nro);
+  StringGrid1->ColCount = n;
+}
+//---------------------------------------------------------------------------
+

@@ -71,6 +71,7 @@ __published:	// IDE-managed Components
 	TMenuItem *prueba2;
 	TMenuItem *vectorinterseccion1;
 	TStringGrid *StringGrid2;
+	TMenuItem *cargarDigitosrep1;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);
@@ -109,6 +110,7 @@ __published:	// IDE-managed Components
 	void __fastcall getmaymen1Click(TObject *Sender);
 	void __fastcall prueba2Click(TObject *Sender);
 	void __fastcall vectorinterseccion1Click(TObject *Sender);
+	void __fastcall cargarDigitosrep1Click(TObject *Sender);
 
 private:	// User declarations
 public:		// User declarations

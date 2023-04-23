@@ -279,6 +279,10 @@ object Form1: TForm1
         Caption = 'cargarVectorConPalabras'
         OnClick = cargarVectorConPalabras1Click
       end
+      object cargarDigitosrep1: TMenuItem
+        Caption = 'cargarDigitosrep'
+        OnClick = cargarDigitosrep1Click
+      end
     end
     object Numero1: TMenuItem
       Caption = 'Numero'

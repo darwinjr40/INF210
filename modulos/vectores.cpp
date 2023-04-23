@@ -346,6 +346,27 @@ void CargarPalabrasV2(TStringGrid *v, byte &n, AnsiString x){
 	}
   }
 }
+
+void CargarDigitosDeNumero(TStringGrid *v, byte &n, Cardinal x){
+  if (x > 0) {
+	byte d = x % 10;
+	CargarDigitosDeNumero(v, n, x/10);
+	v->Cells[n][0] = d;
+	n++;
+  }
+}
+
+ //5 => '55555'
+void CargarToDigitosRep(TStringGrid *v, byte &n, Cardinal x){
+  if (x == 0) {
+	n = 0 ;
+  } else {          //502  [5,5,5,5,5] = []
+	byte d = x % 10;
+	CargarToDigitosRep(v, n, x / 10);
+	Cardinal nro = d * ((pow10(d)-1) / 9); //d = 0
+	CargarDigitosDeNumero(v, n, nro); //(v, n, 55555)
+  }
+}
 //dunnia--------------------------------------------------------
 
 AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){
