@@ -239,9 +239,13 @@ void __fastcall TForm1::cargarenformavector1Click(TObject *Sender)
 
 void __fastcall TForm1::N20201segundaescala1Click(TObject *Sender)
 {
-   byte f, c, m = StringGrid1->RowCount;
-   byte k = (m*(m+1))/2;
-  cargar2020_1Segunda(StringGrid1,m , k, f, c );
+//   byte f, c, m = StringGrid1->RowCount;
+//   byte k = (m*(m+1))/2;
+//  cargar2020_1Segunda(StringGrid1,m , k, f, c);
+
+  byte m = StringGrid1->RowCount;
+  byte x = 0;
+  cargar2020_1SegundaFil(StringGrid1, m, m, true, x);
 }
 //---------------------------------------------------------------------------
 
