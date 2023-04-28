@@ -127,6 +127,7 @@ bool BusBin(TStringGrid *v, byte x, byte a, byte b){
 	  h = BusBin (v,x,a,c-1);
   }
 
+
 }
 
 //v[9, 7, 6, 5, 3] (n=5,x=8) --> v[9, 8, 7, 6, 5, 3] n=6
@@ -481,4 +482,14 @@ while (ini_2<=alto)
    Vec[pos]=Tmp[pos];
 }
 
+//4, 6, 10, 26, 282
+void exam2022_2(TStringGrid * v, unsigned int n,  unsigned int &a ){
+  if (n == 1) {
+	v->Cells[0][0] = 4;
+  } else {
+	exam2022_2(v, n-1, a);
+	v->Cells[n-1][0] = v->Cells[n-2][0].ToInt() + (pow(2,(double)a));
+	a = a *2;
+  }
+}
 //--------------------------------------------------------

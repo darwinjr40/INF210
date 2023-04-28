@@ -401,3 +401,12 @@ void __fastcall TForm1::cargarDigitosrep1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::prueba3Click(TObject *Sender)
+{
+ unsigned int n = Edit1->Text.ToInt();
+ unsigned int a = 1;
+ exam2022_2(StringGrid1, n, a);
+ StringGrid1->ColCount = n;
+}
+//---------------------------------------------------------------------------
+

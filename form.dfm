@@ -197,6 +197,10 @@ object Form1: TForm1
         Caption = 'vector-interseccion'
         OnClick = vectorinterseccion1Click
       end
+      object prueba3: TMenuItem
+        Caption = 'examen2022-2-vector'
+        OnClick = prueba3Click
+      end
     end
     object matriz1: TMenuItem
       Caption = 'M-Contreras'

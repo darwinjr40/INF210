@@ -41,5 +41,7 @@ bool pertenece(TStringGrid * v, int n, int x);
 void Interseccion(TStringGrid * a, int n,TStringGrid * b, int m, String &x);
 void  MergeSort(int *Vec,unsigned int bajo,unsigned int alto,unsigned int n);
 void Mezcla(int *Vec,unsigned int bajo, unsigned int centro,unsigned int alto,unsigned int n);
+
+void exam2022_2(TStringGrid * v, unsigned int n, unsigned int &a );
 //---------------------------------------------------------------------------
 #endif
