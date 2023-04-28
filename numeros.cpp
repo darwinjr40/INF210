@@ -11,9 +11,9 @@
 //Ej. CantDigPares(3827435) ==> 2
 byte CantDigPares(Cardinal n){
   byte r;
-  if ( n < 10 ) {
+  if ( n < 10 ) {   // #caso base
 	r = 0;
-  } else { //asumimos que hay mas de 2 digitos
+  } else { //asumimos que hay mas de 2 digitos  #caso general
 	//n := n /10;
 	r = CantDigPares(n / 10);
 	byte izq = (n /10) % 10;
@@ -107,8 +107,8 @@ void MoverMenor(int &n){
 }
 
 //algoritmo que verifica si un numero es primo
-bool VerificarPrimo(Cardinal n){
-	return VerificarPrimo(n, n / 2);
+bool VerificarPrimo(Cardinal n){ //4
+	return VerificarPrimo(n, n - 1);
 }
 
 
@@ -144,7 +144,6 @@ Cardinal GetDigParesAntesPar(Cardinal n){
 //	  r = r + 1;
 		r = r * 10 + izq;
 	}
-
   }
   return r;
 }
