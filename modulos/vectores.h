@@ -28,11 +28,16 @@ AnsiString GenerarCadena2019_2A(TStringGrid *v, byte a, byte b);
 void cargar2022_2A(Cardinal num, TStringGrid *v, byte &n);
 void CargarFibonacci(TStringGrid *v, byte a, byte b);
 void CargarFibonacci(TStringGrid *v, byte n);
+void CargarFibonacciV2(TStringGrid *v, byte &n, byte x);
 void CargarPalabras(TStringGrid *v, byte &n, AnsiString x);
+void CargarPalabrasV2(TStringGrid *v, byte &n, AnsiString x);
+void CargarToDigitosRep(TStringGrid *v, byte &n, Cardinal x);
+void CargarDigitosDeNumero(TStringGrid *v, byte &n, Cardinal x);
 
 //dunnia
 AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p);
 bool pertenece(TStringGrid * v, int i, int n, int x);
+bool pertenece(TStringGrid * v, int n, int x);
 void Interseccion(TStringGrid * a, int n,TStringGrid * b, int m, String &x);
 void  MergeSort(int *Vec,unsigned int bajo,unsigned int alto,unsigned int n);
 void Mezcla(int *Vec,unsigned int bajo, unsigned int centro,unsigned int alto,unsigned int n);

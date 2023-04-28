@@ -5,6 +5,8 @@
 #include "vectores.h"
 
 #include "cadenas.h"
+#include <iostream>
+#include <string>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -277,30 +279,92 @@ void CargarFibonacci(TStringGrid *v, byte a, byte b){
 	  CargarFibonacci(v, a, b-1);
 	  byte x = v->Cells[b-2][0].ToInt();
 	  byte y = v->Cells[b-1][0].ToInt();
-	  v->Cells[b][0] = x + y;	
+	  v->Cells[b][0] = x + y;
 	}
+  }
+}
+
+void CargarFibonacciV2(TStringGrid *v, byte &n, byte x){
+  if (x == 0)
+	n = 0;
+  else if (x <= 2) { //x < 3  [1,2]
+	 v->Cells[0][0] = 1;
+	 n = 1;
+	 if (x == 2) {
+	   v->Cells[n][0] = 1;
+	   n++;
+	 }
+  }else { //caso general
+	CargarFibonacciV2(v, n, x-1);
+	byte x = v->Cells[n-1][0].ToInt();
+	byte y = v->Cells[n-2][0].ToInt();
+	v->Cells[n][0] = x + y;
+    n++;
   }
 }
 /*carga unicamente con las palabras de un string
 entrada=>
 x ="hola123como,están.esta;mañana##%", v[], n;
+"hola11mañana23como,están.esta;mañana##"
 salida =>
 v["hola", "como", "están", "esta", "mañana"], n = 5;
+	 0       1        2       3        4
+	  - pos + 1
 */
 void CargarPalabras(TStringGrid *v, byte &n, AnsiString x){
-  if (x == "") {
+  if (x == "") { //caso base
 	n = 0;
-  } else {
+  } else {   //caso general
 	AnsiString pal = UltimaPal(x);
-	if (pal == "") {
+	if (pal == "") { //2do caso base
 	  n = 0;
 	} else {
 	  byte pos = x.Pos(pal);
-	  x.Delete(pos, x.Length());
+	  x.Delete(pos, x.Length()- pos + 1);
 	  CargarPalabras(v, n, x);
 	  v->Cells[n][0] = pal;
 	  n++;
 	}
+  }
+}
+
+void CargarPalabrasV2(TStringGrid *v, byte &n, AnsiString x){
+  if (x == "") { //caso base
+	n = 0;
+  }else {   //caso general
+	byte dim = x.Length();
+	char e = x[dim];
+	x.Delete(dim, 1);
+	CargarPalabrasV2(v, n, x);
+	if (EsPalabra(e)) {
+	  if ((x=="") || (x != "" && !EsPalabra(x[x.Length()]))) {
+		v->Cells[n][0] = "";
+		n++;
+	  }
+	  v->Cells[n-1][0] = v->Cells[n-1][0] + (AnsiString)e;
+//	  v->Cells[n-1][0] += (AnsiString)e; //este no funciona	  
+	}
+  }
+}
+
+void CargarDigitosDeNumero(TStringGrid *v, byte &n, Cardinal x){
+  if (x > 0) {
+	byte d = x % 10;
+	CargarDigitosDeNumero(v, n, x/10);
+	v->Cells[n][0] = d;
+	n++;
+  }
+}
+
+ //5 => '55555'
+void CargarToDigitosRep(TStringGrid *v, byte &n, Cardinal x){
+  if (x == 0) {
+	n = 0 ;
+  } else {          //502  [5,5,5,5,5] = []
+	byte d = x % 10;
+	CargarToDigitosRep(v, n, x / 10);
+	Cardinal nro = d * ((pow10(d)-1) / 9); //d = 0
+	CargarDigitosDeNumero(v, n, nro); //(v, n, 55555)
   }
 }
 //dunnia--------------------------------------------------------
@@ -327,16 +391,32 @@ AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){
 //	int n = StringGrid1->ColCount;
 //	Double a = 0;
 //	Edit2->Text =   mayorPromedio(StringGrid1, 0, n, a);
-//}bool pertenece(TStringGrid * v, int i, int n, int x){  bool b;
+//}//(pertenece(vector, i=0, cantVector=3, ele)					 //i<= n					 //i := i + 1;bool pertenece(TStringGrid * v, int i, int n, int x){  bool b;
   if (i >= n)
 	b =  false;
   else {
-	if (v->Cells[i][0] == x) {
+	Cardinal elem = v->Cells[i][0].ToInt();//{columna}{fila}
+	if ( elem == x) {
 	  b =  true;
 	} else {
 	  b = pertenece(v, i+1, n, x);
 	}
    }
+  return b;
+}
+
+bool pertenece(TStringGrid * v, int n, int x){
+  bool b;
+  if (n == 0)
+	b = false;
+  else {
+	Cardinal elem = v->Cells[n-1][0].ToInt();
+	n = n - 1;
+	if (elem == x)
+	  b = true;
+	else
+	  b = pertenece(v, n, x);
+  }
   return b;
 }
 
@@ -347,14 +427,17 @@ AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){
 // int x = Edit1->Text.ToInt();
 // Edit2->Text = BoolToStr(pertenece(StringGrid1, 0, n, x), true);
 //}
+//x = '"  =>  x= "10 30"
 void Interseccion(TStringGrid * a, int n,TStringGrid * b, int m, String &x){
   if (n == 0) {
 	x = "";
   } else {
 	 Interseccion(a,n-1, b, m, x);
-	if (pertenece(b, 0, m, a->Cells[n-1][0].ToInt()) &&
-	   (x.Pos(a->Cells[n-1][0]) == 0))
-	  x = x + "  " + a->Cells[n-1][0] ;
+	 int ele = a->Cells[n-1][0].ToInt();
+	 byte posicion = x.Pos(ele);
+	 bool sw =  (posicion == 0);
+	if (pertenece(b, m, ele) && sw)
+	  x = x + "  " + ele ;
   }
 }
 

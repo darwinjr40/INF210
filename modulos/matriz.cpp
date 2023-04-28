@@ -182,13 +182,38 @@ void cargar2020_1Segunda(TStringGrid *v, byte m, byte k, byte &f, byte &c){
 	  } else{
 		c = c + 1;								  
 	  }
-	} else {
-	  if (c == 0) (f--); else  (c--);
-	}
+	} else if (c == 0){
+	  (f--);
+	} else{
+	  (c--);
+    }
+
   }
   v->Cells[c][f] = k;
-  //IFEB
 }
+
+void cargar2020_1SegundaCol(TStringGrid *v, byte f, byte ca, byte cb, bool sw, byte &x){
+  byte c = cb - ca + 1;
+  if (c > 0) {
+	x++;
+	if (sw) {
+	  v->Cells[ca][f] = x;
+	  ca++;
+	} else {
+	  v->Cells[cb][f] = x;
+	  cb--;
+	}
+	cargar2020_1SegundaCol(v, f, ca, cb, sw, x);
+  }
+}
+
+void cargar2020_1SegundaFil(TStringGrid *v, byte f, byte c, bool sw, byte &x){
+  if (f > 0) {
+	cargar2020_1SegundaCol(v, f-1, 0, c-1, sw, x);
+	cargar2020_1SegundaFil(v, f-1, c-1, !sw, x);
+  }
+}
+
 //-------------------------------------------------------------
 //  1   3	6   10	15
 //  2	5	9   14	19
@@ -208,7 +233,7 @@ void cargar2020_2(TStringGrid *v, byte m, byte k, byte &f, byte &c){
 		  if (f == 0) { //FILA INICIAL
 			 f =c + 1;
 			 c = 0;
-		 } else { //   CARGADO DIAGONA;
+		 } else { //   CARGADO DIAGONAL;
 			 c++;
 			 f--;
 		 }

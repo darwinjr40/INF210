@@ -66,6 +66,8 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	 StringGrid1->ColCount = Edit1->Text.ToInt();
 	 StringGrid1->RowCount = 1;
 
+	 StringGrid2->ColCount = Edit1->Text.ToInt();
+	 StringGrid2->RowCount = 1;
 }
 //---------------------------------------------------------------------------
 
@@ -237,9 +239,13 @@ void __fastcall TForm1::cargarenformavector1Click(TObject *Sender)
 
 void __fastcall TForm1::N20201segundaescala1Click(TObject *Sender)
 {
-   byte f, c, m = StringGrid1->RowCount;
-   byte k = (m*(m+1))/2;
-  cargar2020_1Segunda(StringGrid1,m , k, f, c );
+//   byte f, c, m = StringGrid1->RowCount;
+//   byte k = (m*(m+1))/2;
+//  cargar2020_1Segunda(StringGrid1,m , k, f, c);
+
+  byte m = StringGrid1->RowCount;
+  byte x = 0;
+  cargar2020_1SegundaFil(StringGrid1, m, m, true, x);
 }
 //---------------------------------------------------------------------------
 
@@ -325,8 +331,12 @@ void __fastcall TForm1::PMadentroToFuera1Click(TObject *Sender)
 
 void __fastcall TForm1::N20223cargarVectorConSerieFibonacci1Click(TObject *Sender)
 {
- byte n = StringGrid1->ColCount;
- CargarFibonacci(StringGrid1, n);
+// byte n = StringGrid1->ColCount;
+// CargarFibonacci(StringGrid1, n);
+  byte dim = Edit3->Text.ToInt();
+  byte n;
+  CargarFibonacciV2(StringGrid1, n, dim);
+  StringGrid1->ColCount = n;
 }
 //---------------------------------------------------------------------------
 
@@ -341,8 +351,9 @@ void __fastcall TForm1::cargarVectorConPalabras1Click(TObject *Sender)
 {
  String cad = Edit1->Text;
  byte n;
- CargarPalabras(StringGrid1,n , cad);
+ CargarPalabrasV2(StringGrid1, n , cad);
  StringGrid1->ColCount = n;
+// ShowMessage(UltimaPal(cad));
 }
 //---------------------------------------------------------------------------
 
@@ -362,4 +373,31 @@ void __fastcall TForm1::getmaymen1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::prueba2Click(TObject *Sender)
+{
+  AnsiString cad = Edit3->Text;
+  byte res =  GetCantidadNotAlfaOrNumOrEsp(cad);
+  ShowMessage(res);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::vectorinterseccion1Click(TObject *Sender)
+{
+  String cad;
+  byte n = StringGrid1->ColCount;
+  byte m = StringGrid2->ColCount;
+  Interseccion(StringGrid1, n, StringGrid2, m, cad);
+  ShowMessage(cad);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::cargarDigitosrep1Click(TObject *Sender)
+{
+  Cardinal nro = Edit1->Text.ToInt();
+  byte n;
+  CargarToDigitosRep(StringGrid1, n , nro);
+  StringGrid1->ColCount = n;
+}
+//---------------------------------------------------------------------------
 

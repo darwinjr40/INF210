@@ -130,7 +130,7 @@ AnsiString primerPal(AnsiString x){
  }
  return c;
 }
-
+// x = "21hola213como12"  => "como"
 AnsiString UltimaPal(AnsiString x){
  AnsiString c;
  if (x == "") {
@@ -267,4 +267,55 @@ void DeleteUltimoCaracterDeUnaPalabra(AnsiString &x){
 	if (sw)
 	  x = (AnsiString)e + x;
   }
+}
+
+
+
+void EliminarVocales(AnsiString &x){
+//caso base nada
+  if (x != "") { //caso general
+	char aux = x[1];
+	x.Delete(1,1);
+	EliminarVocales(x);
+	if (! EsVocal(aux)) {
+	  x = (AnsiString)aux + x;
+	}
+  }
+}
+
+byte GetCantidadVocales(AnsiString x){
+  byte res;
+  if (x == "") { //caso general
+	res = 0;
+  }else{
+	char aux = x[1];
+	x.Delete(1,1);
+	res = GetCantidadVocales(x);
+	if (EsVocal(aux)) {
+		res++;//	  res = res + 1;
+	}
+  }
+  return res;
+}
+
+bool EsAlfaOrNumOrEsp(char z){
+  AnsiString conjunto = "qwertyuiopasdfghjklzxcvbnm12345678990 ";
+  byte posicionBusq = conjunto.Pos(z);
+  return  posicionBusq > 0;  //true
+}
+
+byte GetCantidadNotAlfaOrNumOrEsp(AnsiString x){
+  byte resp;
+  if (x == "")
+	resp = 0;
+  else {
+	char c = x[1];
+	x.Delete(1,1);
+	resp = GetCantidadNotAlfaOrNumOrEsp(x);
+	if (! EsAlfaOrNumOrEsp(c)) {
+	 resp++;  //resp := resp + 1
+	}
+  }
+
+  return resp;
 }

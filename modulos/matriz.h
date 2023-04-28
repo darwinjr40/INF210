@@ -34,6 +34,9 @@ void cargarCol2019_32(TStringGrid *v, byte ca, byte cb, byte f, byte &z);
 
 void cargar2020_1Segunda(TStringGrid *v, byte m, byte k, byte &f, byte &c);
 
+void cargar2020_1SegundaFil(TStringGrid *v, byte f, byte c, bool sw, byte &x);
+void cargar2020_1SegundaCol(TStringGrid *v, byte f, byte ca, byte cb, bool sw, byte &x);
+
 void cargar2020_2(TStringGrid *v, byte m, byte k, byte &f, byte &c);
 
 void cargarCol2021_1(TStringGrid *v, byte f, byte ca, byte cb, byte x);
