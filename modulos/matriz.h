@@ -67,6 +67,12 @@ void cargar2022_1(TStringGrid * M,int m, int f, int c, int &x);
 void cargarDentroToF(TStringGrid *v, unsigned int fa,unsigned int fb);
 void cargarDentroToFueraC(TStringGrid *v, unsigned int f, unsigned int ca, unsigned int cb, unsigned int x);
 
+//shirley
+
+void cargarDentroToFueraCol1(TStringGrid *v, byte f, byte ca, byte cb, byte x);
+
+void cargarDentroToFuera1(TStringGrid *v, byte fa,byte fb);
+
 //---------------------------------------------------------------------------
 
 #endif

@@ -73,6 +73,10 @@ __published:	// IDE-managed Components
 	TStringGrid *StringGrid2;
 	TMenuItem *cargarDigitosrep1;
 	TMenuItem *prueba3;
+	TMenuItem *SHIRLEY1;
+	TMenuItem *invertir1;
+	TMenuItem *serie1;
+	TMenuItem *atriz1;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);
@@ -113,6 +117,9 @@ __published:	// IDE-managed Components
 	void __fastcall vectorinterseccion1Click(TObject *Sender);
 	void __fastcall cargarDigitosrep1Click(TObject *Sender);
 	void __fastcall prueba3Click(TObject *Sender);
+	void __fastcall invertir1Click(TObject *Sender);
+	void __fastcall serie1Click(TObject *Sender);
+	void __fastcall atriz1Click(TObject *Sender);
 
 private:	// User declarations
 public:		// User declarations

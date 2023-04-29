@@ -530,3 +530,25 @@ void cargarDentroToF(TStringGrid *v, unsigned int fa, unsigned int fb){
 }
 
 
+//shirley
+void cargarDentroToFueraCol1(TStringGrid *v, byte f, byte ca, byte cb, byte x){
+  byte c = cb-ca+1;
+  if (c > 0) {
+	cargarDentroToFueraCol1(v, f, ca+1, cb, x);
+	v->Cells[ca][f] = x;
+	v->Cells[f][ca] = x;
+  }
+}
+
+void cargarDentroToFuera1(TStringGrid *v, byte fa,byte fb){
+  byte f = fb-fa+1;
+  if (f > 0) {
+	if (f == 1)
+	  v->Cells[fa][fb]=3;
+	else {
+	  cargarDentroToFuera1(v, fa+1,fb-1);
+	  cargarDentroToFueraCol1(v, fa, fa, fb, fa+1);
+	  cargarDentroToFueraCol1(v, fb, fa, fb, fa+1);
+	}
+  }
+}

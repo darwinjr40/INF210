@@ -105,7 +105,10 @@ void invertir(TStringGrid*v,byte a,byte b){
   byte n=b-a+1;
   if (n>1) {
 	invertir(v,a+1,b-1);
-	intercambio(v,a,b);
+	//	intercambio(v,a,b);
+	String aux=v->Cells[a][0];
+	v->Cells[a][0]=v->Cells[b][0];
+	v->Cells[b][0]=aux;
   }
 }
 

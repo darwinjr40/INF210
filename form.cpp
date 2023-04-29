@@ -410,3 +410,50 @@ void __fastcall TForm1::prueba3Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TForm1::invertir1Click(TObject *Sender)
+{
+  byte a = StrToInt(Edit3->Text); //0..255
+  byte b = Edit4->Text.ToInt();
+  invertir(StringGrid1, a, b);
+}
+//---------------------------------------------------------------------------
+void CargarSerie(TStringGrid *v, byte a, byte b, Word &x, Word &y, Word &z){
+  byte n = b - a +1;
+  if (n ==0) {  //caso base1
+	 //nada  
+  } else if(n == 1) { //caso base2 a=0 b=0
+	v->Cells[0][0] = 2;
+  } else {
+	CargarSerie(v, a, b-1, x, y, z);
+	v->Cells[b][0] = v->Cells[b-1][0].ToInt() + x;
+	x = x + y;
+	y = y + z;
+	if (z == 6) {
+	 z = z - 2;   
+	}	
+  }
+}
+void CargarSerie(TStringGrid *v, byte n){
+  byte a = 0;
+  byte b = n-1;
+  Word x = 7;
+  Word y = 2;
+  Word z = 6;	
+  CargarSerie(v, a, b, x, y ,z);
+}
+void __fastcall TForm1::serie1Click(TObject *Sender)
+{
+  CargarSerie(StringGrid1, Edit1->Text.ToInt());
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::atriz1Click(TObject *Sender)
+{
+  byte fa = 0;
+  byte fb = StringGrid1->RowCount - 1;
+  cargarDentroToFuera1(StringGrid1, fa, fb);	
+}
+//---------------------------------------------------------------------------
+

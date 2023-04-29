@@ -300,5 +300,20 @@ object Form1: TForm1
         OnClick = getmaymen1Click
       end
     end
+    object SHIRLEY1: TMenuItem
+      Caption = 'SHIRLEY'
+      object invertir1: TMenuItem
+        Caption = 'invertir'
+        OnClick = invertir1Click
+      end
+      object serie1: TMenuItem
+        Caption = 'serie'
+        OnClick = serie1Click
+      end
+      object atriz1: TMenuItem
+        Caption = 'matriz'
+        OnClick = atriz1Click
+      end
+    end
   end
 end
