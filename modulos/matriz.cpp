@@ -87,6 +87,13 @@ void cargarDentroToFuera(TStringGrid *v, byte fa,byte fb){
   }
 }
 //---------------------------------------------------------------------------
+//  1   1   1   1   1   1   1
+//  2   3   3   3   3   3   1
+//  2   4   5   5   5   3   1
+//  2   4   6   7   5   3   1
+//  2   4   6   6   6   3   1
+//  2   4   4   4   4   4   1
+//  2   2   2   2   2   2   2
 
 void llenarf1(TStringGrid*v,byte f,byte ca,byte cb,byte &k){
   byte c = cb-ca+1;
@@ -415,6 +422,13 @@ void cargarFila2022_2A(TStringGrid *v, byte f, byte c){
   }
 }
 
+//---------------------------------------------------------------------------
+//2022-3R
+//	1   2   3   2   1
+//	1   2   3   2   1
+//	1   2   3   2   1
+//	1   2   3   2   1
+//	1   2   3   2   1
 
  void cargarCol2022_3R(TStringGrid *v, byte f, byte ca, byte cb){
    byte c = cb - ca + 1;
@@ -547,8 +561,12 @@ void cargarDentroToF(TStringGrid *v, unsigned int fa, unsigned int fb){
 	}
   }
 }
-
-
+//------------------------------------------------
+//	1	1	1   1	1
+//	1	2	2	2   1
+//	1	2   3   2	1
+//	1	2	2	2   1
+//	1	1	1	1   1
 //shirley
 void cargarDentroToFueraCol1(TStringGrid *v, byte f, byte ca, byte cb, byte x){
   byte c = cb-ca+1;
@@ -563,7 +581,7 @@ void cargarDentroToFuera1(TStringGrid *v, byte fa,byte fb){
   byte f = fb-fa+1;
   if (f > 0) {
 	if (f == 1)
-	  v->Cells[fa][fb]=3;
+	  v->Cells[fa][fb]=fa+1;
 	else {
 	  cargarDentroToFuera1(v, fa+1,fb-1);
 	  cargarDentroToFueraCol1(v, fa, fa, fb, fa+1);
