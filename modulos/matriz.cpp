@@ -416,7 +416,26 @@ void cargarFila2022_2A(TStringGrid *v, byte f, byte c){
 }
 
 
+ void cargarCol2022_3R(TStringGrid *v, byte f, byte ca, byte cb){
+   byte c = cb - ca + 1;
+   if (c > 0) {   //caso1  nada
+	 if (c == 1){    //caso2
+	  v->Cells[ca][f] = ca+1;
+	 } else {
+	  cargarCol2022_3R(v, f, ca+1, cb-1);
+	  v->Cells[ca][f] = ca+1;
+	  v->Cells[cb][f] = ca+1;
+	 }
+   }
+ }
 
+ void cargarFil2022_3R(TStringGrid *v, byte fa, byte fb, byte ca, byte cb){
+   byte f = fb - fa + 1;
+   if (f > 0) {
+	 cargarFil2022_3R(v,fa+1,fb,ca,cb);
+	 cargarCol2022_3R(v,fa,ca,cb);
+   }
+ }
 //dunnia-------------------------------------------------------
 //	0	0	0   0   1
 //	0	0	0	1   2

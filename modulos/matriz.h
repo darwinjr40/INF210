@@ -58,7 +58,12 @@ void llenarc2Sup(TStringGrid*v,byte c, byte fa,byte fb,byte &k);
 void llenarf1Izq(TStringGrid*v,byte f,byte ca,byte cb,byte &k);
 //2022-2A
 void cargarCol2022_2A(TStringGrid *v, byte f, byte ca, byte cb, byte m);
+
 void cargarFila2022_2A(TStringGrid *v, byte f, byte c);
+
+ void cargarCol2022_3R(TStringGrid *v, byte f, byte ca, byte cb);
+ void cargarFil2022_3R(TStringGrid *v, byte fa, byte fb, byte ca, byte cb);
+
 //dunnia--------------------------------------
 void cargarM1(TStringGrid * v, int f, int c, int m, int x);
 void cargarM2(TStringGrid * v, int f, int c, int m, int x);

@@ -457,3 +457,14 @@ void __fastcall TForm1::atriz1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::N20233R1Click(TObject *Sender)
+{
+
+  byte fa = 0;
+  byte fb = StringGrid1->RowCount - 1;
+  byte ca = 0;
+  byte cb = StringGrid1->ColCount - 1;
+  cargarFil2022_3R(StringGrid1, fa, fb, ca, cb);
+}
+//---------------------------------------------------------------------------
+
