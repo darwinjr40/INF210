@@ -201,6 +201,10 @@ object Form1: TForm1
         Caption = 'examen2022-2-vector'
         OnClick = prueba3Click
       end
+      object N20222matriz1: TMenuItem
+        Caption = '2022_2_matriz'
+        OnClick = N20222matriz1Click
+      end
     end
     object matriz1: TMenuItem
       Caption = 'M-Contreras'

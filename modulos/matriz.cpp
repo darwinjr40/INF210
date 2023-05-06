@@ -566,6 +566,49 @@ void cargarDentroToF(TStringGrid *v, unsigned int fa, unsigned int fb){
 	}
   }
 }
+
+void cargarCol2022_2(TStringGrid *v, int f, int ca, int cb, int x){
+  int c = cb - ca + 1;
+  if (c  > 0) {
+	int m = v->ColCount;
+	if (f+ca >= m -1) {
+	   x = x + 1;
+	}
+	v->Cells[ca][f] = x;
+	cargarCol2022_2(v,f,ca+1,cb,x);
+  }
+}
+
+void cargarFila2022_2(TStringGrid *v, unsigned int fa, unsigned int fb){
+  unsigned int f = fb-fa+1;
+  if (f > 0) {
+//	ShowMessage(fa);
+	cargarCol2022_2(v, fa, 0, v->ColCount-1, 0);
+	cargarFila2022_2(v, fa+1, fb);
+  }
+}
+
+
+
+void cargarCol2022_1d(TStringGrid *v, int f, int ca, int cb, int x){
+  int c = cb - ca + 1;
+  if (c  > 0) {
+	if (f <= ca) {
+	   x = x + 1;
+	}
+	v->Cells[ca][f] = x;
+	cargarCol2022_1d(v,f,ca+1,cb,x);
+  }
+}
+
+void cargarFila2022_1d(TStringGrid *v, unsigned int fa, unsigned int fb){
+  unsigned int f = fb-fa+1;
+  if (f > 0) {
+	ShowMessage(fa);
+	cargarCol2022_1d(v, fa, 0, v->ColCount-1, 0);
+	cargarFila2022_1d(v, fa+1, fb);
+  }
+}
 //------------------------------------------------
 //	1	1	1   1	1
 //	1	2	2	2   1

@@ -268,9 +268,13 @@ void __fastcall TForm1::cargarbordes1Click(TObject *Sender)
 
 void __fastcall TForm1::N202211Click(TObject *Sender)
 {
-  int m = StringGrid1->RowCount;
-  int x = 1;
-  cargar2022_1(StringGrid1, m, 0,0,x);
+//  int m = StringGrid1->RowCount;
+//  int x = 1;
+//  cargar2022_1(StringGrid1, m, 0,0,x);
+
+   int fa = 0;
+   int fb = StringGrid1->ColCount -1;
+   cargarFila2022_1d(StringGrid1, fa, fb);
 }
 //---------------------------------------------------------------------------
 
@@ -421,7 +425,7 @@ void __fastcall TForm1::invertir1Click(TObject *Sender)
 void CargarSerie(TStringGrid *v, byte a, byte b, Word &x, Word &y, Word &z){
   byte n = b - a +1;
   if (n ==0) {  //caso base1
-	 //nada  
+	 //nada
   } else if(n == 1) { //caso base2 a=0 b=0
 	v->Cells[0][0] = 2;
   } else {
@@ -430,16 +434,17 @@ void CargarSerie(TStringGrid *v, byte a, byte b, Word &x, Word &y, Word &z){
 	x = x + y;
 	y = y + z;
 	if (z == 6) {
-	 z = z - 2;   
-	}	
+	 z = z - 2;
+	}
   }
 }
+
 void CargarSerie(TStringGrid *v, byte n){
   byte a = 0;
   byte b = n-1;
   Word x = 7;
   Word y = 2;
-  Word z = 6;	
+  Word z = 6;
   CargarSerie(v, a, b, x, y ,z);
 }
 void __fastcall TForm1::serie1Click(TObject *Sender)
@@ -477,6 +482,14 @@ void __fastcall TForm1::cargar1Click(TObject *Sender)
   byte n;
   Cargar2LetrasPalabras(StringGrid1, n, cad);
   StringGrid1->ColCount = n;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N20222matriz1Click(TObject *Sender)
+{
+   int fa = 0;
+   int fb = StringGrid1->ColCount -1;
+   cargarFila2022_2(StringGrid1, fa, fb);
 }
 //---------------------------------------------------------------------------
 
