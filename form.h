@@ -78,6 +78,7 @@ __published:	// IDE-managed Components
 	TMenuItem *serie1;
 	TMenuItem *atriz1;
 	TMenuItem *N20233R1;
+	TMenuItem *cargar1;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);
@@ -122,6 +123,7 @@ __published:	// IDE-managed Components
 	void __fastcall serie1Click(TObject *Sender);
 	void __fastcall atriz1Click(TObject *Sender);
 	void __fastcall N20233R1Click(TObject *Sender);
+	void __fastcall cargar1Click(TObject *Sender);
 
 private:	// User declarations
 public:		// User declarations

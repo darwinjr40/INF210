@@ -371,6 +371,28 @@ void CargarToDigitosRep(TStringGrid *v, byte &n, Cardinal x){
 	CargarDigitosDeNumero(v, n, nro); //(v, n, 55555)
   }
 }
+
+void Cargar2LetrasPalabras(TStringGrid *v, byte &n, AnsiString x){
+  if (x == "") { //caso base
+	n = 0;
+  }else {   //caso general
+	byte dim = x.Length();
+	char e = x[dim];
+	x.Delete(dim, 1);
+	Cargar2LetrasPalabras(v, n, x);
+	if (EsPalabra(e)) {
+	  if ((x=="") || (x != "" && !EsPalabra(x[x.Length()]))) {
+		v->Cells[n][0] = "";
+		n++;
+	  }
+	  String ele = v->Cells[n-1][0];
+	  if (ele.Length() < 2) {
+		v->Cells[n-1][0] = v->Cells[n-1][0] + (AnsiString)e;
+	  }
+	}
+  }
+}
+
 //dunnia--------------------------------------------------------
 
 AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){

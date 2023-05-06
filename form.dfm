@@ -291,6 +291,10 @@ object Form1: TForm1
         Caption = 'cargarDigitosrep'
         OnClick = cargarDigitosrep1Click
       end
+      object cargar1: TMenuItem
+        Caption = 'cargar2letrasPalabra'
+        OnClick = cargar1Click
+      end
     end
     object Numero1: TMenuItem
       Caption = 'Numero'

@@ -468,3 +468,15 @@ void __fastcall TForm1::N20233R1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+
+
+void __fastcall TForm1::cargar1Click(TObject *Sender)
+{
+  String cad = Edit1->Text;
+  byte n;
+  Cargar2LetrasPalabras(StringGrid1, n, cad);
+  StringGrid1->ColCount = n;
+}
+//---------------------------------------------------------------------------
+

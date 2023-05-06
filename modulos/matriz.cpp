@@ -167,6 +167,11 @@ void cargarFila2019_32(TStringGrid *v, byte fa, byte fb, byte ca, byte cb, byte 
   byte f = fb - fa + 1;
   if (f > 0) {
 	cargarCol2019_32(v, fb-fa, cb, fa, z);
+//	if (f % 2 == 0) {
+//		//cargas a la izq
+//	} else {
+//		//cargas a la der
+//	}
 	cargarFila2019_32(v, fa+1, fb, ca, cb, z);
   }
 }
@@ -216,8 +221,8 @@ void cargar2020_1SegundaCol(TStringGrid *v, byte f, byte ca, byte cb, bool sw, b
 
 void cargar2020_1SegundaFil(TStringGrid *v, byte f, byte c, bool sw, byte &x){
   if (f > 0) {
-	cargar2020_1SegundaCol(v, f-1, 0, c-1, sw, x);
-	cargar2020_1SegundaFil(v, f-1, c-1, !sw, x);
+	cargar2020_1SegundaCol(v, f-1, 0, f-1, sw, x);
+	cargar2020_1SegundaFil(v, f-1, c, !sw, x);
   }
 }
 

@@ -33,6 +33,7 @@ void CargarPalabras(TStringGrid *v, byte &n, AnsiString x);
 void CargarPalabrasV2(TStringGrid *v, byte &n, AnsiString x);
 void CargarToDigitosRep(TStringGrid *v, byte &n, Cardinal x);
 void CargarDigitosDeNumero(TStringGrid *v, byte &n, Cardinal x);
+void Cargar2LetrasPalabras(TStringGrid *v, byte &n, AnsiString x);
 
 //dunnia
 AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p);
