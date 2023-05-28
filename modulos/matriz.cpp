@@ -609,6 +609,17 @@ void cargarFila2022_1d(TStringGrid *v, unsigned int fa, unsigned int fb){
 	cargarFila2022_1d(v, fa+1, fb);
   }
 }
+
+//------------------------------------------------
+void cargarFila2023_1A(TStringGrid *v, int fa, int fb, int ca, int cb, byte& x){
+  int f = fb-fa+1;
+  if (f > 0) {   //fa <= fb
+	cargarFila2023_1A(v, fa, fb-1, ca, cb, x);
+//	ShowMessage(fb);
+	llenarf2Der(v, fb, ca, cb, x);
+  }
+}
+
 //------------------------------------------------
 //	1	1	1   1	1
 //	1	2	2	2   1

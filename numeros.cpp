@@ -166,4 +166,15 @@ double serie1 (int n){
 }
 
 
+unsigned int EnesimoTerm(unsigned int n){
+  unsigned int res;
+  if (n == 1)
+	res = 1;
+  else {
+	res =  EnesimoTerm(n-1);    //  res =  EnesimoTerm(n-1)*2+1;
+	res = res * 2 + 1;
+  }
+  return res;
+}
+
 

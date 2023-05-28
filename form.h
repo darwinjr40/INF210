@@ -80,6 +80,10 @@ __published:	// IDE-managed Components
 	TMenuItem *N20233R1;
 	TMenuItem *cargar1;
 	TMenuItem *N20222matriz1;
+	TMenuItem *promedioXElem1;
+	TMenuItem *cargarDigRepDesc202311;
+	TMenuItem *N20231NesimTerm1;
+	TMenuItem *N20231Matriz1;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);
@@ -126,6 +130,10 @@ __published:	// IDE-managed Components
 	void __fastcall N20233R1Click(TObject *Sender);
 	void __fastcall cargar1Click(TObject *Sender);
 	void __fastcall N20222matriz1Click(TObject *Sender);
+	void __fastcall promedioXElem1Click(TObject *Sender);
+	void __fastcall cargarDigRepDesc202311Click(TObject *Sender);
+	void __fastcall N20231NesimTerm1Click(TObject *Sender);
+	void __fastcall N20231Matriz1Click(TObject *Sender);
 
 private:	// User declarations
 public:		// User declarations

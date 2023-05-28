@@ -26,5 +26,6 @@ bool VerificarPrimo(Cardinal n, Cardinal i);
 Cardinal GetDigParesAntesPar(Cardinal n);
 //dunnia-------------------------
 double serie1 (int n);
+unsigned int EnesimoTerm(unsigned int n);
 //---------------------------------------------------------------------------
 #endif

@@ -492,4 +492,94 @@ void __fastcall TForm1::N20222matriz1Click(TObject *Sender)
    cargarFila2022_2(StringGrid1, fa, fb);
 }
 //---------------------------------------------------------------------------
+//2023_1
+byte GetSumaDig(Cardinal x){
+  byte r;
+  if (x < 10)
+	r = x;
+  else {
+	byte d = x % 10;
+	r = GetSumaDig(x/10);
+	r = r + d;
+  }
+  return r;
+}
+
+
+signed char PromedioX(TStringGrid *v, byte n){
+  signed char r;
+  if (n == 0)
+	r = 0;
+  else {
+	Cardinal ele = v->Cells[n-1][0].ToInt();
+	signed char signo = (ele % 2 ==0)? (-1):(1);
+	r = PromedioX(v, n-1);
+	r = r + (signo * GetSumaDig(ele));
+  }
+  return r;
+}
+void __fastcall TForm1::promedioXElem1Click(TObject *Sender)
+{
+  byte n = Edit1->Text.ToInt();
+  Edit2->Text = PromedioX(StringGrid1, n);
+}
+//---------------------------------------------------------------------------
+Cardinal CargarDigitosDeNro(byte a, byte b){
+  Cardinal r;
+  byte dim = b -a + 1;
+  if (dim == 0)
+	r = 0;
+  else {
+	byte d = a;
+	r = CargarDigitosDeNro( a+1, b);
+	r = r *10 + d;
+  }
+  return r;
+}
+
+ //5 => '55555'
+void CargarToDigitosDesc(TStringGrid *v, byte &n, Cardinal x){
+  if (x == 0)
+	n = 0 ;
+  else {
+	byte dim = x;
+	CargarToDigitosDesc(v, n, x-1);
+	Cardinal ele = CargarDigitosDeNro(1, dim);
+	if (ele > 0) {
+      v->Cells[n][0] = ele;
+	  n++;
+	}
+  }
+
+
+}
+void __fastcall TForm1::cargarDigRepDesc202311Click(TObject *Sender)
+{
+  Cardinal x = Edit1->Text.ToInt();
+  byte n;
+  CargarToDigitosDesc(StringGrid1, n, x);
+  StringGrid1->ColCount = n;
+}
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::N20231NesimTerm1Click(TObject *Sender)
+{
+  unsigned int nro = StrToInt(InputBox("","",""));
+  Edit2->Text =  EnesimoTerm(nro);
+}
+//---------------------------------------------------------------------------
+//metodos
+void __fastcall TForm1::N20231Matriz1Click(TObject *Sender)
+{
+   int fa = 0;
+   int fb = StringGrid1->RowCount -1;
+   int ca = 0;
+   int cb = StringGrid1->ColCount -1;
+   byte x = 1;
+   cargarFila2023_1A(StringGrid1, fa, fb, ca, cb, x);
+}
+//---------------------------------------------------------------------------
 

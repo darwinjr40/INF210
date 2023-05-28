@@ -205,6 +205,14 @@ object Form1: TForm1
         Caption = '2022_2_matriz'
         OnClick = N20222matriz1Click
       end
+      object N20231NesimTerm1: TMenuItem
+        Caption = '2023-1-Nesim-Term'
+        OnClick = N20231NesimTerm1Click
+      end
+      object N20231Matriz1: TMenuItem
+        Caption = '2023-1-Matriz'
+        OnClick = N20231Matriz1Click
+      end
     end
     object matriz1: TMenuItem
       Caption = 'M-Contreras'
@@ -298,6 +306,14 @@ object Form1: TForm1
       object cargar1: TMenuItem
         Caption = 'cargar2letrasPalabra'
         OnClick = cargar1Click
+      end
+      object promedioXElem1: TMenuItem
+        Caption = 'promedioXElem'
+        OnClick = promedioXElem1Click
+      end
+      object cargarDigRepDesc202311: TMenuItem
+        Caption = 'cargarDigRepDesc_2023-1'
+        OnClick = cargarDigRepDesc202311Click
       end
     end
     object Numero1: TMenuItem

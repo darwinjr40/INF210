@@ -371,7 +371,7 @@ void CargarToDigitosRep(TStringGrid *v, byte &n, Cardinal x){
 	CargarDigitosDeNumero(v, n, nro); //(v, n, 55555)
   }
 }
-
+//2019_3R
 void Cargar2LetrasPalabras(TStringGrid *v, byte &n, AnsiString x){
   if (x == "") { //caso base
 	n = 0;
@@ -392,6 +392,8 @@ void Cargar2LetrasPalabras(TStringGrid *v, byte &n, AnsiString x){
 	}
   }
 }
+
+
 
 //dunnia--------------------------------------------------------
 

@@ -76,6 +76,8 @@ void cargarCol2022_2(TStringGrid *v, int f, int ca, int cb, int x);
 
 void cargarFila2022_1d(TStringGrid *v, unsigned int fa, unsigned int fb);
 void cargarCol2022_1d(TStringGrid *v, int f, int ca, int cb, int x);
+
+void cargarFila2023_1A(TStringGrid *v, int fa, int fb, int ca, int cb, byte& x);
 //shirley
 
 void cargarDentroToFueraCol1(TStringGrid *v, byte f, byte ca, byte cb, byte x);
