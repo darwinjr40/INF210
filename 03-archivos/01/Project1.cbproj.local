@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/06/23 07:10:35.000.074,=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2023/06/23 07:10:42.000.778,=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2023/06/23 07:11:26.000.492,C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.h=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Formulario1.h</Transaction>
+    <Transaction>2023/06/23 07:11:26.000.492,C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Formulario1.dfm</Transaction>
+    <Transaction>2023/06/23 07:11:26.000.492,C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.cpp=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Formulario1.cpp</Transaction>
+    <Transaction>2023/06/23 07:11:44.000.050,C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Project1.cbproj=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

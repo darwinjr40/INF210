@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/04/09 03:55:16.000.501,=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/04/09 03:55:19.000.540,=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022/04/09 03:56:57.000.734,C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.h=C:\Users\darwin\Documents\Cadena_c++\form.h</Transaction>
+    <Transaction>2022/04/09 03:56:57.000.734,C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\darwin\Documents\Cadena_c++\form.dfm</Transaction>
+    <Transaction>2022/04/09 03:56:57.000.734,C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.cpp=C:\Users\darwin\Documents\Cadena_c++\form.cpp</Transaction>
+    <Transaction>2022/04/09 03:59:04.000.330,C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Project1PCH1.h=C:\Users\darwin\Documents\Cadena_c++\recursion.h</Transaction>
+    <Transaction>2022/04/09 03:59:35.000.196,C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Project1.cbproj=C:\Users\darwin\Documents\Cadena_c++\recursividad.cbproj</Transaction>
+    <Transaction>2022/04/09 04:00:17.000.486,=C:\Users\darwin\Documents\Cadena_c++\Unit1.cpp</Transaction>
+    <Transaction>2022/04/09 04:00:27.000.297,C:\Users\darwin\Documents\Cadena_c++\Unit1.cpp=C:\Users\darwin\Documents\Cadena_c++\cadenas.cpp</Transaction>
+    <Transaction>2022/04/09 04:00:27.000.297,C:\Users\darwin\Documents\Cadena_c++\Unit1.h=C:\Users\darwin\Documents\Cadena_c++\cadenas.h</Transaction>
+    <Transaction>2022/09/16 01:36:13.000.537,=D:\materia\INF210\Modulos\Unit1.cpp</Transaction>
+    <Transaction>2022/09/16 01:37:00.000.444,D:\materia\INF210\Modulos\modulos\vectores.cpp=D:\materia\INF210\Modulos\Unit1.cpp</Transaction>
+    <Transaction>2022/09/16 01:37:00.000.444,D:\materia\INF210\Modulos\modulos\vectores.h=D:\materia\INF210\Modulos\Unit1.h</Transaction>
+    <Transaction>2022/09/16 02:54:04.000.157,=D:\materia\INF210\Modulos\Unit1.cpp</Transaction>
+    <Transaction>2022/09/16 02:54:11.000.605,D:\materia\INF210\Modulos\numeros.h=D:\materia\INF210\Modulos\Unit1.h</Transaction>
+    <Transaction>2022/09/16 02:54:11.000.605,D:\materia\INF210\Modulos\numeros.cpp=D:\materia\INF210\Modulos\Unit1.cpp</Transaction>
+    <Transaction>2022/09/16 03:22:19.000.314,=D:\materia\INF210\Modulos\Unit1.cpp</Transaction>
+    <Transaction>2022/09/16 03:22:32.000.907,D:\materia\INF210\Modulos\modulos\matriz.cpp=D:\materia\INF210\Modulos\Unit1.cpp</Transaction>
+    <Transaction>2022/09/16 03:22:32.000.907,D:\materia\INF210\Modulos\modulos\matriz.h=D:\materia\INF210\Modulos\Unit1.h</Transaction>
+  </Transactions>
+</BorlandProject>
