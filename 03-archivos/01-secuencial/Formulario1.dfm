@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 372
-  ClientWidth = 735
+  ClientHeight = 386
+  ClientWidth = 532
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,8 +15,8 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Edit1: TEdit
-    Left = 160
-    Top = 80
+    Left = 152
+    Top = 104
     Width = 121
     Height = 21
     TabOrder = 0
@@ -31,16 +31,32 @@ object Form1: TForm1
     ButtonWidth = 150
     Items = <
       item
+        Caption = 'Select File'
+        OnClick = SelectClick
+      end
+      item
         Caption = 'Contar Vocales'
-        OnClick = Button1Click
+        OnClick = ButtonSelectClick
       end
       item
-      end
-      item
+        Caption = 'LimpiarVocSig'
+        OnClick = LimpiarVocSigClick
       end
       item
       end>
     TabOrder = 1
+  end
+  object ComboBox1: TComboBox
+    Left = 152
+    Top = 56
+    Width = 145
+    Height = 21
+    ItemIndex = 0
+    TabOrder = 2
+    Text = 'File1'
+    Items.Strings = (
+      'File1'
+      'File2')
   end
   object OpenTextFileDialog1: TOpenTextFileDialog
     Left = 192

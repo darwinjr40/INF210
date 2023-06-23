@@ -11,6 +11,8 @@
 #include <Vcl.ExtDlgs.hpp>
 #include <Vcl.ButtonGroup.hpp>
 #include <fstream> void
+/*externos*/
+#include "UFile.h"
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -18,8 +20,11 @@ __published:	// IDE-managed Components
 	TOpenTextFileDialog *OpenTextFileDialog1;
 	TEdit *Edit1;
 	TButtonGroup *ButtonGroup1;
-	void __fastcall Button1Click(TObject *Sender);
+	TComboBox *ComboBox1;
+	void __fastcall ButtonSelectClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall SelectClick(TObject *Sender);
+	void __fastcall LimpiarVocSigClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
