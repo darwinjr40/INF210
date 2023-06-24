@@ -21,3 +21,30 @@ bool EsSigno(char x){
   AnsiString signos = ".;";
   return signos.Pos(x) > 0;
 }
+
+bool EsDig(char x){
+  AnsiString digitos = "0123456789";
+  return digitos.Pos(x) > 0;
+}
+
+char ToMay(char x){
+  AnsiString min, may;
+  byte p;
+  min = "qwertyuiopasdfghjklñzxcvbnmáéióúü";
+  may = "QWERTYUIOPASDFGHJKLÑZXCVBNMÁÉÍÓÚU";
+  p = min.Pos(x);
+  return (p==0)? (x) : (may[p]);
+}
+
+char ToNivel21(char x){
+  AnsiString org  = "#hp ";
+  AnsiString dest = "M@#c";
+  byte p = org.Pos(x);
+  return (p==0)? (x) : (dest[p]);
+}
+
+char EsNivel21(char x){
+  AnsiString conj = "M@#c\n";
+  byte p = conj.Pos(x);
+  return (p > 0);
+}

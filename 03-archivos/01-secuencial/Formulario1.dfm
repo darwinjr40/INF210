@@ -43,6 +43,12 @@ object Form1: TForm1
         OnClick = LimpiarVocSigClick
       end
       item
+        Caption = '2022-2-#1-crearNivel21'
+        OnClick = crearNivel21Form
+      end
+      item
+        Caption = '2023-2-#2-VerificarNivel21'
+        OnClick = VerificarNivel21Click
       end>
     TabOrder = 1
   end

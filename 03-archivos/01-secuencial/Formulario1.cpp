@@ -9,11 +9,10 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 /*variable global*/
-AnsiString globalName1, globalName2;
-struct Data {AnsiString name;};
-//TOpenTextFileDialog *openDialog;
-AnsiString names[2] = {"",""};
-
+	AnsiString globalName1, globalName2;
+	AnsiString names[2] = {"",""};
+	//TOpenTextFileDialog *openDialog;
+	//struct Data {AnsiString name;};
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
@@ -26,7 +25,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
-  OpenTextFileDialog1->InitialDir = "G:\auxiliar\INF210\INF210\03-archivos\01";
+  OpenTextFileDialog1->InitialDir = "G:\\auxiliar\\INF210\\INF210\\03-archivos\\01-secuencial\\files";
 
 }
 //---------------------------------------------------------------------------
@@ -50,6 +49,23 @@ void __fastcall TForm1::ButtonSelectClick(TObject *Sender)
 void __fastcall TForm1::LimpiarVocSigClick(TObject *Sender)
 {
   Limpiar(names[0]);
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::crearNivel21Form(TObject *Sender)
+{
+  AnsiString x = "nivel21.txt";
+  CrearNivel21V2(names[0], x);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::VerificarNivel21Click(TObject *Sender)
+{
+  bool sw = VerifNivel21(names[0]);
+  AnsiString salida = (sw)? ("Formato Ok") : ("Formato Erroneo");
+  ShowMessage(salida);
 }
 //---------------------------------------------------------------------------
 
