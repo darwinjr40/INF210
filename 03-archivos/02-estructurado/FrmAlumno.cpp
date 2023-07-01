@@ -10,8 +10,10 @@
 TForm1 *Form1;
 
 //para ver la posicion
-//std::streampos fileSize = pf->tellg();
-//ShowMessage(AnsiString(static_cast<long long>(fileSize)));
+//		std::streampos fileSize = pf->tellg();
+//		ShowMessage(AnsiString(static_cast<long long>(fileSize)));
+//		fileSize = pf->tellp();
+//		ShowMessage(AnsiString(static_cast<long long>(fileSize)));
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
@@ -75,6 +77,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	regNuevo.fecha = TFecha(StrtoInt(MaskEdit1->Text.SubString(1, 2)), StrtoInt(MaskEdit1->Text.SubString(4, 2)), StrtoInt(MaskEdit1->Text.SubString(7, 4)));
 	pf = new fstream(nomArch.c_str(), ios::in | ios::out | ios::binary);
 	if (pf->is_open()) {
+        pf->read((char*)&reg, sizeof(reg));
 		while( !pf->eof() && (reg.cod != regNuevo.cod) ) {
 		  pf->read((char*)&reg, sizeof(reg));
 		};
@@ -84,10 +87,10 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 		  pf->seekg(-sizeof(reg), ios::cur);
 		pf->write((char *)&regNuevo, sizeof(regNuevo));
 		pf->flush();
-		pf->close();
-		delete pf;
 		UpdateForm("","","","");
 	}
+	pf->close();
+	delete pf;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button4Click(TObject *Sender)
