@@ -77,7 +77,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	regNuevo.fecha = TFecha(StrtoInt(MaskEdit1->Text.SubString(1, 2)), StrtoInt(MaskEdit1->Text.SubString(4, 2)), StrtoInt(MaskEdit1->Text.SubString(7, 4)));
 	pf = new fstream(nomArch.c_str(), ios::in | ios::out | ios::binary);
 	if (pf->is_open()) {
-        pf->read((char*)&reg, sizeof(reg));
+		pf->read((char*)&reg, sizeof(reg));
 		while( !pf->eof() && (reg.cod != regNuevo.cod) ) {
 		  pf->read((char*)&reg, sizeof(reg));
 		};
@@ -116,9 +116,29 @@ void __fastcall TForm1::Button4Click(TObject *Sender)
 	delete pf;
 }
 
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::actualizarv3(TObject *Sender)
+{
+  	RegAlumno reg;
+	fstream f(nomArch.c_str(), ios::in | ios::out | ios::binary);
+	if ( !f.fail() ) {
+		f.read((char*)&reg, sizeof(reg));
+		while( !f.eof() ) {
+			for (byte i = 0; i < strlen(reg.nom); i++)
+			  reg.nom[i] = toupper(reg.nom[i]);
+			f.seekp(-sizeof(reg),ios::cur);
+			f.write((char *)&reg, sizeof(reg));
+			f.seekg(f.tellg());
+			f.read((char*)&reg, sizeof(reg));
+		}
+	}
+	f.flush();
+	f.close();
+}
 
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Button5Click(TObject *Sender)
+void __fastcall TForm1::Button7Click(TObject *Sender)
 {
 	RegAlumno reg;
 	AnsiString nameTmp = "temporal.tmp";
@@ -131,6 +151,7 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 			reg.nom[i] = toupper(reg.nom[i]);
 		  ft->write((char *)&reg, sizeof(reg));
 		  pf->read((char*)&reg, sizeof(reg));
+
 		};
 	}
 	pf->flush();
@@ -142,6 +163,8 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 	remove(nomArch.c_str());
 	rename(nameTmp.c_str(),nomArch.c_str());
 }
+
+
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button6Click(TObject *Sender) {
   RegAlumno reg; RegAlumnoNew regANew; Cardinal k,p;
@@ -170,5 +193,6 @@ void __fastcall TForm1::Button6Click(TObject *Sender) {
   ph.close();
   pj.close();
 }
+
 //---------------------------------------------------------------------------
 

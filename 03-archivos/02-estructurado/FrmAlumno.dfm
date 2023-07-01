@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = 'Form1'
   ClientHeight = 217
-  ClientWidth = 560
+  ClientWidth = 760
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -100,8 +100,8 @@ object Form1: TForm1
     TabOrder = 6
   end
   object Button4: TButton
-    Left = 384
-    Top = 40
+    Left = 360
+    Top = 8
     Width = 75
     Height = 25
     Caption = 'actualizar'
@@ -109,13 +109,13 @@ object Form1: TForm1
     OnClick = Button4Click
   end
   object Button5: TButton
-    Left = 384
-    Top = 71
+    Left = 441
+    Top = 8
     Width = 75
     Height = 25
     Caption = 'actualizarv2'
     TabOrder = 8
-    OnClick = Button5Click
+    OnClick = Button7Click
   end
   object Button6: TButton
     Left = 384
@@ -125,5 +125,14 @@ object Form1: TForm1
     Caption = 'expandir'
     TabOrder = 9
     OnClick = Button6Click
+  end
+  object Button7: TButton
+    Left = 522
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'actualizarv3'
+    TabOrder = 10
+    OnClick = actualizarv3
   end
 end
