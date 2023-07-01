@@ -83,7 +83,7 @@ void CrearNivel21V2(AnsiString nameFile, AnsiString newNameFile){
 }
 
 bool VerifNivel21(AnsiString nameFile){
-  char car, conver;
+  char car;
   bool sw = true;
   fstream pg(nameFile.c_str(),ios::in);
   if(!pg.fail()){

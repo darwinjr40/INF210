@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2023/06/30 16:14:11.771,=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2023/06/30 16:14:14.386,=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2023/06/30 16:15:52.704,G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\FrmAlumno.cpp=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2023/06/30 16:15:52.704,G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\FrmAlumno.h=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>2023/06/30 16:15:52.704,G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\FrmAlumno.dfm=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2023/06/30 16:16:10.546,G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\Project1PCH1.h=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2023/06/30 16:16:32.883,G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\Project1.cbproj=C:\Users\darwin\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2023/06/30 16:20:44.754,=G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\Unit1.cpp</Transaction>
+    <Transaction>2023/06/30 16:21:23.271,G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\src\UStruct.cpp=G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\Unit1.cpp</Transaction>
+    <Transaction>2023/06/30 16:21:23.271,G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\src\UStruct.h=G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\Unit1.h</Transaction>
+    <Transaction>2023/06/30 16:25:39.327,G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\src\UAlumno.cpp=G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\src\UStruct.cpp</Transaction>
+    <Transaction>2023/06/30 16:25:39.327,G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\src\UAlumno.h=G:\auxiliar\INF210\INF210\03-archivos\02-estructurado\src\UStruct.h</Transaction>
+  </Transactions>
+</BorlandProject>
