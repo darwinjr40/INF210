@@ -156,6 +156,41 @@ void __fastcall TForm1::actualizarv4Click(TObject *Sender)
 	f.close();
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button9Click(TObject *Sender){
+ 	RegAlumno reg;
+	fstream f(nomArch.c_str(), ios::in | ios::out | ios::binary);
+	if ( !f.fail() ) {
+		// Lee dos registros, pero no se utiliza el resultado
+		(f.read((char*)&reg, sizeof(reg)));
+		(f.read((char*)&reg, sizeof(reg)));
+
+		// Aquí estaba el error: se debe crear el nuevo registro antes de realizar la escritura
+		reg = RegAlumno(200, "Juan Perez", "calle 123", TFecha(10,10,1010));
+		ShowMessage(IntToStr(f.tellg()));
+		f.seekp(-sizeof(reg),ios::cur);
+		ShowMessage(IntToStr(f.tellg()));
+		ShowMessage(IntToStr(f.tellp()));
+		f.write((char*)&reg, sizeof(reg));
+		ShowMessage(IntToStr(f.tellg()));
+		ShowMessage(IntToStr(f.tellp()));
+//		f.seekg(0,ios::cur);
+		f.seekg(f.tellg());
+		(f.read((char*)&reg, sizeof(reg)));
+		(f.read((char*)&reg, sizeof(reg)));
+
+		reg = RegAlumno(200, "Juan Perez", "calle 123", TFecha(10,10,1010));
+		f.seekp(-sizeof(reg),ios::cur);
+		f.write((char*)&reg, sizeof(reg));
+
+		f.seekg(f.tellg());
+		(f.read((char*)&reg, sizeof(reg)));
+	}
+	f.flush();
+	f.close();
+}
+//---------------------------------------------------------------------------
+
 void __fastcall TForm1::actualizarv2Click(TObject *Sender)
 {
 	RegAlumno reg;
@@ -184,34 +219,41 @@ void __fastcall TForm1::actualizarv2Click(TObject *Sender)
 
 
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Button6Click(TObject *Sender) {
-  RegAlumno reg; RegAlumnoNew regANew; Cardinal k,p;
-  AnsiString Nombre;
+void __fastcall TForm1::expandirClick(TObject *Sender) {
+  RegAlumno reg;
+  RegAlumnoNew regANew;
   fstream ph(nomArch.c_str(),ios::in|ios::out|ios::binary);
   fstream pj( AnsiString("AlumnosNew.dat").c_str(),ios::out|ios::trunc|ios::binary);
   if (!ph.fail()) {
-	  ph.seekg(0);
-	  pj.seekp(0);
-	  ph.read((char*)&reg,sizeof(reg));
-	  while (!ph.eof()){
-		regANew.cod=reg.cod;
+	  while (ph.read((char*)&reg,sizeof(reg))){
 //	    regANew.mark=regA.mark;
-		 Nombre=reg.dir;
-		 strncpy(regANew.dir,Nombre.c_str(),21);
-		 Nombre=reg.nom;
-		 strncpy(regANew.nom,Nombre.c_str(),21);
-		 regANew.fecha=reg.fecha;
+		 regANew  = RegAlumnoNew(reg.cod, reg.nom, reg.dir, reg.fecha);
+//		 strncpy(regANew.dir,Nombre.c_str(),21);
+//		 strncpy(regANew.nom,Nombre.c_str(),21);
 		 pj.write((char*)&regANew,sizeof(regANew));
-		 p=pj.tellp();
-		 ph.read((char*)&reg,sizeof(reg));
 	  }
   }
   ph.flush();
-  pj.flush();
   ph.close();
+  pj.flush();
   pj.close();
 }
 
 
+
+
 //---------------------------------------------------------------------------
+
+void __fastcall TForm1::showExpandirClick(TObject *Sender)
+{
+	RegAlumnoNew reg;
+	fstream f( AnsiString("AlumnosNew.dat").c_str(), ios::in | ios::binary);
+	if ( !f.fail() ) {
+		while(f.read((char*)&reg, sizeof(reg)))
+		  ShowMessage(reg.ToString());
+	}
+	f.close();
+}
+//---------------------------------------------------------------------------
+
 

@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 217
+  ClientHeight = 254
   ClientWidth = 760
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -75,7 +75,7 @@ object Form1: TForm1
     Text = '  /  /    '
   end
   object Button1: TButton
-    Left = 156
+    Left = 84
     Top = 160
     Width = 75
     Height = 25
@@ -84,7 +84,7 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 254
+    Left = 190
     Top = 160
     Width = 75
     Height = 25
@@ -92,7 +92,7 @@ object Form1: TForm1
     TabOrder = 5
   end
   object Button3: TButton
-    Left = 360
+    Left = 288
     Top = 160
     Width = 75
     Height = 25
@@ -100,7 +100,7 @@ object Form1: TForm1
     TabOrder = 6
   end
   object Button4: TButton
-    Left = 360
+    Left = 530
     Top = 8
     Width = 75
     Height = 25
@@ -109,8 +109,8 @@ object Form1: TForm1
     OnClick = actualizarClick
   end
   object Button5: TButton
-    Left = 441
-    Top = 8
+    Left = 530
+    Top = 39
     Width = 75
     Height = 25
     Caption = 'actualizarv2'
@@ -118,17 +118,17 @@ object Form1: TForm1
     OnClick = actualizarv2Click
   end
   object Button6: TButton
-    Left = 384
-    Top = 102
+    Left = 664
+    Top = 58
     Width = 75
     Height = 25
     Caption = 'expandir'
     TabOrder = 9
-    OnClick = Button6Click
+    OnClick = expandirClick
   end
   object Button7: TButton
-    Left = 522
-    Top = 8
+    Left = 530
+    Top = 70
     Width = 75
     Height = 25
     Caption = 'actualizarv3'
@@ -136,12 +136,30 @@ object Form1: TForm1
     OnClick = actualizarv3
   end
   object Button8: TButton
-    Left = 616
-    Top = 8
+    Left = 530
+    Top = 101
     Width = 75
     Height = 25
     Caption = 'actualizarv4'
     TabOrder = 11
     OnClick = actualizarv4Click
+  end
+  object Button9: TButton
+    Left = 530
+    Top = 132
+    Width = 75
+    Height = 25
+    Caption = 'prueba'
+    TabOrder = 12
+    OnClick = Button9Click
+  end
+  object Button10: TButton
+    Left = 664
+    Top = 89
+    Width = 75
+    Height = 25
+    Caption = 'showExpandir'
+    TabOrder = 13
+    OnClick = showExpandirClick
   end
 end

@@ -32,14 +32,18 @@ __published:	// IDE-managed Components
 	TButton *Button6;
 	TButton *Button7;
 	TButton *Button8;
+	TButton *Button9;
+	TButton *Button10;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Edit1Exit(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall actualizarClick(TObject *Sender);
 	void __fastcall actualizarv2Click(TObject *Sender);
-	void __fastcall Button6Click(TObject *Sender);
+	void __fastcall expandirClick(TObject *Sender);
 	void __fastcall actualizarv3(TObject *Sender);
 	void __fastcall actualizarv4Click(TObject *Sender);
+	void __fastcall Button9Click(TObject *Sender);
+	void __fastcall showExpandirClick(TObject *Sender);
 private:	// User declarations
 	fstream *pf;
 	AnsiString nomArch;
