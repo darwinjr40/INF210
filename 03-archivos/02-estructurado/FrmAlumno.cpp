@@ -93,7 +93,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	delete pf;
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Button4Click(TObject *Sender)
+void __fastcall TForm1::actualizarClick(TObject *Sender)
 {
 	RegAlumno reg;
 	Cardinal p = 0;
@@ -120,7 +120,7 @@ void __fastcall TForm1::Button4Click(TObject *Sender)
 
 void __fastcall TForm1::actualizarv3(TObject *Sender)
 {
-  	RegAlumno reg;
+	RegAlumno reg;
 	fstream f(nomArch.c_str(), ios::in | ios::out | ios::binary);
 	if ( !f.fail() ) {
 		f.read((char*)&reg, sizeof(reg));
@@ -138,7 +138,25 @@ void __fastcall TForm1::actualizarv3(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Button7Click(TObject *Sender)
+
+void __fastcall TForm1::actualizarv4Click(TObject *Sender)
+{
+	RegAlumno reg;
+	fstream f(nomArch.c_str(), ios::in | ios::out | ios::binary);
+	if ( !f.fail() ) {
+		while(f.read((char*)&reg, sizeof(reg))) {
+			for (byte i = 0; i < strlen(reg.nom); i++)
+			  reg.nom[i] = toupper(reg.nom[i]);
+			f.seekg(-sizeof(reg),ios::cur);
+			f.write((char *)&reg, sizeof(reg));
+			f.seekg(f.tellg());
+		}
+	}
+	f.flush();
+	f.close();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::actualizarv2Click(TObject *Sender)
 {
 	RegAlumno reg;
 	AnsiString nameTmp = "temporal.tmp";
@@ -193,6 +211,7 @@ void __fastcall TForm1::Button6Click(TObject *Sender) {
   ph.close();
   pj.close();
 }
+
 
 //---------------------------------------------------------------------------
 

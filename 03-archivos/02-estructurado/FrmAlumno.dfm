@@ -106,7 +106,7 @@ object Form1: TForm1
     Height = 25
     Caption = 'actualizar'
     TabOrder = 7
-    OnClick = Button4Click
+    OnClick = actualizarClick
   end
   object Button5: TButton
     Left = 441
@@ -115,7 +115,7 @@ object Form1: TForm1
     Height = 25
     Caption = 'actualizarv2'
     TabOrder = 8
-    OnClick = Button7Click
+    OnClick = actualizarv2Click
   end
   object Button6: TButton
     Left = 384
@@ -134,5 +134,14 @@ object Form1: TForm1
     Caption = 'actualizarv3'
     TabOrder = 10
     OnClick = actualizarv3
+  end
+  object Button8: TButton
+    Left = 616
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'actualizarv4'
+    TabOrder = 11
+    OnClick = actualizarv4Click
   end
 end

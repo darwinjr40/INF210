@@ -10,6 +10,9 @@
 //#include <Vcl.Forms.hpp>
 //#include <Vcl.Menus.hpp>
 
+
+//	RegAlumno reg = RegAlumno(100, "Juan Perez", "calle 123", TFecha(10,10,1010));
+
 struct TFecha{
 	//atributos
 	byte dia;
@@ -30,8 +33,15 @@ struct RegAlumno{
 	char nom[21];  // 21 bytes
 	char dir[21];  // 21 bytes
 	TFecha fecha;  // 4 bytes
+	// Constructor  con valores predeterminado
+	RegAlumno(){};
+	//constructor parametrizado
+	RegAlumno(Word c, AnsiString n, AnsiString d, TFecha f) : cod(c), fecha(f) {
+		strcpy(nom, n.c_str());
+		strcpy(dir, d.c_str());
+	}
 
-    AnsiString ToString() {
+	AnsiString ToString() {
 		return (AnsiString)"{\n" +
 			   "cod: " + IntToStr(this->cod)+"\n"+
 			   "nom: " + this->nom + "\n"+
