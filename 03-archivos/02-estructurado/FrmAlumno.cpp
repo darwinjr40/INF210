@@ -39,6 +39,7 @@ void TForm1::UpdateForm(AnsiString cod,AnsiString nom,AnsiString dir, AnsiString
   MaskEdit1->Text = (fecha==NULL)? (AnsiString)Edit1->Text :fecha;
 }
 
+
 Cardinal StrtoInt(AnsiString cad) {
 	Cardinal nu = 0;
 	for (byte i = 1; i <= cad.Length(); i++) {
@@ -145,11 +146,11 @@ void __fastcall TForm1::actualizarv4Click(TObject *Sender)
 	fstream f(nomArch.c_str(), ios::in | ios::out | ios::binary);
 	if ( !f.fail() ) {
 		while(f.read((char*)&reg, sizeof(reg))) {
-			for (byte i = 0; i < strlen(reg.nom); i++)
-			  reg.nom[i] = toupper(reg.nom[i]);
-			f.seekg(-sizeof(reg),ios::cur);
-			f.write((char *)&reg, sizeof(reg));
-			f.seekg(f.tellg());
+		  for (byte i = 0; i < strlen(reg.nom); i++)
+			reg.nom[i] = toupper(reg.nom[i]);
+		  f.seekp(-sizeof(reg),ios::cur);
+		  f.write((char *)&reg, sizeof(reg));
+		  f.seekg(f.tellg());
 		}
 	}
 	f.flush();
@@ -158,7 +159,7 @@ void __fastcall TForm1::actualizarv4Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button9Click(TObject *Sender){
- 	RegAlumno reg;
+	RegAlumno reg;
 	fstream f(nomArch.c_str(), ios::in | ios::out | ios::binary);
 	if ( !f.fail() ) {
 		// Lee dos registros, pero no se utiliza el resultado
@@ -204,7 +205,6 @@ void __fastcall TForm1::actualizarv2Click(TObject *Sender)
 			reg.nom[i] = toupper(reg.nom[i]);
 		  ft->write((char *)&reg, sizeof(reg));
 		  pf->read((char*)&reg, sizeof(reg));
-
 		};
 	}
 	pf->flush();
@@ -226,10 +226,7 @@ void __fastcall TForm1::expandirClick(TObject *Sender) {
   fstream pj( AnsiString("AlumnosNew.dat").c_str(),ios::out|ios::trunc|ios::binary);
   if (!ph.fail()) {
 	  while (ph.read((char*)&reg,sizeof(reg))){
-//	    regANew.mark=regA.mark;
 		 regANew  = RegAlumnoNew(reg.cod, reg.nom, reg.dir, reg.fecha);
-//		 strncpy(regANew.dir,Nombre.c_str(),21);
-//		 strncpy(regANew.nom,Nombre.c_str(),21);
 		 pj.write((char*)&regANew,sizeof(regANew));
 	  }
   }

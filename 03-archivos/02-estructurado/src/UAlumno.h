@@ -51,10 +51,10 @@ struct RegAlumno{ //48 bytes
 	}
 };
 
-struct RegAlumnoNew{ //63 bytes
+struct RegAlumnoNew{ //62 bytes
 //	char mark;
 	Word cod;      // 2 bytes
-	char nom[27];  // 36 bytes
+	char nom[35];  // 35 bytes
 	char dir[21];  // 21 bytes
 	TFecha fecha;  // 4 bytes
 
@@ -62,8 +62,8 @@ struct RegAlumnoNew{ //63 bytes
 	RegAlumnoNew(){};
 	//constructor parametrizado
 	RegAlumnoNew(Word c, AnsiString n, AnsiString d, TFecha f) : cod(c), fecha(f) {
-		strcpy(nom, n.c_str());
-		strcpy(dir, d.c_str());
+		strncpy(nom, n.c_str(), sizeof(nom)-1);
+		strncpy(dir, d.c_str(), sizeof(dir)-1);
 	}
 
 	AnsiString ToString() {
