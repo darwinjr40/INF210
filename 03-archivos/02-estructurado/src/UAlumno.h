@@ -9,6 +9,7 @@
 //#include <Vcl.StdCtrls.hpp>
 //#include <Vcl.Forms.hpp>
 //#include <Vcl.Menus.hpp>
+#include <iostream>
 
 
 //	RegAlumno reg = RegAlumno(100, "Juan Perez", "calle 123", TFecha(10,10,1010));
@@ -99,19 +100,78 @@ struct RegIdxCod {
 	Word cod;
 	Cardinal pos;
 };
-struct RegIdxNom{
-	char nom[21];
+
+
+struct  RegIdxBase {
 	Cardinal pos;
+	virtual void Copiar(RegAlumno &reg)=0; // Función virtual pura
+	virtual AnsiString ToString()=0;
+
 };
-struct RegIdxDir{
+
+struct RegIdxCodV1 : public  RegIdxBase {
+	Word cod;
+
+	void Copiar(RegAlumno &reg)  {
+	  this->cod = reg.cod;
+	};
+
+	AnsiString ToString() {
+		return (AnsiString)"{\n" +
+			   "pos: " + this->pos+"\n"+
+			   "cod: " +  IntToStr(this->cod) + "\n"+
+				"}";
+	}
+};
+
+struct RegIdxNom : public RegIdxBase {
 	char nom[21];
-	Cardinal pos;
+
+	void Copiar(RegAlumno &reg) {
+	  AnsiString regnom = reg.nom;
+	  strncpy(this->nom,regnom.c_str(),21);
+	};
+
+	AnsiString ToString() {
+		return (AnsiString)"{\n" +
+			   "pos: " + this->pos+"\n"+
+			   "nom: " +  this->nom + "\n"+
+				"}";
+	}
 };
-struct RegIdxFecha{
-  TFecha fecha;               //   12/07/2003<12/07/2004
-  Cardinal pos;
+
+struct RegIdxDir : public RegIdxBase{
+	char dir[21];
+
+	void Copiar(RegAlumno &reg) {
+	  AnsiString regdir = reg.nom;
+	  strncpy(this->dir, regdir.c_str(),21);
+	};
+
+	AnsiString ToString() {
+		return (AnsiString)"{\n" +
+			   "pos: " + this->pos+"\n"+
+			   "nom: " +  this->dir + "\n"+
+				"}";
+	}
 };
-//nombre de los file
+struct RegIdxFecha : public RegIdxBase {
+	TFecha fecha;;
+
+	void Copiar(RegAlumno &reg) {
+		this->fecha = reg.fecha;
+	};
+
+	AnsiString ToString() {
+		return (AnsiString)"{\n" +
+			   "pos: " + this->pos+"\n"+
+			   "nom: " +  this->fecha.ToString() + "\n"+
+				"}";
+	}
+};
+
+
+//nombre de los files
 struct File{
   static const AnsiString NOM_ARCH ;
   static const AnsiString NOM_ARCH_IDX_COD;

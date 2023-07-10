@@ -247,8 +247,10 @@ void __fastcall TForm1::expandirClick(TObject *Sender) {
 
 void __fastcall TForm1::showExpandirClick(TObject *Sender)
 {
-	RegAlumnoNew reg;
-	fstream f( AnsiString("AlumnosNew.dat").c_str(), ios::in | ios::binary);
+	RegIdxNom reg;
+	fstream f( AnsiString("nombre.idx").c_str(), ios::in | ios::binary);
+//	RegAlumnoNew reg;
+//	fstream f( AnsiString("AlumnosNew.dat").c_str(), ios::in | ios::binary);
 	if ( !f.fail() ) {
 		while(f.read((char*)&reg, sizeof(reg)))
 		  ShowMessage(reg.ToString());
@@ -269,6 +271,11 @@ void __fastcall TForm1::Button11Click(TObject *Sender)
 //
 //   ShowMessage(ra.ToString());
 //   ShowMessage(rb.ToString());
+
+//	ShowMessage(sizeof(RegIdxBase));
+//		ShowMessage(sizeof(RegIdxCodV1));
+//		ShowMessage(sizeof(RegIdxNom));
+   ShowMessage(this->regIdx->pos);
 }
 //---------------------------------------------------------------------------
 
@@ -356,6 +363,7 @@ void __fastcall TForm1::codgio1Click(TObject *Sender){
 	if ( !f.fail() ) {
 		regIdx.pos = f.tellg();
 		f.read((char *)&reg, sizeof(reg));
+
 		while ( !f.eof() ) {
 		  regIdx.cod = reg.cod;
 		  fi.write((char *)&regIdx, sizeof(regIdx));
@@ -501,6 +509,62 @@ void __fastcall TForm1::codigo1Click(TObject *Sender){
 	}
 	f.flush();
 	f.close();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::general1Click(TObject *Sender){
+
+	RegAlumno reg;
+	RegIdxBase& regidx = *regIdx;
+	fstream f(File::NOM_ARCH.c_str(), ios::in | ios::binary);
+	fstream fi(nomArchIdx.c_str(), ios::out | ios::binary);
+	if ( !f.fail() ) {
+		regidx.pos = f.tellg();
+		f.read((char *)&reg, sizeof(reg));
+		while ( !f.eof() ) {
+		  regidx.Copiar(reg);
+		  fi.write((char *)&regidx, size);
+		  regidx.pos = f.tellg();
+		  f.read((char *)&reg, sizeof(reg));
+		}
+	}
+	f.close();
+	fi.close();
+
+    /*otra forma de manipular*/
+//	RegAlumno reg;
+//	fstream f(File::NOM_ARCH.c_str(), ios::in | ios::binary);
+//	fstream fi(nomArchIdx.c_str(), ios::out | ios::binary);
+//	if ( !f.fail() ) {
+//		regIdx->pos = f.tellg();
+//		f.read((char *)&reg, sizeof(reg));
+//		while ( !f.eof() ) {
+//		  regIdx->Copiar(reg);
+//		  fi.write((char *)&*regIdx, size);
+//		  regIdx->pos = f.tellg();
+//		  f.read((char *)&reg, sizeof(reg));
+//		}
+//	}
+//	f.close();
+//	fi.close();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ComboBox1Change(TObject *Sender){
+	const byte n = 4;
+	size_t sizes[n] = {sizeof(RegIdxCodV1), sizeof(RegIdxNom),sizeof(RegIdxDir),sizeof(RegIdxFecha)};
+	AnsiString nomArchs[n] = {File::NOM_ARCH_IDX_COD, File::NOM_ARCH_IDX_NOM, File::NOM_ARCH_IDX_DIR, File::NOM_ARCH_IDX_FEC};
+	RegIdxBase* regIdxs[n] = {new RegIdxCodV1(), new RegIdxNom(), new RegIdxDir(), new RegIdxFecha()};
+
+	byte p = ComboBox1->ItemIndex;
+	size = sizes[p];
+	nomArchIdx = nomArchs[p];
+	delete regIdx;
+	regIdx =  regIdxs[p];
+
+	for (int i = 0; i < n; i++) {
+		delete regIdxs[i];
+	}
 }
 //---------------------------------------------------------------------------
 

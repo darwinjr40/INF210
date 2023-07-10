@@ -248,6 +248,7 @@ object Form1: TForm1
     ItemIndex = 0
     TabOrder = 21
     Text = 'Codigo'
+    OnChange = ComboBox1Change
     Items.Strings = (
       'Codigo'
       'Nombre'
@@ -262,6 +263,10 @@ object Form1: TForm1
       object codgio1: TMenuItem
         Caption = 'codigo'
         OnClick = codgio1Click
+      end
+      object general1: TMenuItem
+        Caption = 'general'
+        OnClick = general1Click
       end
     end
     object Ordenar1: TMenuItem
