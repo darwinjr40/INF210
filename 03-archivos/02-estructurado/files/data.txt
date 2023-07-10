@@ -1,0 +1,30 @@
+
+120
+perico de los
+calle 1
+20/_1/1995
+
+
+130
+maria del barrio
+calle 2
+30/_3/2000
+
+
+
+140
+jorge tolaba
+calle 3
+25/_2/1998
+
+
+150
+pedro del valle
+calle 4
+_1/_2/2001
+
+
+160
+oscar galindo
+calle 5
+_2/_9/2002
