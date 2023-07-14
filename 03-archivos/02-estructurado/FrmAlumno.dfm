@@ -76,18 +76,18 @@ object Form1: TForm1
     Text = '  /  /    '
   end
   object Button1: TButton
-    Left = 176
-    Top = 148
-    Width = 75
+    Left = 190
+    Top = 143
+    Width = 59
     Height = 25
-    Caption = 'Cargar'
+    Caption = 'Guardar'
     TabOrder = 4
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 262
-    Top = 148
-    Width = 75
+    Left = 190
+    Top = 174
+    Width = 59
     Height = 25
     Caption = 'Eliminar'
     TabOrder = 5
@@ -140,7 +140,7 @@ object Form1: TForm1
   end
   object Button9: TButton
     Left = 746
-    Top = 127
+    Top = 189
     Width = 143
     Height = 25
     Caption = 'prueba'
@@ -166,8 +166,8 @@ object Form1: TForm1
     OnClick = Button11Click
   end
   object StringGrid1: TStringGrid
-    Left = 176
-    Top = 195
+    Left = 160
+    Top = 270
     Width = 531
     Height = 262
     DefaultColWidth = 100
@@ -176,8 +176,8 @@ object Form1: TForm1
     TabOrder = 14
   end
   object mostrar: TButton
-    Left = 358
-    Top = 148
+    Left = 160
+    Top = 239
     Width = 75
     Height = 25
     Caption = 'mostrar'
@@ -186,9 +186,9 @@ object Form1: TForm1
   end
   object ButtonGroup1: TButtonGroup
     Left = 8
-    Top = 148
+    Top = 60
     Width = 129
-    Height = 293
+    Height = 381
     ButtonHeight = 32
     ButtonWidth = 130
     Items = <
@@ -201,18 +201,18 @@ object Form1: TForm1
     TabOrder = 16
   end
   object ButtonNavIdx: TButton
-    Left = 432
-    Top = 47
-    Width = 75
+    Left = 407
+    Top = 60
+    Width = 81
     Height = 25
     Caption = 'NavegarIdx'
     TabOrder = 17
     OnClick = ButtonNavIdxClick
   end
   object ButtonNavIdxSig: TButton
-    Left = 480
-    Top = 78
-    Width = 27
+    Left = 324
+    Top = 141
+    Width = 57
     Height = 25
     Caption = '>>'
     Enabled = False
@@ -220,9 +220,9 @@ object Form1: TForm1
     OnClick = ButtonNavIdxSigClick
   end
   object ButtonNavIdxAnt: TButton
-    Left = 432
-    Top = 78
-    Width = 25
+    Left = 262
+    Top = 141
+    Width = 56
     Height = 25
     Caption = '<<'
     Enabled = False
@@ -230,17 +230,17 @@ object Form1: TForm1
     OnClick = ButtonNavIdxAntClick
   end
   object ButtonFinNavIdx: TButton
-    Left = 432
-    Top = 109
-    Width = 75
+    Left = 407
+    Top = 91
+    Width = 82
     Height = 25
     Caption = 'FinNavegarIdx'
     TabOrder = 20
     OnClick = ButtonFinNavIdxClick
   end
   object ComboBox1: TComboBox
-    Left = 432
-    Top = 20
+    Left = 407
+    Top = 33
     Width = 81
     Height = 21
     Style = csDropDownList
@@ -256,7 +256,7 @@ object Form1: TForm1
       'Fecha')
   end
   object MainMenu1: TMainMenu
-    Left = 8
+    Left = 16
     Top = 8
     object indices1: TMenuItem
       Caption = 'Indices'
@@ -274,6 +274,10 @@ object Form1: TForm1
       object codigo1: TMenuItem
         Caption = 'codigo'
         OnClick = codigo1Click
+      end
+      object general2: TMenuItem
+        Caption = 'general'
+        OnClick = general2Click
       end
     end
   end

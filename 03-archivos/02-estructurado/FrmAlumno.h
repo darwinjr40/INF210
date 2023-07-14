@@ -51,6 +51,7 @@ __published:	// IDE-managed Components
 	TMenuItem *codigo1;
 	TComboBox *ComboBox1;
 	TMenuItem *general1;
+	TMenuItem *general2;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Edit1Exit(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
@@ -73,6 +74,7 @@ __published:	// IDE-managed Components
 	void __fastcall codigo1Click(TObject *Sender);
 	void __fastcall general1Click(TObject *Sender);
 	void __fastcall ComboBox1Change(TObject *Sender);
+	void __fastcall general2Click(TObject *Sender);
 private:	// User declarations
 	fstream *pf, *pfIdx;
 	AnsiString nomArch, nomArchIdxCod;
@@ -82,6 +84,8 @@ private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
 	void UpdateForm(AnsiString cod,AnsiString nom,AnsiString dir, AnsiString fecha);
+	void ShowAlumno(RegAlumno r);
+	void SaveAlumno(RegAlumno regNuevo);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;

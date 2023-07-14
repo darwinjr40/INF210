@@ -40,6 +40,12 @@ void TForm1::UpdateForm(AnsiString cod,AnsiString nom,AnsiString dir, AnsiString
   MaskEdit1->Text = (fecha==NULL)? (AnsiString)Edit1->Text :fecha;
 }
 
+void TForm1::ShowAlumno(RegAlumno r){
+  Edit1->Text = r.cod;
+  Edit2->Text = r.nom;
+  Edit3->Text = r.dir;
+  MaskEdit1->Text = r.fecha.ToString();
+}
 
 Cardinal StrtoInt(AnsiString cad) {
 	Cardinal nu = 0;
@@ -55,7 +61,7 @@ void __fastcall TForm1::Edit1Exit(TObject *Sender)
 	RegAlumno reg;
 	Word cod = StrtoInt(Edit1->Text);
 	pf = new fstream(nomArch.c_str(), ios::in | ios::binary);
-	if (!pf->fail()) {
+	if ( !pf->fail() ) {
 		pf->read((char*)&reg, sizeof(reg));
 		while( !pf->eof() && (reg.cod != cod || reg.marca != 0) ) {
 //		  ShowMessage(reg.ToString());
@@ -66,34 +72,38 @@ void __fastcall TForm1::Edit1Exit(TObject *Sender)
 		if (pf->eof()) //es fin de archivo
 		  UpdateForm(NULL,"","","");
 		else
-		  UpdateForm(IntToStr(reg.cod), reg.nom, reg.dir,reg.fecha.ToString());
+		  ShowAlumno(reg);
 	}
 	pf->close();
 	delete pf;
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Button1Click(TObject *Sender)
-{
-	RegAlumno reg, regNuevo;
-	regNuevo.cod = StrtoInt(Edit1->Text);
-	strcpy(regNuevo.nom, (AnsiString(Edit2->Text)).c_str());
-	strcpy(regNuevo.dir,(AnsiString(Edit3->Text)).c_str());
-	regNuevo.fecha = TFecha(StrtoInt(MaskEdit1->Text.SubString(1, 2)), StrtoInt(MaskEdit1->Text.SubString(4, 2)), StrtoInt(MaskEdit1->Text.SubString(7, 4)));
-	pf = new fstream(nomArch.c_str(), ios::in | ios::out | ios::binary);
+void TForm1::SaveAlumno(RegAlumno regNuevo){
+	RegAlumno reg;
 	if (pf->is_open()) {
 		pf->read((char*)&reg, sizeof(reg));
 		while( !pf->eof() && (reg.cod != regNuevo.cod || reg.marca != 0) ) {
 		  pf->read((char*)&reg, sizeof(reg));
 		};
-		if (pf->eof())
+		if ( pf->eof() )
 		  pf->seekg(0,ios::end); //add
 		else
 		  pf->seekg(-sizeof(reg), ios::cur); //update
-		ShowMessage(regNuevo.ToString());
 		pf->write((char *)&regNuevo, sizeof(regNuevo));
-		pf->flush();
 		UpdateForm("","","","");
 	}
+}
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+	RegAlumno regNuevo;
+	regNuevo.cod = StrtoInt(Edit1->Text);
+	strcpy(regNuevo.nom, (AnsiString(Edit2->Text)).c_str());
+	strcpy(regNuevo.dir,(AnsiString(Edit3->Text)).c_str());
+	regNuevo.fecha = TFecha(StrtoInt(MaskEdit1->Text.SubString(1, 2)), StrtoInt(MaskEdit1->Text.SubString(4, 2)), StrtoInt(MaskEdit1->Text.SubString(7, 4)));
+
+	pf = new fstream(nomArch.c_str(), ios::in | ios::out | ios::binary);
+	this->SaveAlumno(regNuevo);
 	pf->close();
 	delete pf;
 }
@@ -167,29 +177,31 @@ void __fastcall TForm1::Button9Click(TObject *Sender){
 	fstream f(nomArch.c_str(), ios::in | ios::out | ios::binary);
 	if ( !f.fail() ) {
 		// Lee dos registros, pero no se utiliza el resultado
-		(f.read((char*)&reg, sizeof(reg)));
-		(f.read((char*)&reg, sizeof(reg)));
+//		(f.read((char*)&reg, sizeof(reg)));
+//		(f.read((char*)&reg, sizeof(reg)));
 
 		// Aquí estaba el error: se debe crear el nuevo registro antes de realizar la escritura
-		reg = RegAlumno(200, "Juan Perez", "calle 123", TFecha(10,10,1010));
-		ShowMessage(IntToStr(f.tellg()));
-		f.seekp(-sizeof(reg),ios::cur);
-		ShowMessage(IntToStr(f.tellg()));
-		ShowMessage(IntToStr(f.tellp()));
-		f.write((char*)&reg, sizeof(reg));
-		ShowMessage(IntToStr(f.tellg()));
-		ShowMessage(IntToStr(f.tellp()));
-//		f.seekg(0,ios::cur);
-		f.seekg(f.tellg());
-		(f.read((char*)&reg, sizeof(reg)));
-		(f.read((char*)&reg, sizeof(reg)));
-
-		reg = RegAlumno(200, "Juan Perez", "calle 123", TFecha(10,10,1010));
-		f.seekp(-sizeof(reg),ios::cur);
+		reg = RegAlumno(300, "Juan Perez", "calle 123", TFecha(10,10,1010));
+//		ShowMessage(IntToStr(f.tellg()));
 		f.write((char*)&reg, sizeof(reg));
 
-		f.seekg(f.tellg());
-		(f.read((char*)&reg, sizeof(reg)));
+//		f.seekp(-sizeof(reg),ios::cur);
+//		ShowMessage(IntToStr(f.tellg()));
+//		ShowMessage(IntToStr(f.tellp()));
+//		f.write((char*)&reg, sizeof(reg));
+//		ShowMessage(IntToStr(f.tellg()));
+//		ShowMessage(IntToStr(f.tellp()));
+////		f.seekg(0,ios::cur);
+//		f.seekg(f.tellg());
+//		(f.read((char*)&reg, sizeof(reg)));
+//		(f.read((char*)&reg, sizeof(reg)));
+//
+//		reg = RegAlumno(200, "Juan Perez", "calle 123", TFecha(10,10,1010));
+//		f.seekp(-sizeof(reg),ios::cur);
+//		f.write((char*)&reg, sizeof(reg));
+//
+//		f.seekg(f.tellg());
+//		(f.read((char*)&reg, sizeof(reg)));
 	}
 	f.flush();
 	f.close();
@@ -247,14 +259,16 @@ void __fastcall TForm1::expandirClick(TObject *Sender) {
 
 void __fastcall TForm1::showExpandirClick(TObject *Sender)
 {
-	RegIdxNom reg;
-	fstream f( AnsiString("nombre.idx").c_str(), ios::in | ios::binary);
+	RegIdxCod reg;
+	fstream f( AnsiString("codigo.idx").c_str(), ios::in | ios::binary);
 //	RegAlumnoNew reg;
 //	fstream f( AnsiString("AlumnosNew.dat").c_str(), ios::in | ios::binary);
-	if ( !f.fail() ) {
-		while(f.read((char*)&reg, sizeof(reg)))
-		  ShowMessage(reg.ToString());
-	}
+	ShowMessage(sizeof(RegIdxCodV2)) ;
+//	if ( !f.fail() ) {
+//
+//		while(f.read((char*)&reg, sizeof(reg)))
+//		  ShowMessage(reg.cod);
+//	}
 	f.close();
 }
 //---------------------------------------------------------------------------
@@ -262,20 +276,23 @@ void __fastcall TForm1::showExpandirClick(TObject *Sender)
 
 void __fastcall TForm1::Button11Click(TObject *Sender)
 {
-//   RegAlumno ra, rb;
-//   ra.cod = 100;
-//   ra.fecha.dia = 5;
-//
+   RegAlumno ra, rb;
+
+   ra.cod = 100;
+   ra.fecha.dia = 5;
+
 //   rb = RegAlumno(ra);
-//   rb.fecha.dia = 10;
-//
-//   ShowMessage(ra.ToString());
-//   ShowMessage(rb.ToString());
+   rb = ra;
+   rb.cod = 200;
+   rb.fecha.dia = 10;
+
+   ShowMessage(ra.ToString());
+   ShowMessage(rb.ToString());
 
 //	ShowMessage(sizeof(RegIdxBase));
 //		ShowMessage(sizeof(RegIdxCodV1));
 //		ShowMessage(sizeof(RegIdxNom));
-   ShowMessage(this->regIdx->pos);
+//   ShowMessage(this->regIdx->pos);
 }
 //---------------------------------------------------------------------------
 
@@ -409,10 +426,10 @@ void __fastcall TForm1::ButtonNavIdxSigClick(TObject *Sender){
 		} else {
 			pf->seekg(regIdx.pos, ios::beg);
 			pf->read((char *)&regA, sizeof(regA));
-			this->UpdateForm(IntToStr(regA.cod), regA.nom, regA.dir, regA.fecha.ToString());
+			this->ShowAlumno(regA);
 			ButtonNavIdxSig->Enabled = true;
 		}
-	}	
+	}
 }
 //---------------------------------------------------------------------------
 
@@ -447,7 +464,7 @@ void __fastcall TForm1::ButtonFinNavIdxClick(TObject *Sender)
   delete pfIdx;
   this->ButtonNavIdxAnt->Enabled = false;
   this->ButtonNavIdxSig->Enabled = false;
-  this->ButtonFinNavIdx->Enabled = false;    
+  this->ButtonFinNavIdx->Enabled = false;
 }
 //---------------------------------------------------------------------------
 
@@ -565,6 +582,64 @@ void __fastcall TForm1::ComboBox1Change(TObject *Sender){
 	for (int i = 0; i < n; i++) {
 		delete regIdxs[i];
 	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::general2Click(TObject *Sender){
+	fstream f(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
+	RegIdxCod reg, regM;
+	bool fin = false;
+	Cardinal p, i, pm, z, xd;
+	if (f.is_open()) {
+		p = 0;
+		while (!fin) {
+			i = 0;
+			pm = p;
+			f.seekg(p); // ,ios::beg);//al inicio del archivo
+			while (!f.eof()) { // busca el menor
+				if (p == f.tellp()) { // si es el primer registro
+					f.read((char *)&reg, sizeof(reg));
+					regM = reg;
+					z = f.tellp();
+				} else {
+					f.read((char *)&reg, sizeof(reg));
+					z = f.tellp();
+				}
+				if (!f.eof()) {
+					i++;
+					if (reg.cod < regM.cod) {
+						regM = reg;
+						xd = f.tellp();
+						pm = xd -sizeof(reg);
+					}
+				}
+			}
+			fin = i <= 1;
+			if (!fin) {
+				// f.flush();
+				f.close();
+				f.open(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
+				f.seekg(p);
+				f.seekp(p);
+				z = f.tellp();
+				if (p != pm) { // intercambia el menor con el de la pos.p
+					f.read((char *)&reg, sizeof(reg));
+					z = f.tellp();
+					f.seekp(p); // ,ios::beg);
+					z = f.tellp();
+					f.write((char *)&regM, sizeof(reg));
+					z = f.tellp();
+					f.seekp(pm); // ,ios::beg);
+					z = f.tellp();
+					f.write((char *)&reg, sizeof(reg));
+					z = f.tellp();
+				}
+			}
+			p = p +sizeof(reg);
+		}
+	}
+	f.flush();
+	f.close();
 }
 //---------------------------------------------------------------------------
 

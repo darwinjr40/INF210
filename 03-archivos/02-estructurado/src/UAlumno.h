@@ -109,6 +109,16 @@ struct  RegIdxBase {
 
 };
 
+class  RegIdxBaseV2 {
+	public:
+		Cardinal pos;
+		virtual AnsiString ToString(){return "sd";};
+};
+struct RegIdxCodV2 : RegIdxBaseV2 {
+	Word cod;
+
+};
+
 struct RegIdxCodV1 : public  RegIdxBase {
 	Word cod;
 
