@@ -1,0 +1,7 @@
+__history/
+__astcache/
+__recovery/
+src/__history/
+src/__astcache/
+src/__recovery/
+Win32/
