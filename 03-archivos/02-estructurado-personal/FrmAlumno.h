@@ -43,10 +43,10 @@ __published:	// IDE-managed Components
 	TMainMenu *MainMenu1;
 	TMenuItem *indices1;
 	TMenuItem *codgio1;
-	TButton *ButtonNavIdx;
+	TButton *ButtonNavIdxIni;
 	TButton *ButtonNavIdxSig;
 	TButton *ButtonNavIdxAnt;
-	TButton *ButtonFinNavIdx;
+	TButton *ButtonNavIdxFin;
 	TMenuItem *Ordenar1;
 	TMenuItem *codigo1;
 	TComboBox *ComboBox1;
@@ -67,10 +67,10 @@ __published:	// IDE-managed Components
 	void __fastcall expandirFileClick(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall codgio1Click(TObject *Sender);
-	void __fastcall ButtonNavIdxClick(TObject *Sender);
+	void __fastcall ButtonNavIdxIniClick(TObject *Sender);
 	void __fastcall ButtonNavIdxSigClick(TObject *Sender);
 	void __fastcall ButtonNavIdxAntClick(TObject *Sender);
-	void __fastcall ButtonFinNavIdxClick(TObject *Sender);
+	void __fastcall ButtonNavIdxFinClick(TObject *Sender);
 	void __fastcall codigo1Click(TObject *Sender);
 	void __fastcall general1Click(TObject *Sender);
 	void __fastcall ComboBox1Change(TObject *Sender);

@@ -181,10 +181,18 @@ void __fastcall TForm1::Button9Click(TObject *Sender){
 //		(f.read((char*)&reg, sizeof(reg)));
 
 		// Aquí estaba el error: se debe crear el nuevo registro antes de realizar la escritura
-		reg = RegAlumno(300, "Juan Perez", "calle 123", TFecha(10,10,1010));
-//		ShowMessage(IntToStr(f.tellg()));
+//		reg = RegAlumno(300, "Juan Perez", "calle 123", TFecha(10,10,1010));
+////		f.seekp(0*sizeof(reg),ios::beg);
+//		f.seekp(2*sizeof(reg),ios::beg);
+//		f.write((char*)&reg, sizeof(reg));
+
+		reg = RegAlumno(200, "Juan 200", "calle 123", TFecha(10,10,1010));
+		f.seekp(1*sizeof(reg),ios::beg);
 		f.write((char*)&reg, sizeof(reg));
 
+		reg = RegAlumno(100, "Juan 200", "calle 123", TFecha(10,10,1010));
+		f.seekp(0* sizeof(reg),ios::beg);
+		f.write((char*)&reg, sizeof(reg));
 //		f.seekp(-sizeof(reg),ios::cur);
 //		ShowMessage(IntToStr(f.tellg()));
 //		ShowMessage(IntToStr(f.tellp()));
@@ -259,12 +267,15 @@ void __fastcall TForm1::expandirClick(TObject *Sender) {
 
 void __fastcall TForm1::showExpandirClick(TObject *Sender)
 {
-	RegAlumnoNew reg;
-	fstream f( AnsiString("AlumnosNew.dat").c_str(), ios::in | ios::binary);
+
+	RegIdxCod reg;
+	fstream f( nomArchIdxCod.c_str(), ios::in | ios::binary);
+//	RegAlumnoNew reg;
+//	fstream f( AnsiString("AlumnosNew.dat").c_str(), ios::in | ios::binary);
 	if ( !f.fail() ) {
 		while(f.read((char*)&reg, sizeof(reg)))
-		  ShowMessage(reg.cod);
-	}
+		  ShowMessage(IntToStr(reg.cod)+", " +reg.pos);
+	}                           //(AnsiString)
 	f.close();
 }
 //---------------------------------------------------------------------------
@@ -299,22 +310,21 @@ void __fastcall TForm1::Button11Click(TObject *Sender)
 
 void __fastcall TForm1::mostrarClick(TObject *Sender)
 {
-	const byte n = 5;
-	AnsiString datos[n] = {"cod", "nombre", "direccion", "fecha", "marca"};
-	byte c = 0;
+	const byte n = 6;
+	AnsiString datos[n] = {"nro", "cod", "nombre", "direccion", "fecha", "marca"};
+	byte c = 1;
 
 	RegAlumno reg;
 	fstream fi(nomArch.c_str(), ios::in | ios::binary);
 	if ( !fi.fail() ) {
-		fi.read((char*)&reg, sizeof(reg));
-		while( !fi.eof()) {
+		while(fi.read((char*)&reg, sizeof(reg))) {		  
+		  StringGrid1->Cells[0][c] = c-1;		  
+		  StringGrid1->Cells[1][c] = reg.cod;
+		  StringGrid1->Cells[2][c] = reg.nom;
+		  StringGrid1->Cells[3][c] = reg.dir;
+		  StringGrid1->Cells[4][c] = reg.fecha.ToString();
+		  StringGrid1->Cells[5][c] = reg.marca;
 		  c++;
-		  StringGrid1->Cells[0][c] = reg.cod;
-		  StringGrid1->Cells[1][c] = reg.nom;
-		  StringGrid1->Cells[2][c] = reg.dir;
-		  StringGrid1->Cells[3][c] = reg.fecha.ToString();
-		  StringGrid1->Cells[4][c] = reg.marca;
-		  fi.read((char*)&reg, sizeof(reg));
 		};
 	}
 	fi.close();
@@ -324,7 +334,7 @@ void __fastcall TForm1::mostrarClick(TObject *Sender)
 	}
 //	delete[] datos;
 	StringGrid1->ColCount = n;
-	StringGrid1->RowCount = c+1;
+	StringGrid1->RowCount = c;
 }
 //---------------------------------------------------------------------------
 
@@ -378,27 +388,26 @@ void __fastcall TForm1::codgio1Click(TObject *Sender){
 	RegIdxCod regIdx;
 	fstream f(nomArch.c_str(), ios::in | ios::binary);
 	fstream fi(nomArchIdxCod.c_str(), ios::out | ios::binary);
-	if ( !f.fail() ) {
-		regIdx.pos = f.tellg();
-		f.read((char *)&reg, sizeof(reg));
-
+	if ( !f.fail() ) {	
 		while ( !f.eof() ) {
-		  regIdx.cod = reg.cod;
-		  fi.write((char *)&regIdx, sizeof(regIdx));
 		  regIdx.pos = f.tellg();
 		  f.read((char *)&reg, sizeof(reg));
+		  if ( !f.eof() ) {
+			regIdx.cod = reg.cod;
+			fi.write((char *)&regIdx, sizeof(regIdx));  
+		  }
 		}
-	}             //| ios::trunc
+	}       
 	f.close();
 	fi.close();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::ButtonNavIdxClick(TObject *Sender){
+void __fastcall TForm1::ButtonNavIdxIniClick(TObject *Sender){
 	RegIdxCod regIdx;
 	RegAlumno regA;
 	pf = new fstream(nomArch.c_str(), ios::in | ios::binary);
-	pfIdx = new fstream(nomArchIdxCod.c_str(), ios::in | ios::binary);
+	pfIdx = new fstream(nomArchIdxCod.c_str(), ios::in | ios::binary);	
 	if ( pfIdx->is_open() ) {
 		pfIdx->read((char*)&regIdx, sizeof(regIdx));
 		if ( !pfIdx->eof() ) {
@@ -407,8 +416,10 @@ void __fastcall TForm1::ButtonNavIdxClick(TObject *Sender){
 			this->UpdateForm(IntToStr(regA.cod), regA.nom, regA.dir, regA.fecha.ToString());
 			this->ButtonNavIdxSig->Enabled = true;
 			this->ButtonNavIdxAnt->Enabled = true;
+			this->ButtonNavIdxFin->Enabled = true;
 		}
 	}		
+	this->ButtonNavIdxIni->Enabled = false;
 }
 //---------------------------------------------------------------------------
 
@@ -457,7 +468,7 @@ void __fastcall TForm1::ButtonNavIdxAntClick(TObject *Sender){
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::ButtonFinNavIdxClick(TObject *Sender)
+void __fastcall TForm1::ButtonNavIdxFinClick(TObject *Sender)
 {
   pf->close();	
   delete pf;
@@ -465,67 +476,47 @@ void __fastcall TForm1::ButtonFinNavIdxClick(TObject *Sender)
   delete pfIdx;
   this->ButtonNavIdxAnt->Enabled = false;
   this->ButtonNavIdxSig->Enabled = false;
-  this->ButtonFinNavIdx->Enabled = false;
+  this->ButtonNavIdxFin->Enabled = false;
+  this->ButtonNavIdxIni->Enabled = true;  
 }
 //---------------------------------------------------------------------------
+void permutar(fstream &fi, Cardinal pa, RegIdxCod ra, Cardinal pb, RegIdxCod rb){
+	fi.seekg(0, ios::beg);
+	fi.seekg(pa, ios::beg);
+	fi.write((char*)&rb, sizeof(rb));
+	fi.seekg(pb, ios::beg);
+	fi.write((char*)&ra, sizeof(ra));
+}
 
 void __fastcall TForm1::codigo1Click(TObject *Sender){
-	// ORDENA POR CODIGO
-	fstream f(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
-	RegIdxCod reg, regM;
-	bool fin = false;
-	Cardinal p, i, pm, z, xd;
-	if (f.is_open()) {
-		p = 0;
-		while (!fin) {
-		
-			i = 0;
-			pm = p;
-			f.seekg(p); // ,ios::beg);//al inicio del archivo
-			while (!f.eof()) { // busca el menor
-				if (p == f.tellp()) { // si es el primer registro
-					f.read((char *)&reg, sizeof(reg));
-					regM = reg;
-					z = f.tellp();
-				} else {
-					f.read((char *)&reg, sizeof(reg));
-					z = f.tellp();
-				}
-				if (!f.eof()) {
-					i++;
-					if (reg.cod < regM.cod) {
-						regM = reg;
-						xd = f.tellp();
-						pm = xd -sizeof(reg);
-					}
-				}
+	RegIdxCod ireg, jreg, kreg;
+	Cardinal i, j, k;
+	fstream fi(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
+	if ( !fi.fail() ) {
+	  i=0; j=1;
+	  while (i < j) {
+		j=i;
+		fi.seekg(j, ios::beg);
+		while ( !fi.eof() ) {
+		  j = fi.tellg();
+		  fi.read((char*)&jreg, sizeof(jreg));
+		  if ( !fi.eof()) {
+			if (j==i) {
+			  k = j;
+			  kreg = jreg;
+			  ireg = jreg;
+			} else if(jreg.cod > kreg.cod){
+			  k = j;
+			  kreg = jreg;
 			}
-			fin = i <= 1;
-			if (!fin) {
-				// f.flush();
-				f.close();
-				f.open(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
-				f.seekg(p);
-				f.seekp(p);
-				z = f.tellp();
-				if (p != pm) { // intercambia el menor con el de la pos.p
-					f.read((char *)&reg, sizeof(reg));
-					z = f.tellp();
-					f.seekp(p); // ,ios::beg);
-					z = f.tellp();
-					f.write((char *)&regM, sizeof(reg));
-					z = f.tellp();
-					f.seekp(pm); // ,ios::beg);
-					z = f.tellp();
-					f.write((char *)&reg, sizeof(reg));
-					z = f.tellp();
-				}
-			}
-			p = p +sizeof(reg);
+		  }
 		}
+		if ( i != k) permutar(fi, i,ireg,k,kreg);
+		i = i + sizeof(ireg);
+		j = j - sizeof(jreg);
+	  }
 	}
-	f.flush();
-	f.close();
+	fi.close();
 }
 //---------------------------------------------------------------------------
 

@@ -85,8 +85,8 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 190
-    Top = 174
+    Left = 262
+    Top = 141
     Width = 59
     Height = 25
     Caption = 'Eliminar'
@@ -168,7 +168,7 @@ object Form1: TForm1
   object StringGrid1: TStringGrid
     Left = 160
     Top = 270
-    Width = 531
+    Width = 745
     Height = 262
     DefaultColWidth = 100
     DrawingStyle = gdsClassic
@@ -200,19 +200,19 @@ object Form1: TForm1
       end>
     TabOrder = 16
   end
-  object ButtonNavIdx: TButton
-    Left = 407
-    Top = 60
+  object ButtonNavIdxIni: TButton
+    Left = 423
+    Top = 53
     Width = 81
     Height = 25
     Caption = 'NavegarIdx'
     TabOrder = 17
-    OnClick = ButtonNavIdxClick
+    OnClick = ButtonNavIdxIniClick
   end
   object ButtonNavIdxSig: TButton
-    Left = 324
-    Top = 141
-    Width = 57
+    Left = 463
+    Top = 84
+    Width = 41
     Height = 25
     Caption = '>>'
     Enabled = False
@@ -220,27 +220,28 @@ object Form1: TForm1
     OnClick = ButtonNavIdxSigClick
   end
   object ButtonNavIdxAnt: TButton
-    Left = 262
-    Top = 141
-    Width = 56
+    Left = 423
+    Top = 84
+    Width = 42
     Height = 25
     Caption = '<<'
     Enabled = False
     TabOrder = 19
     OnClick = ButtonNavIdxAntClick
   end
-  object ButtonFinNavIdx: TButton
-    Left = 407
-    Top = 91
+  object ButtonNavIdxFin: TButton
+    Left = 423
+    Top = 115
     Width = 82
     Height = 25
     Caption = 'FinNavegarIdx'
+    Enabled = False
     TabOrder = 20
-    OnClick = ButtonFinNavIdxClick
+    OnClick = ButtonNavIdxFinClick
   end
   object ComboBox1: TComboBox
-    Left = 407
-    Top = 33
+    Left = 423
+    Top = 26
     Width = 81
     Height = 21
     Style = csDropDownList
