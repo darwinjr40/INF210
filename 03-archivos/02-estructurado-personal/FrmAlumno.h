@@ -52,6 +52,8 @@ __published:	// IDE-managed Components
 	TComboBox *ComboBox1;
 	TMenuItem *general1;
 	TMenuItem *general2;
+	TMenuItem *nombre1;
+	TComboBox *ComboBox2;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Edit1Exit(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
@@ -75,9 +77,11 @@ __published:	// IDE-managed Components
 	void __fastcall general1Click(TObject *Sender);
 	void __fastcall ComboBox1Change(TObject *Sender);
 	void __fastcall general2Click(TObject *Sender);
+	void __fastcall nombre1Click(TObject *Sender);
+	void __fastcall ComboBox2Change(TObject *Sender);
 private:	// User declarations
 	fstream *pf, *pfIdx;
-	AnsiString nomArch, nomArchIdxCod;
+	AnsiString nomArch, nomArchIdxCod, nomArchIdxNom;
 
 //	AnsiString nomArchIdx;
 //	IRegIdx* regIdx;

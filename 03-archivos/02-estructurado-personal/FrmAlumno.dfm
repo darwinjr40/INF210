@@ -240,7 +240,7 @@ object Form1: TForm1
     OnClick = ButtonNavIdxFinClick
   end
   object ComboBox1: TComboBox
-    Left = 423
+    Left = 424
     Top = 26
     Width = 81
     Height = 21
@@ -256,6 +256,22 @@ object Form1: TForm1
       'Direccion'
       'Fecha')
   end
+  object ComboBox2: TComboBox
+    Left = 408
+    Top = 168
+    Width = 73
+    Height = 21
+    Style = csDropDownList
+    ItemIndex = 0
+    TabOrder = 22
+    Text = 'item1'
+    OnChange = ComboBox2Change
+    Items.Strings = (
+      'item1'
+      'item2'
+      'item3'
+      'item4')
+  end
   object MainMenu1: TMainMenu
     Left = 16
     Top = 8
@@ -268,6 +284,10 @@ object Form1: TForm1
       object general1: TMenuItem
         Caption = 'general'
         OnClick = general1Click
+      end
+      object nombre1: TMenuItem
+        Caption = 'nombre'
+        OnClick = nombre1Click
       end
     end
     object Ordenar1: TMenuItem

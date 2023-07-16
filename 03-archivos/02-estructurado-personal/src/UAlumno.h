@@ -101,6 +101,14 @@ struct RegIdxCod {
 	Cardinal pos;
 };
 
+struct RegIdxNombre {
+	Cardinal pos;
+	char nom[21];
+};
+
+
+
+
 class IRegIdx {
   public:
 	Cardinal pos;
