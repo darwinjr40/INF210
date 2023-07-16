@@ -482,13 +482,44 @@ void __fastcall TForm1::ButtonNavIdxFinClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void permutar(fstream &fi, Cardinal pa, RegIdxCod ra, Cardinal pb, RegIdxCod rb){
 	fi.seekg(0, ios::beg);
-	fi.seekg(pa, ios::beg);
+	fi.seekg(pa);
 	fi.write((char*)&rb, sizeof(rb));
-	fi.seekg(pb, ios::beg);
+	fi.seekg(pb);
 	fi.write((char*)&ra, sizeof(ra));
 }
 
 void __fastcall TForm1::codigo1Click(TObject *Sender){
+//	RegIdxCod ireg, jreg, kreg;
+//	Cardinal i, j, k;
+//	fstream fi(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
+//	if ( !fi.fail() ) {
+//	  i=0; j=1;
+//	  while (i < j) {
+//		j=i;
+//		fi.seekg(0, ios::beg);
+//		fi.seekg(j);
+//		while ( !fi.eof() ) {
+//		  j = fi.tellg();
+//		  fi.read((char*)&jreg, sizeof(jreg));
+//		  if ( !fi.eof()) {
+//			if (j==i) {
+//			  k = j;
+//			  kreg = jreg;
+//			  ireg = jreg;
+//			} else if(jreg.cod > kreg.cod){
+//			  k = j;
+//			  kreg = jreg;
+//			}
+//		  }
+//		}
+//		if ( i != k) permutar(fi, i,ireg,k,kreg);
+//		i = i + sizeof(ireg);
+//		j = j - sizeof(jreg);
+//	  }
+//	}
+//	fi.close();
+
+  //version-darwin
 	RegIdxCod ireg, jreg, kreg;
 	Cardinal i, j, k;
 	fstream fi(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
@@ -496,19 +527,18 @@ void __fastcall TForm1::codigo1Click(TObject *Sender){
 	  i=0; j=1;
 	  while (i < j) {
 		j=i;
-		fi.seekg(j, ios::beg);
+		fi.seekg(0, ios::beg);
+		fi.seekg(j);
+		if (fi.read((char*)&jreg, sizeof(jreg))) {
+		  k = j;
+		  kreg = jreg;
+		  ireg = jreg;
+		}
 		while ( !fi.eof() ) {
-		  j = fi.tellg();
 		  fi.read((char*)&jreg, sizeof(jreg));
-		  if ( !fi.eof()) {
-			if (j==i) {
-			  k = j;
+		  if ( !fi.eof() && (jreg.cod > kreg.cod)) {
+			  k = fi.tellg();
 			  kreg = jreg;
-			  ireg = jreg;
-			} else if(jreg.cod > kreg.cod){
-			  k = j;
-			  kreg = jreg;
-			}
 		  }
 		}
 		if ( i != k) permutar(fi, i,ireg,k,kreg);

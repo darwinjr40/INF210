@@ -139,8 +139,8 @@ object Form1: TForm1
     OnClick = actualizarv4Click
   end
   object Button9: TButton
-    Left = 746
-    Top = 189
+    Left = 674
+    Top = 115
     Width = 143
     Height = 25
     Caption = 'prueba'
@@ -157,8 +157,8 @@ object Form1: TForm1
     OnClick = showExpandirClick
   end
   object Button11: TButton
-    Left = 746
-    Top = 158
+    Left = 674
+    Top = 84
     Width = 143
     Height = 25
     Caption = 'prueba-constructor-copia'
@@ -166,18 +166,18 @@ object Form1: TForm1
     OnClick = Button11Click
   end
   object StringGrid1: TStringGrid
-    Left = 160
-    Top = 270
-    Width = 745
-    Height = 262
+    Left = 190
+    Top = 222
+    Width = 627
+    Height = 219
     DefaultColWidth = 100
     DrawingStyle = gdsClassic
     FixedCols = 0
     TabOrder = 14
   end
   object mostrar: TButton
-    Left = 160
-    Top = 239
+    Left = 188
+    Top = 191
     Width = 75
     Height = 25
     Caption = 'mostrar'
@@ -186,9 +186,9 @@ object Form1: TForm1
   end
   object ButtonGroup1: TButtonGroup
     Left = 8
-    Top = 60
+    Top = 222
     Width = 129
-    Height = 381
+    Height = 219
     ButtonHeight = 32
     ButtonWidth = 130
     Items = <
