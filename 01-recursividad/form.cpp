@@ -63,11 +63,8 @@ void __fastcall TForm1::Numeromayor1Click(TObject *Sender)
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-	 StringGrid1->ColCount = Edit1->Text.ToInt();
-	 StringGrid1->RowCount = 1;
-
-	 StringGrid2->ColCount = Edit1->Text.ToInt();
-	 StringGrid2->RowCount = 1;
+	 StringGridVector1->ColCount = Edit5->Text.ToInt();
+	 StringGridVector1->RowCount = 1;
 }
 //---------------------------------------------------------------------------
 
@@ -580,6 +577,26 @@ void __fastcall TForm1::N20231Matriz1Click(TObject *Sender)
    int cb = StringGrid1->ColCount -1;
    byte x = 1;
    cargarFila2023_1A(StringGrid1, fa, fb, ca, cb, x);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::DrawCell(TObject *Sender, int ACol, int ARow, TRect &Rect,
+          TGridDrawState State)
+{
+    TStringGrid *grid = dynamic_cast<TStringGrid*>(Sender);
+    if (grid)
+    {
+        TRect cellRect = Rect; // Copia el rectángulo de la celda
+
+        // Aquí puedes realizar ajustes o cálculos en el rectángulo si es necesario
+
+        grid->Canvas->Brush->Color = clWhite; // Cambia el color de fondo si es necesario
+        grid->Canvas->FillRect(cellRect);
+
+        TAlignment alignment = taCenter; // Alineación al centro
+        grid->Canvas->TextRect(cellRect, cellRect.Left + 2, cellRect.Top + 2, grid->Cells[ACol][ARow], alignment);
+	}
 }
 //---------------------------------------------------------------------------
 

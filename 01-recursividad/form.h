@@ -14,6 +14,8 @@
 #include "numeros.h"
 #include "matriz.h"
 #include <Vcl.Grids.hpp>
+#include <Vcl.ComCtrls.hpp>
+#include <Vcl.ButtonGroup.hpp>
 
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
@@ -31,7 +33,6 @@ __published:	// IDE-managed Components
 	TStringGrid *StringGrid1;
 	TButton *Button1;
 	TMenuItem *Vector1;
-	TMenuItem *Dunnia1;
 	TMenuItem *eliminarelementosdeunapos1;
 	TMenuItem *generarnumeroconunvector1;
 	TButton *Button2;
@@ -73,7 +74,6 @@ __published:	// IDE-managed Components
 	TStringGrid *StringGrid2;
 	TMenuItem *cargarDigitosrep1;
 	TMenuItem *prueba3;
-	TMenuItem *SHIRLEY1;
 	TMenuItem *invertir1;
 	TMenuItem *serie1;
 	TMenuItem *atriz1;
@@ -84,6 +84,14 @@ __published:	// IDE-managed Components
 	TMenuItem *cargarDigRepDesc202311;
 	TMenuItem *N20231NesimTerm1;
 	TMenuItem *N20231Matriz1;
+	TPageControl *PageControl1;
+	TTabSheet *TabSheet1;
+	TTabSheet *TabSheet2;
+	TTabSheet *TabSheet3;
+	TTabSheet *TabSheet4;
+	TButtonGroup *ButtonGroup1;
+	TStringGrid *StringGridVector1;
+	TEdit *Edit5;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);
@@ -134,6 +142,8 @@ __published:	// IDE-managed Components
 	void __fastcall cargarDigRepDesc202311Click(TObject *Sender);
 	void __fastcall N20231NesimTerm1Click(TObject *Sender);
 	void __fastcall N20231Matriz1Click(TObject *Sender);
+	void __fastcall DrawCell(TObject *Sender, int ACol, int ARow, TRect &Rect, TGridDrawState State);
+
 
 private:	// User declarations
 public:		// User declarations

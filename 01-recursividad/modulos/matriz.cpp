@@ -6,11 +6,11 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 //---------------------------------------------------------------------------
-void cargarTipoVector(TStringGrid*v, byte N){
-  if (N > 0) {
-	cargarTipoVector(v,N-1);
+void cargarTipoVector(TStringGrid*v, byte n){
+  if (n > 0) {
+	cargarTipoVector(v,n-1);
 	byte m=v->ColCount;
-	v->Cells[(N-1)%m][(N-1)/m] = N;
+	v->Cells[(n-1)%m][(n-1)/m] = n;
   }
 }
 //---------------------------------------------------------------------------

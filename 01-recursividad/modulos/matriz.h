@@ -15,7 +15,7 @@
 #include <Vcl.Grids.hpp>
 //contreras
 
-void cargarTipoVector(TStringGrid*v,byte N);
+void cargarTipoVector(TStringGrid*v,byte n);
 
 void Magico(TStringGrid *A, byte m, byte n, byte &f, byte &c);
 void Magicov1(TStringGrid *A, byte m,byte k, byte &i,byte &j);
