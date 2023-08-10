@@ -65,10 +65,7 @@ __published:	// IDE-managed Components
 	TMenuItem *N20222Acargarvectorconlosdigitosdeunnumero1;
 	TMenuItem *PMadentroToFuera1;
 	TMenuItem *N20223cargarVectorConSerieFibonacci1;
-	TMenuItem *Numero1;
-	TMenuItem *numeroesprimo1;
 	TMenuItem *cargarVectorConPalabras1;
-	TMenuItem *getmaymen1;
 	TMenuItem *prueba2;
 	TMenuItem *vectorinterseccion1;
 	TStringGrid *StringGrid2;
@@ -82,7 +79,6 @@ __published:	// IDE-managed Components
 	TMenuItem *N20222matriz1;
 	TMenuItem *promedioXElem1;
 	TMenuItem *cargarDigRepDesc202311;
-	TMenuItem *N20231NesimTerm1;
 	TMenuItem *N20231Matriz1;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet1;
@@ -92,6 +88,12 @@ __published:	// IDE-managed Components
 	TButtonGroup *ButtonGroup1;
 	TStringGrid *StringGridVector1;
 	TEdit *Edit5;
+	TEdit *Edit6;
+	TEdit *Edit7;
+	TEdit *Edit8;
+	TEdit *Edit9;
+	TEdit *Edit10;
+	TEdit *Edit11;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);
@@ -125,9 +127,8 @@ __published:	// IDE-managed Components
 	void __fastcall N20222Acargarvectorconlosdigitosdeunnumero1Click(TObject *Sender);
 	void __fastcall PMadentroToFuera1Click(TObject *Sender);
 	void __fastcall N20223cargarVectorConSerieFibonacci1Click(TObject *Sender);
-	void __fastcall numeroesprimo1Click(TObject *Sender);
 	void __fastcall cargarVectorConPalabras1Click(TObject *Sender);
-	void __fastcall getmaymen1Click(TObject *Sender);
+	void __fastcall getmaymenClick(TObject *Sender);
 	void __fastcall prueba2Click(TObject *Sender);
 	void __fastcall vectorinterseccion1Click(TObject *Sender);
 	void __fastcall cargarDigitosrep1Click(TObject *Sender);
@@ -140,9 +141,14 @@ __published:	// IDE-managed Components
 	void __fastcall N20222matriz1Click(TObject *Sender);
 	void __fastcall promedioXElem1Click(TObject *Sender);
 	void __fastcall cargarDigRepDesc202311Click(TObject *Sender);
-	void __fastcall N20231NesimTerm1Click(TObject *Sender);
 	void __fastcall N20231Matriz1Click(TObject *Sender);
-	void __fastcall DrawCell(TObject *Sender, int ACol, int ARow, TRect &Rect, TGridDrawState State);
+	void __fastcall verfiPrimoClick(TObject *Sender);
+	void __fastcall getMenMayOnClick(TObject *Sender);
+	void __fastcall getCantDigParesClick(TObject *Sender);
+	void __fastcall dunniaEnesi(TObject *Sender);
+	void __fastcall Vector1Click(TObject *Sender);
+	void __fastcall eliminarelementosdeunapos1Click(TObject *Sender);
+
 
 
 private:	// User declarations

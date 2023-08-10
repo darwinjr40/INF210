@@ -14,8 +14,8 @@
 #include <Vcl.Grids.hpp>
 
 //contreras--------------------
-byte CantDigPares(Cardinal n);
-void mayorMenor(Cardinal n, byte &may, byte &men);
+byte GetCantDigPares(Cardinal n);
+void GetDigMayorMenor(Cardinal n, byte &may, byte &men);
 AnsiString SumaOctal(Cardinal a, Cardinal b, Cardinal ac);
 String SumaOctal(Cardinal a, Cardinal b);
 void moverMayorFinal(Cardinal &n);

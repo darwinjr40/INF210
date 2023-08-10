@@ -45,12 +45,6 @@
         <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win64)'!=''">
-        <Cfg_2_Win64>true</Cfg_2_Win64>
-        <CfgParent>Cfg_2</CfgParent>
-        <Cfg_2>true</Cfg_2>
-        <Base>true</Base>
-    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
@@ -83,12 +77,10 @@
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <BCC_PCHName_Clang>recursion.h</BCC_PCHName_Clang>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <PackageImports>adortl;appanalytics;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindengine;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapConnectors;DatasnapConnectorsFreePascal;DataSnapIndy10ServerTransport;DataSnapNativeClient;DataSnapProviderClient;DataSnapServer;DataSnapServerMidas;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXDb2Driver;DBXFirebirdDriver;DBXInformixDriver;DBXInterBaseDriver;DBXMSSQLDriver;DBXMySQLDriver;DBXOdbcDriver;DBXOracleDriver;DBXSqliteDriver;DBXSybaseASADriver;DBXSybaseASEDriver;dsnap;dsnapcon;dsnapxml;emsedge;emshosting;FireDACADSDriver;FireDACASADriver;FireDACCommonODBC;FireDACDb2Driver;FireDACDBXDriver;FireDACDSDriver;FireDACInfxDriver;FireDACMongoDBDriver;FireDACMSAccDriver;FireDACMSSQLDriver;FireDACMySQLDriver;FireDACODBCDriver;FireDACOracleDriver;FireDACPgDriver;FireDACTDataDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;FMXTee;FmxTeeUI;ibmonitor;ibxbindings;ibxpress;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inetdb;inetdbxpress;Intraweb;rtl;Tee;TeeDB;TeeUI;tethering;vcl;vclactnband;vcldb;vcldsnap;vclFireDAC;vclib;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
-        <BCC_PCHName_Clang>recursion.h</BCC_PCHName_Clang>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
@@ -124,37 +116,33 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppEnableHighDPI>true</AppEnableHighDPI>
-        <BCC_PCHName_Clang>recursion.h</BCC_PCHName_Clang>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
-        <BCC_PCHName_Clang>recursion.h</BCC_PCHName_Clang>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="cadenas.cpp">
-            <VirtualFolder>{E8D6B54A-1EB1-4708-8D62-B4BD57AC2463}</VirtualFolder>
-            <DependentOn>cadenas.h</DependentOn>
-            <BuildOrder>3</BuildOrder>
-        </CppCompile>
         <CppCompile Include="form.cpp">
             <Form>Form1</Form>
             <FormType>dfm</FormType>
             <DependentOn>form.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
+        <CppCompile Include="modulos\cadenas.cpp">
+            <VirtualFolder>{E8D6B54A-1EB1-4708-8D62-B4BD57AC2463}</VirtualFolder>
+            <DependentOn>modulos\cadenas.h</DependentOn>
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
         <CppCompile Include="modulos\matriz.cpp">
             <VirtualFolder>{E8D6B54A-1EB1-4708-8D62-B4BD57AC2463}</VirtualFolder>
             <DependentOn>modulos\matriz.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="modulos\numeros.cpp">
+            <VirtualFolder>{E8D6B54A-1EB1-4708-8D62-B4BD57AC2463}</VirtualFolder>
+            <DependentOn>modulos\numeros.h</DependentOn>
             <BuildOrder>6</BuildOrder>
         </CppCompile>
         <CppCompile Include="modulos\vectores.cpp">
             <VirtualFolder>{E8D6B54A-1EB1-4708-8D62-B4BD57AC2463}</VirtualFolder>
             <DependentOn>modulos\vectores.h</DependentOn>
             <BuildOrder>4</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="numeros.cpp">
-            <VirtualFolder>{E8D6B54A-1EB1-4708-8D62-B4BD57AC2463}</VirtualFolder>
-            <DependentOn>numeros.h</DependentOn>
-            <BuildOrder>5</BuildOrder>
         </CppCompile>
         <PCHCompile Include="recursion.h">
             <BuildOrder>1</BuildOrder>

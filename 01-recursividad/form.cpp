@@ -20,19 +20,17 @@ EL METODO YA SEA FUNCION O PROCEDIMIENTO
 
 void __fastcall TForm1::eliminarprimeraletradecadapalabra1Click(TObject *Sender)
 {
-  AnsiString cad = Edit1->Text;
+  AnsiString cad = Edit9->Text;
 //DeleteUltimoCaracterDeUnaPalabraV2(cad, 2);
   DeletePrimerCaracterDeUnaPalabra(cad);
-  Edit2->Text = cad;
+  Edit10->Text = cad;
 }
 //---------------------------------------------------------------------------
 
-
-
 void __fastcall TForm1::prueba1Click(TObject *Sender)
 {
-	char x = Edit1->Text[1];        //ASCII     AnsiString
-	wchar_t y = Edit1->Text[1];     //UNICODE   String
+	char x = Edit9->Text[1];        //ASCII     AnsiString
+	wchar_t y = Edit9->Text[1];     //UNICODE   String
 
 //	Edit2->Text = BoolToStr(EsVocal(x), true);
 	if (x == 'ñ') {  //comparaciones de caracteres es a nivel char.
@@ -47,15 +45,15 @@ void __fastcall TForm1::prueba1Click(TObject *Sender)
 
 void __fastcall TForm1::PRIMERNumero1Click(TObject *Sender)
 {
-  Edit2->Text = primerNum(Edit3->Text);
+  Edit10->Text = primerNum(Edit9->Text);
 }
 //---------------------------------------------------------------------------
 
 
 void __fastcall TForm1::Numeromayor1Click(TObject *Sender)
 {
-	String cad = Edit1->Text;
-  Edit2->Text =   numMayor(cad);
+	String cad = Edit9->Text;
+  Edit10->Text =   numMayor(cad);
 }
 //---------------------------------------------------------------------------
 
@@ -73,9 +71,12 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
 void __fastcall TForm1::generarnumeroconunvector1Click(TObject *Sender)
 {
+//  entrada
 	Word n = StringGrid1->ColCount;
+	//proceso
 	Cardinal x;
 	GenerarNumeroInvertidoV2(StringGrid1, 0, n-1, x);
+    //salida
 	ShowMessage(x);
 }
 //---------------------------------------------------------------------------
@@ -163,8 +164,10 @@ void __fastcall TForm1::N202112Click(TObject *Sender)
 
 void __fastcall TForm1::Insertarunelementoordenado1Click(TObject *Sender)
 {
+  //entrada
   Byte n = StringGrid1->ColCount;
   Cardinal x = Edit3->Text.ToInt();
+  //proceso
   InsertOrdDesc(StringGrid1, n, x);
   StringGrid1->ColCount = n;
 }
@@ -172,9 +175,11 @@ void __fastcall TForm1::Insertarunelementoordenado1Click(TObject *Sender)
 
 void __fastcall TForm1::EliminarPrimerosElementos1Click(TObject *Sender)
 {
+//entrada
    Byte n =StringGrid1->ColCount;
-   byte pos = Edit2->Text.ToInt();
-   byte cant = Edit3->Text.ToInt();
+   byte pos = Edit3->Text.ToInt();
+   byte cant = Edit4->Text.ToInt();
+// proceso
    EliminarPrimerosElementos(StringGrid1, n, pos, cant);
    StringGrid1->ColCount = n;
 }
@@ -182,18 +187,18 @@ void __fastcall TForm1::EliminarPrimerosElementos1Click(TObject *Sender)
 
 void __fastcall TForm1::eliminarprimernumero1Click(TObject *Sender)
 {
-	 AnsiString cant = Edit2->Text;
+	 AnsiString cant = Edit9->Text;
 	 EliminarPrimerNumero(cant);
-	 Edit3->Text =  cant;
+	 Edit10->Text =  cant;
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Deliminarprimercaracterdecadapalabra1Click(TObject *Sender)
 
 {
-  AnsiString cadena = Edit1->Text;
+  AnsiString cadena = Edit9->Text;
   DeletePrimerCaracterDeUnaPalabraV2(cadena);
-  Edit2->Text = cadena;
+  Edit10->Text = cadena;
 }
 //---------------------------------------------------------------------------
 
@@ -284,10 +289,10 @@ void __fastcall TForm1::N20221B1Click(TObject *Sender)
 
 void __fastcall TForm1::N20192A1Click(TObject *Sender)
 {
-  byte a = Edit3->Text.ToInt();
-  byte b = Edit4->Text.ToInt();
+  byte a = Edit9->Text.ToInt();
+  byte b = Edit11->Text.ToInt();
   AnsiString res = GenerarCadena2019_2A(StringGrid1, a, b);
-  ShowMessage(res);
+  Edit10->Text = (res);
 }
 //---------------------------------------------------------------------------
 
@@ -311,14 +316,13 @@ void __fastcall TForm1::N20221A1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::N20222Acargarvectorconlosdigitosdeunnumero1Click(TObject *Sender)
-
-{
-  Cardinal num = Edit1->Text.ToInt();
+void __fastcall TForm1::N20222Acargarvectorconlosdigitosdeunnumero1Click(TObject *Sender){
+//entrada
+  Cardinal num = Edit3->Text.ToInt();
+  //proceso
   byte n = 0;
   cargar2022_2A(num, StringGrid1, n);
   StringGrid1->ColCount = n;
-  StringGrid1->RowCount = 0;
 }
 //---------------------------------------------------------------------------
 
@@ -341,16 +345,10 @@ void __fastcall TForm1::N20223cargarVectorConSerieFibonacci1Click(TObject *Sende
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::numeroesprimo1Click(TObject *Sender)
-{
- bool sw = VerificarPrimo(Edit1->Text.ToInt());
- Edit2->Text = BoolToStr(sw, true);
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::cargarVectorConPalabras1Click(TObject *Sender)
 {
- String cad = Edit1->Text;
+ String cad = Edit3->Text;
  byte n;
  CargarPalabrasV2(StringGrid1, n , cad);
  StringGrid1->ColCount = n;
@@ -358,27 +356,17 @@ void __fastcall TForm1::cargarVectorConPalabras1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::getmaymen1Click(TObject *Sender)
+void __fastcall TForm1::getmaymenClick(TObject *Sender)
 {        // ctrl + /
- Cardinal numero = 3827435;
-// byte mayor;
-// byte menor;
-// mayorMenor(numero, mayor, menor);
-// //salida
-// ShowMessage(mayor);
-// ShowMessage(menor);
 
-  numero = StrToInt(Edit3->Text);
-//  ShowMessage(CantDigPares(numero));
-  Edit4->Text = CantDigPares(numero);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::prueba2Click(TObject *Sender)
 {
-  AnsiString cad = Edit3->Text;
+  AnsiString cad = Edit9->Text;
   byte res =  GetCantidadNotAlfaOrNumOrEsp(cad);
-  ShowMessage(res);
+  Edit10->Text = res;
 }
 //---------------------------------------------------------------------------
 
@@ -395,7 +383,7 @@ void __fastcall TForm1::vectorinterseccion1Click(TObject *Sender)
 
 void __fastcall TForm1::cargarDigitosrep1Click(TObject *Sender)
 {
-  Cardinal nro = Edit1->Text.ToInt();
+  Cardinal nro = Edit3->Text.ToInt();
   byte n;
   CargarToDigitosRep(StringGrid1, n , nro);
   StringGrid1->ColCount = n;
@@ -404,7 +392,7 @@ void __fastcall TForm1::cargarDigitosrep1Click(TObject *Sender)
 
 void __fastcall TForm1::prueba3Click(TObject *Sender)
 {
- unsigned int n = Edit1->Text.ToInt();
+ unsigned int n = Edit3->Text.ToInt();
  unsigned int a = 1;
  exam2022_2(StringGrid1, n, a);
  StringGrid1->ColCount = n;
@@ -444,9 +432,8 @@ void CargarSerie(TStringGrid *v, byte n){
   Word z = 6;
   CargarSerie(v, a, b, x, y ,z);
 }
-void __fastcall TForm1::serie1Click(TObject *Sender)
-{
-  CargarSerie(StringGrid1, Edit1->Text.ToInt());
+void __fastcall TForm1::serie1Click(TObject *Sender){
+  CargarSerie(StringGrid1, Edit3->Text.ToInt());
 }
 //---------------------------------------------------------------------------
 
@@ -475,7 +462,7 @@ void __fastcall TForm1::N20233R1Click(TObject *Sender)
 
 void __fastcall TForm1::cargar1Click(TObject *Sender)
 {
-  String cad = Edit1->Text;
+  String cad = Edit3->Text;
   byte n;
   Cargar2LetrasPalabras(StringGrid1, n, cad);
   StringGrid1->ColCount = n;
@@ -517,7 +504,7 @@ signed char PromedioX(TStringGrid *v, byte n){
 }
 void __fastcall TForm1::promedioXElem1Click(TObject *Sender)
 {
-  byte n = Edit1->Text.ToInt();
+  byte n = Edit3->Text.ToInt();
   Edit2->Text = PromedioX(StringGrid1, n);
 }
 //---------------------------------------------------------------------------
@@ -552,7 +539,7 @@ void CargarToDigitosDesc(TStringGrid *v, byte &n, Cardinal x){
 }
 void __fastcall TForm1::cargarDigRepDesc202311Click(TObject *Sender)
 {
-  Cardinal x = Edit1->Text.ToInt();
+  Cardinal x = Edit3->Text.ToInt();
   byte n;
   CargarToDigitosDesc(StringGrid1, n, x);
   StringGrid1->ColCount = n;
@@ -562,12 +549,6 @@ void __fastcall TForm1::cargarDigRepDesc202311Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::N20231NesimTerm1Click(TObject *Sender)
-{
-  unsigned int nro = StrToInt(InputBox("","",""));
-  Edit2->Text =  EnesimoTerm(nro);
-}
-//---------------------------------------------------------------------------
 //metodos
 void __fastcall TForm1::N20231Matriz1Click(TObject *Sender)
 {
@@ -580,23 +561,39 @@ void __fastcall TForm1::N20231Matriz1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-
-void __fastcall TForm1::DrawCell(TObject *Sender, int ACol, int ARow, TRect &Rect,
-          TGridDrawState State)
+void __fastcall TForm1::verfiPrimoClick(TObject *Sender)
 {
-    TStringGrid *grid = dynamic_cast<TStringGrid*>(Sender);
-    if (grid)
-    {
-        TRect cellRect = Rect; // Copia el rectángulo de la celda
+  Cardinal nro = StrToInt(Edit6->Text);
+  bool sw = VerificarPrimo(nro);
+  Edit7->Text = BoolToStr(sw, true);
+}
+//---------------------------------------------------------------------------
 
-        // Aquí puedes realizar ajustes o cálculos en el rectángulo si es necesario
+void __fastcall TForm1::getMenMayOnClick(TObject *Sender)
+{
+ //entrada
+ Cardinal nro = StrToInt(Edit6->Text);
+ //procesar
+ byte mayor, menor;
+ GetDigMayorMenor(nro, mayor, menor);
+ // salida
+ Edit7->Text = "mayor: " + IntToStr(mayor);
+ Edit8->Text = "menor: " + IntToStr(menor);
+}
+//---------------------------------------------------------------------------
 
-        grid->Canvas->Brush->Color = clWhite; // Cambia el color de fondo si es necesario
-        grid->Canvas->FillRect(cellRect);
 
-        TAlignment alignment = taCenter; // Alineación al centro
-        grid->Canvas->TextRect(cellRect, cellRect.Left + 2, cellRect.Top + 2, grid->Cells[ACol][ARow], alignment);
-	}
+void __fastcall TForm1::getCantDigParesClick(TObject *Sender)
+{
+  Cardinal nro = StrToInt(Edit6->Text);
+  Edit7->Text = GetCantDigPares(nro);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::dunniaEnesi(TObject *Sender)
+{
+	unsigned int nro = StrToInt(Edit6->Text);
+	Edit7->Text =  EnesimoTerm(nro);
 }
 //---------------------------------------------------------------------------
 

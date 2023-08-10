@@ -20,22 +20,135 @@ object Form1: TForm1
     Top = 0
     Width = 931
     Height = 521
-    ActivePage = TabSheet3
+    ActivePage = TabSheet4
     Align = alClient
     TabOrder = 0
     ExplicitHeight = 674
     object TabSheet1: TTabSheet
       Caption = 'numero'
-      ExplicitTop = 32
-      ExplicitWidth = 209
-      ExplicitHeight = 86
+      ExplicitLeft = 0
+      ExplicitTop = 28
+      object Edit6: TEdit
+        Left = 472
+        Top = 32
+        Width = 153
+        Height = 26
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        TextHint = 'Ingrese Numero'
+      end
+      object ButtonGroup1: TButtonGroup
+        Left = 0
+        Top = 0
+        Width = 417
+        Height = 449
+        ButtonHeight = 40
+        ButtonWidth = 417
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Items = <
+          item
+            Caption = 'Verificar si es primo'
+            OnClick = verfiPrimoClick
+          end
+          item
+            Caption = 'Obtener el digito mayor y menor'
+            OnClick = getMenMayOnClick
+          end
+          item
+            Caption = 'Obtener la cantidad de digitos pares antes de uno impar'
+            OnClick = getCantDigParesClick
+          end
+          item
+            Caption = 'dunnia-2023-1 - enesimo termino'
+            OnClick = dunniaEnesi
+          end>
+        TabOrder = 1
+      end
+      object Edit7: TEdit
+        Left = 472
+        Top = 80
+        Width = 153
+        Height = 26
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+        TextHint = 'salida'
+      end
+      object Edit8: TEdit
+        Left = 472
+        Top = 112
+        Width = 153
+        Height = 26
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 3
+        TextHint = 'salida2'
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'cadena'
       ImageIndex = 1
-      ExplicitTop = 32
-      ExplicitWidth = 169
-      ExplicitHeight = 86
+      ExplicitLeft = 8
+      ExplicitTop = 28
+      object Edit9: TEdit
+        Left = 352
+        Top = 40
+        Width = 393
+        Height = 26
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        TextHint = 'ingrese'
+      end
+      object Edit10: TEdit
+        Left = 352
+        Top = 136
+        Width = 393
+        Height = 26
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 1
+        TextHint = 'salida'
+      end
+      object Edit11: TEdit
+        Left = 352
+        Top = 72
+        Width = 393
+        Height = 26
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+        TextHint = 'ingrese'
+      end
     end
     object TabSheet3: TTabSheet
       Caption = 'vector'
@@ -52,8 +165,8 @@ object Form1: TForm1
         OnClick = Button1Click
       end
       object Edit3: TEdit
-        Left = 584
-        Top = 88
+        Left = 320
+        Top = 80
         Width = 100
         Height = 26
         Font.Charset = DEFAULT_CHARSET
@@ -65,8 +178,8 @@ object Form1: TForm1
         TabOrder = 1
       end
       object Edit4: TEdit
-        Left = 584
-        Top = 120
+        Left = 320
+        Top = 112
         Width = 100
         Height = 26
         Font.Charset = DEFAULT_CHARSET
@@ -76,14 +189,6 @@ object Form1: TForm1
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 2
-      end
-      object ButtonGroup1: TButtonGroup
-        Left = 0
-        Top = 0
-        Width = 137
-        Height = 417
-        Items = <>
-        TabOrder = 3
       end
       object StringGridVector1: TStringGrid
         Left = 184
@@ -102,8 +207,7 @@ object Form1: TForm1
         Font.Style = [fsBold]
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
         ParentFont = False
-        TabOrder = 4
-        OnDrawCell = DrawCell
+        TabOrder = 3
       end
       object Edit5: TEdit
         Left = 320
@@ -116,7 +220,7 @@ object Form1: TForm1
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 5
+        TabOrder = 4
         TextHint = 'cant de elementos'
       end
     end
@@ -144,7 +248,7 @@ object Form1: TForm1
         OnClick = Button3Click
       end
       object Edit1: TEdit
-        Left = 19
+        Left = 32
         Top = 56
         Width = 100
         Height = 26
@@ -173,9 +277,9 @@ object Form1: TForm1
       end
       object StringGrid1: TStringGrid
         Left = 19
-        Top = 248
-        Width = 400
-        Height = 169
+        Top = 184
+        Width = 438
+        Height = 257
         DrawingStyle = gdsClassic
         FixedCols = 0
         FixedRows = 0
@@ -189,10 +293,10 @@ object Form1: TForm1
         TabOrder = 4
       end
       object StringGrid2: TStringGrid
-        Left = 464
-        Top = 248
-        Width = 437
-        Height = 169
+        Left = 456
+        Top = 184
+        Width = 464
+        Height = 249
         DrawingStyle = gdsClassic
         FixedCols = 0
         FixedRows = 0
@@ -209,26 +313,10 @@ object Form1: TForm1
   end
   object MainMenu1: TMainMenu
     Left = 384
-    object Numero1: TMenuItem
-      Caption = 'numero'
-      Checked = True
-      object numeroesprimo1: TMenuItem
-        Caption = 'numero es primo'
-        OnClick = numeroesprimo1Click
-      end
-      object getmaymen1: TMenuItem
-        Caption = 'get: may-men'
-        OnClick = getmaymen1Click
-      end
-      object N20231NesimTerm1: TMenuItem
-        Caption = 'dunnia-2023-1-Nesim-Term'
-        OnClick = N20231NesimTerm1Click
-      end
-    end
     object cadenas1: TMenuItem
       Caption = 'cadena'
       object prueba1: TMenuItem
-        Caption = 'prueba'
+        Caption = 'prueba-ascii-unicode'
         OnClick = prueba1Click
       end
       object PRIMERNumero1: TMenuItem
@@ -241,9 +329,11 @@ object Form1: TForm1
       end
       object Vector1: TMenuItem
         Caption = 'Vector'
+        OnClick = Vector1Click
       end
       object eliminarelementosdeunapos1: TMenuItem
         Caption = 'eliminar elementos de una pos '
+        OnClick = eliminarelementosdeunapos1Click
       end
       object eliminarprimernumero1: TMenuItem
         Caption = 'eliminar primer numero'

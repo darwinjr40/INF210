@@ -7,15 +7,15 @@
 #pragma package(smart_init)
 
 
-//Escribir una funci�n que devuelva la cantidad de d�gitos pares que est�n inmediatamente antes de uno impar.
+//Escribir una funcion que devuelva la cantidad de digitos pares que estan inmediatamente antes de uno impar.
 //Ej. CantDigPares(3827435) ==> 2
-byte CantDigPares(Cardinal n){
+byte GetCantDigPares(Cardinal n){
   byte r;
   if ( n < 10 ) {   // #caso base
 	r = 0;
   } else { //asumimos que hay mas de 2 digitos  #caso general
 	//n := n /10;
-	r = CantDigPares(n / 10);
+	r = GetCantDigPares(n / 10);
 	byte izq = (n /10) % 10;
 	byte der = (n % 10);
 	if ((izq % 2 == 0) && (der % 2 == 1)) {
@@ -28,19 +28,14 @@ byte CantDigPares(Cardinal n){
 //cardinal n = 12345678
 // byte may = 8;
 //byte men = 1;
-void mayorMenor(Cardinal n, byte &may, byte &men) {
-	byte a, b;
+void GetDigMayorMenor(Cardinal n, byte &may, byte &men) {
 	if (n < 10) { //n = 1
 		may = n;
 		men = n;
 	} else {
-		mayorMenor(n / 10, may, men);
-		if ((n % 10) > may) {
-		  may = n %10;
-		}
-		if ((n %10) < men) {
-		  men = n %10;
-		}
+		GetDigMayorMenor(n / 10, may, men);
+		if ( (n % 10) > may ) may = n %10;
+		if ( (n % 10) < men ) men = n %10;
 	}
 }
 
