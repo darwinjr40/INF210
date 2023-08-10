@@ -1,6 +1,6 @@
-Win32/
-__history/
 __astcache/
+__history/
 __recovery/
-modulo/__history/
-modulo/__recovery/
+modulos/__history/
+modulos/__recovery/
+Win32/
