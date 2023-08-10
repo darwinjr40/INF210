@@ -471,61 +471,43 @@ void __fastcall TForm1::ButtonNavIdxFinClick(TObject *Sender)
   this->ButtonNavIdxIni->Enabled = true;
 }
 //---------------------------------------------------------------------------
+void permutar(fstream &fi, Cardinal pa, RegIdxCod ra, Cardinal pb, RegIdxCod rb){
+	fi.seekg(0, ios::beg);
+	fi.seekg(pa);
+	fi.write((char*)&rb, sizeof(rb));
+	fi.seekg(pb);
+	fi.write((char*)&ra, sizeof(ra));
+}
 
 void __fastcall TForm1::codigo1Click(TObject *Sender){
-	RegIdxCod reg, regM;
-	Cardinal p, i, pm, z, xd;
+	RegIdxCod ireg, jreg, menReg;
+	Cardinal i, j, menPos, ultPosValida;
 	fstream fi(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
-	bool fin = false;
-	if (fi.is_open()) {
-		p = 0;
-		while (!fin) {
-			i = 0;
-			pm = p;
-			fi.seekg(p); // ,ios::beg);//al inicio del archivo
-			while (!fi.eof()) { // busca el menor
-				if (p == fi.tellp()) { // si es el primer registro
-					fi.read((char *)&reg, sizeof(reg));
-					regM = reg;
-					z = f.tellp();
-				} else {
-					fi.read((char *)&reg, sizeof(reg));
-					z = f.tellp();
-				}
-				if (!fi.eof()) {
-					i++;
-					if (reg.cod < regM.cod) {
-						regM = reg;
-						xd = f.tellp();
-						pm = xd -sizeof(reg);
-					}
-				}
+	if ( !fi.fail() ) {
+      fi.seekg(-1*sizeof(RegIdxCod), ios::end);
+	  ultPosValida = fi.tellg();
+	  i=0;
+	  while (i < ultPosValida) {
+		fi.seekg(0, ios::beg);
+		fi.seekg(i);
+		while ( !fi.eof() ) {
+		  j = fi.tellg();
+		  fi.read((char*)&jreg, sizeof(jreg));
+		  if ( !fi.eof()) {
+			if (j==i) {
+			  menPos = j;
+			  menReg = jreg;
+			  ireg = jreg;
+			} else if(jreg.cod < menReg.cod){
+			  menPos = j;
+			  menReg = jreg;
 			}
-			fin = i <= 1;
-			if (!fin) {
-				// f.flush();
-				fi.close();
-				fi.open(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
-				fi.seekg(p);
-				fi.seekp(p);
-				z = f.tellp();
-				if (p != pm) { // intercambia el menor con el de la pos.p
-					f.read((char *)&reg, sizeof(reg));
-					z = fi.tellp();
-					f.seekp(p); // ,ios::beg);
-					z = fi.tellp();
-					f.write((char *)&regM, sizeof(reg));
-					z = fi.tellp();
-					f.seekp(pm); // ,ios::beg);
-					z = fi.tellp();
-					f.write((char *)&reg, sizeof(reg));
-					z = fi.tellp();
-				}
-			}
-			p = p +sizeof(reg);
+		  }
 		}
+		if ( i != menPos) permutar(fi, i,ireg, menPos,menReg);
+		i = i + sizeof(ireg);
+	  }
 	}
-	fi.flush();
 	fi.close();
 }
 //---------------------------------------------------------------------------
