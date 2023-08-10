@@ -210,7 +210,7 @@ object Form1: TForm1
     OnClick = ButtonNavIdxIniClick
   end
   object ButtonNavIdxSig: TButton
-    Left = 473
+    Left = 478
     Top = 90
     Width = 40
     Height = 25
@@ -235,6 +235,7 @@ object Form1: TForm1
     Width = 82
     Height = 25
     Caption = 'FinNavegarIdx'
+    Enabled = False
     TabOrder = 20
     OnClick = ButtonNavIdxFinClick
   end

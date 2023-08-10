@@ -379,14 +379,13 @@ void __fastcall TForm1::codgio1Click(TObject *Sender){
 	fstream f(nomArch.c_str(), ios::in | ios::binary);
 	fstream fi(nomArchIdxCod.c_str(), ios::out | ios::binary);
 	if ( !f.fail() ) {
-		regIdx.pos = f.tellg();
-		f.read((char *)&reg, sizeof(reg));
-
 		while ( !f.eof() ) {
-		  regIdx.cod = reg.cod;
-		  fi.write((char *)&regIdx, sizeof(regIdx));
 		  regIdx.pos = f.tellg();
 		  f.read((char *)&reg, sizeof(reg));
+		  if (!f.eof()) {
+            regIdx.cod = reg.cod;
+			fi.write((char *)&regIdx, sizeof(regIdx));
+		  }
 		}
 	}             //| ios::trunc
 	f.close();
@@ -416,29 +415,30 @@ void __fastcall TForm1::ButtonNavIdxIniClick(TObject *Sender){
 
 void __fastcall TForm1::ButtonNavIdxSigClick(TObject *Sender){
 	RegIdxCod regIdx;
-	RegAlumno regA;
+	RegAlumno reg;
 	if ( pfi->is_open() ) {
+		ButtonNavIdxAnt->Enabled = true;
 		pfi->read((char*)&regIdx, sizeof(regIdx));
 		if ( pfi->eof() ) {
 			pfi->close();
 			delete pfi;
 			pfi = new fstream(nomArchIdxCod.c_str(), ios::in | ios::binary);
 			pfi->seekg(0, ios::end);
+//			pfi->seekg(0);
 			ButtonNavIdxSig->Enabled = false;
 		} else {
 			pf->seekg(regIdx.pos, ios::beg);
-			pf->read((char *)&regA, sizeof(regA));
-			this->ShowAlumno(regA);
+			pf->read((char *)&reg, sizeof(reg));
+			this->ShowAlumno(reg);
 			ButtonNavIdxSig->Enabled = true;
 		}
-		ButtonNavIdxAnt->Enabled = true;
 	}
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::ButtonNavIdxAntClick(TObject *Sender){
 	RegIdxCod regIdx;
-	RegAlumno regA;
+	RegAlumno reg;
 	Cardinal p;
 	if ( pfi->is_open() ) {
 		p = pfi->tellg();
@@ -449,8 +449,8 @@ void __fastcall TForm1::ButtonNavIdxAntClick(TObject *Sender){
 			pfi->read((char*)&regIdx, sizeof(regIdx));
 			if ( !pfi->eof() ) {
 				pf->seekg(regIdx.pos, ios::beg);
-				pf->read((char *)&regA, sizeof(regA));
-			    this->UpdateForm(IntToStr(regA.cod), regA.nom, regA.dir, regA.fecha.ToString());
+				pf->read((char *)&reg, sizeof(reg));
+				this->ShowAlumno(reg);
 				ButtonNavIdxAnt->Enabled = true;
 				ButtonNavIdxSig->Enabled = true;
 			}
@@ -473,28 +473,26 @@ void __fastcall TForm1::ButtonNavIdxFinClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::codigo1Click(TObject *Sender){
-	// ORDENA POR CODIGO
-	fstream f(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
 	RegIdxCod reg, regM;
-	bool fin = false;
 	Cardinal p, i, pm, z, xd;
-	if (f.is_open()) {
+	fstream fi(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
+	bool fin = false;
+	if (fi.is_open()) {
 		p = 0;
 		while (!fin) {
-		
 			i = 0;
 			pm = p;
-			f.seekg(p); // ,ios::beg);//al inicio del archivo
-			while (!f.eof()) { // busca el menor
-				if (p == f.tellp()) { // si es el primer registro
-					f.read((char *)&reg, sizeof(reg));
+			fi.seekg(p); // ,ios::beg);//al inicio del archivo
+			while (!fi.eof()) { // busca el menor
+				if (p == fi.tellp()) { // si es el primer registro
+					fi.read((char *)&reg, sizeof(reg));
 					regM = reg;
 					z = f.tellp();
 				} else {
-					f.read((char *)&reg, sizeof(reg));
+					fi.read((char *)&reg, sizeof(reg));
 					z = f.tellp();
 				}
-				if (!f.eof()) {
+				if (!fi.eof()) {
 					i++;
 					if (reg.cod < regM.cod) {
 						regM = reg;
@@ -506,50 +504,50 @@ void __fastcall TForm1::codigo1Click(TObject *Sender){
 			fin = i <= 1;
 			if (!fin) {
 				// f.flush();
-				f.close();
-				f.open(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
-				f.seekg(p);
-				f.seekp(p);
+				fi.close();
+				fi.open(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
+				fi.seekg(p);
+				fi.seekp(p);
 				z = f.tellp();
 				if (p != pm) { // intercambia el menor con el de la pos.p
 					f.read((char *)&reg, sizeof(reg));
-					z = f.tellp();
+					z = fi.tellp();
 					f.seekp(p); // ,ios::beg);
-					z = f.tellp();
+					z = fi.tellp();
 					f.write((char *)&regM, sizeof(reg));
-					z = f.tellp();
+					z = fi.tellp();
 					f.seekp(pm); // ,ios::beg);
-					z = f.tellp();
+					z = fi.tellp();
 					f.write((char *)&reg, sizeof(reg));
-					z = f.tellp();
+					z = fi.tellp();
 				}
 			}
 			p = p +sizeof(reg);
 		}
 	}
-	f.flush();
-	f.close();
+	fi.flush();
+	fi.close();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::general1Click(TObject *Sender){
 
-	RegAlumno reg;
-	fstream f(regIdx.nomArch.c_str(), ios::in | ios::binary);
-	fstream fi(nomArchIdxCod.c_str(), ios::out | ios::binary);
-//	IRegIdx& regidx = *regIdx.reg;
-	if ( !f.fail() ) {	
-		while ( !f.eof() ) {
-		  regIdx.reg->pos = f.tellg();
-		  f.read((char *)&reg, sizeof(reg));		
-		  if (!f.eof()) {
-			regIdx.reg->Copiar(reg);
-			fi.write((char *)&*regIdx.reg, regIdx.size);  
-		  }
-		}
-	}
-	f.close();
-	fi.close();
+//	RegAlumno reg;
+//	fstream f(regIdx.nomArch.c_str(), ios::in | ios::binary);
+//	fstream fi(nomArchIdxCod.c_str(), ios::out | ios::binary);
+////	IRegIdx& regidx = *regIdx.reg;
+//	if ( !f.fail() ) {
+//		while ( !f.eof() ) {
+//		  regIdx.reg->pos = f.tellg();
+//		  f.read((char *)&reg, sizeof(reg));
+//		  if (!f.eof()) {
+//			regIdx.reg->Copiar(reg);
+//			fi.write((char *)&*regIdx.reg, regIdx.size);
+//		  }
+//		}
+//	}
+//	f.close();
+//	fi.close();
 }
 //---------------------------------------------------------------------------
 
@@ -567,25 +565,26 @@ void __fastcall TForm1::ComboBox1Change(TObject *Sender){
 //	for (int i = 0; i < n; i++) {
 //		delete regIdxs[i];
 //	}
-    delete regIdx.reg;
-	byte p = ComboBox1->ItemIndex;
-	if (p == 0) {
-	  regIdx.reg = new RegIdxCodV1();
-	  regIdx.size = sizeof(RegIdxCodV1);
-	  regIdx.nomArch = "codigo.idx";
-	} else if (p == 1) {
-	  regIdx.reg = new RegIdxNom();
-	  regIdx.size = sizeof(RegIdxNom);
-	  regIdx.nomArch = "nombre.idx";	
-	} else if (p == 2) {
-	  regIdx.reg = new RegIdxDir();
-	  regIdx.size = sizeof(RegIdxDir);
-	  regIdx.nomArch = "direccion.idx";	
-	} else {
-	  regIdx.reg = new RegIdxDir();
-	  regIdx.size = sizeof(RegIdxDir);
-	  regIdx.nomArch = "fecha.idx";		
-	}
+
+//	delete regIdx.reg;
+//	byte p = ComboBox1->ItemIndex;
+//	if (p == 0) {
+//	  regIdx.reg = new RegIdxCodV1();
+//	  regIdx.size = sizeof(RegIdxCodV1);
+//	  regIdx.nomArch = "codigo.idx";
+//	} else if (p == 1) {
+//	  regIdx.reg = new RegIdxNom();
+//	  regIdx.size = sizeof(RegIdxNom);
+//	  regIdx.nomArch = "nombre.idx";
+//	} else if (p == 2) {
+//	  regIdx.reg = new RegIdxDir();
+//	  regIdx.size = sizeof(RegIdxDir);
+//	  regIdx.nomArch = "direccion.idx";
+//	} else {
+//	  regIdx.reg = new RegIdxDir();
+//	  regIdx.size = sizeof(RegIdxDir);
+//	  regIdx.nomArch = "fecha.idx";
+//	}
 }
 //---------------------------------------------------------------------------
 

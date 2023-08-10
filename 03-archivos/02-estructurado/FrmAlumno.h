@@ -81,7 +81,7 @@ private:	// User declarations
 
 //	AnsiString nomArchIdx;
 //	IRegIdx* regIdx;
-	Registro regIdx;
+//	Registro regIdx;
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
 	void UpdateForm(AnsiString cod,AnsiString nom,AnsiString dir, AnsiString fecha);

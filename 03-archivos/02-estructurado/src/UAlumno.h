@@ -101,30 +101,8 @@ struct RegIdxCod {
 	Cardinal pos;
 };
 
-class IRegIdx {
-  public:
-	Cardinal pos;
-	virtual void Copiar(RegAlumno &reg)=0; // Función virtual pura
-	virtual AnsiString ToString()=0;
-};
-
-struct RegIdxCodV1 : IRegIdx {
-
+struct RegIdxNom{
 	Word cod;
-
-	void Copiar(RegAlumno &reg) {
-	  this->cod = reg.cod;
-	};
-
-	AnsiString ToString() {
-		return (AnsiString)"{\n" +
-			   "pos: " + this->pos+"\n"+
-			   "cod: " +  IntToStr(this->cod) + "\n"+
-				"}";
-	}
-};
-
-struct RegIdxNom : public IRegIdx {
 	char nom[21];
 
 	void Copiar(RegAlumno &reg) {
@@ -140,7 +118,8 @@ struct RegIdxNom : public IRegIdx {
 	}
 };
 
-struct RegIdxDir : public IRegIdx{
+struct RegIdxDir{
+	Word cod;
 	char dir[21];
 
 	void Copiar(RegAlumno &reg) {
@@ -155,7 +134,8 @@ struct RegIdxDir : public IRegIdx{
 				"}";
 	}
 };
-struct RegIdxFecha : public IRegIdx {
+struct RegIdxFecha{
+	Word cod;
 	TFecha fecha;;
 
 	void Copiar(RegAlumno &reg) {
@@ -170,15 +150,6 @@ struct RegIdxFecha : public IRegIdx {
 	}
 };
 
-struct  Registro {
-  IRegIdx* reg;
-  size_t size;
-  AnsiString nomArch;
-
-  ~Registro() {
-		delete reg;
-  }
-};
 
 
 
