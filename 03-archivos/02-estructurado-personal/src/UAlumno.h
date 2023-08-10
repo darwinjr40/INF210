@@ -104,6 +104,13 @@ struct RegIdxCod {
 struct RegIdxNombre {
 	Cardinal pos;
 	char nom[21];
+
+	AnsiString ToString() {
+		return (AnsiString)"{\n" +
+			   "pos: " + this->pos+"\n"+
+			   "nom: " +  this->nom + "\n"+
+				"}";
+	}
 };
 
 

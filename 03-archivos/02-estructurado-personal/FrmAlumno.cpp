@@ -188,11 +188,11 @@ void __fastcall TForm1::Button9Click(TObject *Sender){
 //		f.write((char*)&reg, sizeof(reg));
 
 		reg = RegAlumno(200, "Juan 200", "calle 123", TFecha(10,10,1010));
-		f.seekp(1*sizeof(reg),ios::beg);
+		f.seekg(1*sizeof(reg),ios::beg);
 		f.write((char*)&reg, sizeof(reg));
 
-		reg = RegAlumno(100, "Juan 200", "calle 123", TFecha(10,10,1010));
-		f.seekp(0* sizeof(reg),ios::beg);
+		reg = RegAlumno(100, "Juan 100", "calle 123", TFecha(10,10,1010));
+		f.seekg(0* sizeof(reg),ios::beg);
 		f.write((char*)&reg, sizeof(reg));
 //		f.seekp(-sizeof(reg),ios::cur);
 //		ShowMessage(IntToStr(f.tellg()));
