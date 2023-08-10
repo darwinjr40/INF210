@@ -82,7 +82,7 @@ object Form1: TForm1
     Height = 25
     Caption = 'Guardar'
     TabOrder = 4
-    OnClick = Button1Click
+    OnClick = GuardarClick
   end
   object Button2: TButton
     Left = 190
@@ -91,7 +91,7 @@ object Form1: TForm1
     Height = 25
     Caption = 'Eliminar'
     TabOrder = 5
-    OnClick = Button2Click
+    OnClick = EliminarClick
   end
   object Button4: TButton
     Left = 577
@@ -176,7 +176,7 @@ object Form1: TForm1
     TabOrder = 14
   end
   object mostrar: TButton
-    Left = 160
+    Left = 158
     Top = 239
     Width = 75
     Height = 25
@@ -201,7 +201,7 @@ object Form1: TForm1
     TabOrder = 16
   end
   object ButtonNavIdxIni: TButton
-    Left = 432
+    Left = 431
     Top = 59
     Width = 81
     Height = 25
@@ -249,7 +249,6 @@ object Form1: TForm1
     ItemIndex = 0
     TabOrder = 21
     Text = 'Codigo'
-    OnChange = ComboBox1Change
     Items.Strings = (
       'Codigo'
       'Nombre'
@@ -265,20 +264,12 @@ object Form1: TForm1
         Caption = 'codigo'
         OnClick = codgio1Click
       end
-      object general1: TMenuItem
-        Caption = 'general'
-        OnClick = general1Click
-      end
     end
     object Ordenar1: TMenuItem
       Caption = 'Ordenar'
       object codigo1: TMenuItem
         Caption = 'codigo'
         OnClick = codigo1Click
-      end
-      object general2: TMenuItem
-        Caption = 'general'
-        OnClick = general2Click
       end
     end
   end

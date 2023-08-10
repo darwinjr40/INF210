@@ -102,7 +102,7 @@ struct RegIdxCod {
 };
 
 struct RegIdxNom{
-	Word cod;
+	Cardinal pos;
 	char nom[21];
 
 	void Copiar(RegAlumno &reg) {
@@ -119,7 +119,7 @@ struct RegIdxNom{
 };
 
 struct RegIdxDir{
-	Word cod;
+	Cardinal pos;
 	char dir[21];
 
 	void Copiar(RegAlumno &reg) {
@@ -135,7 +135,7 @@ struct RegIdxDir{
 	}
 };
 struct RegIdxFecha{
-	Word cod;
+	Cardinal pos;
 	TFecha fecha;;
 
 	void Copiar(RegAlumno &reg) {

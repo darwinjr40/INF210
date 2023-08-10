@@ -50,11 +50,9 @@ __published:	// IDE-managed Components
 	TMenuItem *Ordenar1;
 	TMenuItem *codigo1;
 	TComboBox *ComboBox1;
-	TMenuItem *general1;
-	TMenuItem *general2;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Edit1Exit(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall GuardarClick(TObject *Sender);
 	void __fastcall actualizarClick(TObject *Sender);
 	void __fastcall actualizarv2Click(TObject *Sender);
 	void __fastcall expandirClick(TObject *Sender);
@@ -65,23 +63,17 @@ __published:	// IDE-managed Components
 	void __fastcall Button11Click(TObject *Sender);
 	void __fastcall mostrarClick(TObject *Sender);
 	void __fastcall expandirFileClick(TObject *Sender);
-	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall EliminarClick(TObject *Sender);
 	void __fastcall codgio1Click(TObject *Sender);
 	void __fastcall ButtonNavIdxIniClick(TObject *Sender);
 	void __fastcall ButtonNavIdxSigClick(TObject *Sender);
 	void __fastcall ButtonNavIdxAntClick(TObject *Sender);
 	void __fastcall ButtonNavIdxFinClick(TObject *Sender);
 	void __fastcall codigo1Click(TObject *Sender);
-	void __fastcall general1Click(TObject *Sender);
-	void __fastcall ComboBox1Change(TObject *Sender);
-	void __fastcall general2Click(TObject *Sender);
 private:	// User declarations
 	fstream *pf, *pfi;
 	AnsiString nomArch, nomArchIdxCod;
 
-//	AnsiString nomArchIdx;
-//	IRegIdx* regIdx;
-//	Registro regIdx;
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
 	void UpdateForm(AnsiString cod,AnsiString nom,AnsiString dir, AnsiString fecha);

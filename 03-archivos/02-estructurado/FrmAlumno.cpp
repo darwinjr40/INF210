@@ -94,7 +94,7 @@ void TForm1::SaveAlumno(RegAlumno regNuevo){
 	}
 }
 
-void __fastcall TForm1::Button1Click(TObject *Sender)
+void __fastcall TForm1::GuardarClick(TObject *Sender)
 {
 	RegAlumno regNuevo;
 	regNuevo.cod = StrtoInt(Edit1->Text);
@@ -350,7 +350,7 @@ void __fastcall TForm1::expandirFileClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button2Click(TObject *Sender)
+void __fastcall TForm1::EliminarClick(TObject *Sender)
 {
   RegAlumno rg;
   Word cod = StrToInt(Edit1->Text);
@@ -484,24 +484,23 @@ void __fastcall TForm1::codigo1Click(TObject *Sender){
 	Cardinal i, j, menPos, ultPosValida;
 	fstream fi(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
 	if ( !fi.fail() ) {
-      fi.seekg(-1*sizeof(RegIdxCod), ios::end);
+	  fi.seekg(-1*sizeof(RegIdxCod), ios::end); //ojo: puede que el file este vacio
 	  ultPosValida = fi.tellg();
 	  i=0;
 	  while (i < ultPosValida) {
 		fi.seekg(0, ios::beg);
 		fi.seekg(i);
-		while ( !fi.eof() ) {
+		fi.read((char*)&ireg, sizeof(ireg));
+		if ( !fi.eof()){ //guardar el primer registro
+		  menPos = i;
+		  menReg = ireg;
+		}
+		while ( !fi.eof() ) { //buscar el proximo menor
 		  j = fi.tellg();
 		  fi.read((char*)&jreg, sizeof(jreg));
-		  if ( !fi.eof()) {
-			if (j==i) {
+		  if ( !fi.eof() && jreg.cod < menReg.cod ){
 			  menPos = j;
 			  menReg = jreg;
-			  ireg = jreg;
-			} else if(jreg.cod < menReg.cod){
-			  menPos = j;
-			  menReg = jreg;
-			}
 		  }
 		}
 		if ( i != menPos) permutar(fi, i,ireg, menPos,menReg);
@@ -512,119 +511,4 @@ void __fastcall TForm1::codigo1Click(TObject *Sender){
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::general1Click(TObject *Sender){
-
-//	RegAlumno reg;
-//	fstream f(regIdx.nomArch.c_str(), ios::in | ios::binary);
-//	fstream fi(nomArchIdxCod.c_str(), ios::out | ios::binary);
-////	IRegIdx& regidx = *regIdx.reg;
-//	if ( !f.fail() ) {
-//		while ( !f.eof() ) {
-//		  regIdx.reg->pos = f.tellg();
-//		  f.read((char *)&reg, sizeof(reg));
-//		  if (!f.eof()) {
-//			regIdx.reg->Copiar(reg);
-//			fi.write((char *)&*regIdx.reg, regIdx.size);
-//		  }
-//		}
-//	}
-//	f.close();
-//	fi.close();
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::ComboBox1Change(TObject *Sender){
-//	const byte n = 4;
-//	size_t sizes[n] = {sizeof(RegIdxCodV1), sizeof(RegIdxNom),sizeof(RegIdxDir),sizeof(RegIdxFecha)};
-//	AnsiString nomArchs[n] = {File::NOM_ARCH_IDX_COD, File::NOM_ARCH_IDX_NOM, File::NOM_ARCH_IDX_DIR, File::NOM_ARCH_IDX_FEC};
-//	IRegIdx* regIdxs[n] = {new RegIdxCodV1(), new RegIdxNom(), new RegIdxDir(), new RegIdxFecha()};
-//////
-//	byte p = ComboBox1->ItemIndex;
-//	size = sizes[p];
-//	nomArchIdx = nomArchs[p];
-//	regIdx =  regIdxs[p];
-//
-//	for (int i = 0; i < n; i++) {
-//		delete regIdxs[i];
-//	}
-
-//	delete regIdx.reg;
-//	byte p = ComboBox1->ItemIndex;
-//	if (p == 0) {
-//	  regIdx.reg = new RegIdxCodV1();
-//	  regIdx.size = sizeof(RegIdxCodV1);
-//	  regIdx.nomArch = "codigo.idx";
-//	} else if (p == 1) {
-//	  regIdx.reg = new RegIdxNom();
-//	  regIdx.size = sizeof(RegIdxNom);
-//	  regIdx.nomArch = "nombre.idx";
-//	} else if (p == 2) {
-//	  regIdx.reg = new RegIdxDir();
-//	  regIdx.size = sizeof(RegIdxDir);
-//	  regIdx.nomArch = "direccion.idx";
-//	} else {
-//	  regIdx.reg = new RegIdxDir();
-//	  regIdx.size = sizeof(RegIdxDir);
-//	  regIdx.nomArch = "fecha.idx";
-//	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::general2Click(TObject *Sender){
-	fstream f(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
-	RegIdxCod reg, regM;
-	bool fin = false;
-	Cardinal p, i, pm, z, xd;
-	if (f.is_open()) {
-		p = 0;
-		while (!fin) {
-			i = 0;
-			pm = p;
-			f.seekg(p); // ,ios::beg);//al inicio del archivo
-			while (!f.eof()) { // busca el menor
-				if (p == f.tellp()) { // si es el primer registro
-					f.read((char *)&reg, sizeof(reg));
-					regM = reg;
-					z = f.tellp();
-				} else {
-					f.read((char *)&reg, sizeof(reg));
-					z = f.tellp();
-				}
-				if (!f.eof()) {
-					i++;
-					if (reg.cod < regM.cod) {
-						regM = reg;
-						xd = f.tellp();
-						pm = xd -sizeof(reg);
-					}
-				}
-			}
-			fin = i <= 1;
-			if (!fin) {
-				// f.flush();
-				f.close();
-				f.open(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
-				f.seekg(p);
-				f.seekp(p);
-				z = f.tellp();
-				if (p != pm) { // intercambia el menor con el de la pos.p
-					f.read((char *)&reg, sizeof(reg));
-					z = f.tellp();
-					f.seekp(p); // ,ios::beg);
-					z = f.tellp();
-					f.write((char *)&regM, sizeof(reg));
-					z = f.tellp();
-					f.seekp(pm); // ,ios::beg);
-					z = f.tellp();
-					f.write((char *)&reg, sizeof(reg));
-					z = f.tellp();
-				}
-			}
-			p = p +sizeof(reg);
-		}
-	}
-	f.flush();
-	f.close();
-}
-//---------------------------------------------------------------------------
 
