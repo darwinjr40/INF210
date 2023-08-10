@@ -200,19 +200,19 @@ object Form1: TForm1
       end>
     TabOrder = 16
   end
-  object ButtonNavIdx: TButton
-    Left = 407
-    Top = 60
+  object ButtonNavIdxIni: TButton
+    Left = 432
+    Top = 59
     Width = 81
     Height = 25
     Caption = 'NavegarIdx'
     TabOrder = 17
-    OnClick = ButtonNavIdxClick
+    OnClick = ButtonNavIdxIniClick
   end
   object ButtonNavIdxSig: TButton
-    Left = 324
-    Top = 141
-    Width = 57
+    Left = 473
+    Top = 90
+    Width = 40
     Height = 25
     Caption = '>>'
     Enabled = False
@@ -220,27 +220,27 @@ object Form1: TForm1
     OnClick = ButtonNavIdxSigClick
   end
   object ButtonNavIdxAnt: TButton
-    Left = 262
-    Top = 141
-    Width = 56
+    Left = 432
+    Top = 90
+    Width = 40
     Height = 25
     Caption = '<<'
     Enabled = False
     TabOrder = 19
     OnClick = ButtonNavIdxAntClick
   end
-  object ButtonFinNavIdx: TButton
-    Left = 407
-    Top = 91
+  object ButtonNavIdxFin: TButton
+    Left = 431
+    Top = 121
     Width = 82
     Height = 25
     Caption = 'FinNavegarIdx'
     TabOrder = 20
-    OnClick = ButtonFinNavIdxClick
+    OnClick = ButtonNavIdxFinClick
   end
   object ComboBox1: TComboBox
-    Left = 407
-    Top = 33
+    Left = 432
+    Top = 32
     Width = 81
     Height = 21
     Style = csDropDownList

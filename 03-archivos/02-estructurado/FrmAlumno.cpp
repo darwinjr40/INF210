@@ -394,35 +394,36 @@ void __fastcall TForm1::codgio1Click(TObject *Sender){
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::ButtonNavIdxClick(TObject *Sender){
+void __fastcall TForm1::ButtonNavIdxIniClick(TObject *Sender){
 	RegIdxCod regIdx;
 	RegAlumno regA;
 	pf = new fstream(nomArch.c_str(), ios::in | ios::binary);
-	pfIdx = new fstream(nomArchIdxCod.c_str(), ios::in | ios::binary);
-	if ( pfIdx->is_open() ) {
-		pfIdx->read((char*)&regIdx, sizeof(regIdx));
-		if ( !pfIdx->eof() ) {
+	pfi = new fstream(nomArchIdxCod.c_str(), ios::in | ios::binary);
+	if ( pfi->is_open() ) {
+		this->ButtonNavIdxIni->Enabled = false;
+		pfi->read((char*)&regIdx, sizeof(regIdx));
+		if ( !pfi->eof() ) {
 			pf->seekg(regIdx.pos, ios::beg);
 			pf->read((char *)&regA, sizeof(regA));
-			this->UpdateForm(IntToStr(regA.cod), regA.nom, regA.dir, regA.fecha.ToString());
+			this->ShowAlumno(regA);
 			this->ButtonNavIdxSig->Enabled = true;
 			this->ButtonNavIdxAnt->Enabled = true;
+			this->ButtonNavIdxFin->Enabled = true;
 		}
-	}		
+	}
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::ButtonNavIdxSigClick(TObject *Sender){
 	RegIdxCod regIdx;
 	RegAlumno regA;
-	if ( pfIdx->is_open() ) {
-		ButtonNavIdxAnt->Enabled = true;
-		pfIdx->read((char*)&regIdx, sizeof(regIdx));
-		if ( pfIdx->eof() ) {
-			pfIdx->close();
-			delete pfIdx;
-			pfIdx = new fstream(nomArchIdxCod.c_str(), ios::in | ios::binary);
-			pfIdx->seekg(0, ios::end);
+	if ( pfi->is_open() ) {
+		pfi->read((char*)&regIdx, sizeof(regIdx));
+		if ( pfi->eof() ) {
+			pfi->close();
+			delete pfi;
+			pfi = new fstream(nomArchIdxCod.c_str(), ios::in | ios::binary);
+			pfi->seekg(0, ios::end);
 			ButtonNavIdxSig->Enabled = false;
 		} else {
 			pf->seekg(regIdx.pos, ios::beg);
@@ -430,6 +431,7 @@ void __fastcall TForm1::ButtonNavIdxSigClick(TObject *Sender){
 			this->ShowAlumno(regA);
 			ButtonNavIdxSig->Enabled = true;
 		}
+		ButtonNavIdxAnt->Enabled = true;
 	}
 }
 //---------------------------------------------------------------------------
@@ -438,14 +440,14 @@ void __fastcall TForm1::ButtonNavIdxAntClick(TObject *Sender){
 	RegIdxCod regIdx;
 	RegAlumno regA;
 	Cardinal p;
-	if ( pfIdx->is_open() ) {
-		p = pfIdx->tellg();
+	if ( pfi->is_open() ) {
+		p = pfi->tellg();
 		if (p <= sizeof(regIdx)) { // si esta en el primer registro del idx
 			ButtonNavIdxAnt->Enabled = false;
 		} else {
-			pfIdx->seekg(-2*sizeof(regIdx), ios::cur);
-			pfIdx->read((char*)&regIdx, sizeof(regIdx));
-			if ( !pfIdx->eof() ) {
+			pfi->seekg(-2*sizeof(regIdx), ios::cur);
+			pfi->read((char*)&regIdx, sizeof(regIdx));
+			if ( !pfi->eof() ) {
 				pf->seekg(regIdx.pos, ios::beg);
 				pf->read((char *)&regA, sizeof(regA));
 			    this->UpdateForm(IntToStr(regA.cod), regA.nom, regA.dir, regA.fecha.ToString());
@@ -457,15 +459,16 @@ void __fastcall TForm1::ButtonNavIdxAntClick(TObject *Sender){
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::ButtonFinNavIdxClick(TObject *Sender)
+void __fastcall TForm1::ButtonNavIdxFinClick(TObject *Sender)
 {
   pf->close();	
   delete pf;
-  pfIdx->close();
-  delete pfIdx;
+  pfi->close();
+  delete pfi;
   this->ButtonNavIdxAnt->Enabled = false;
   this->ButtonNavIdxSig->Enabled = false;
-  this->ButtonFinNavIdx->Enabled = false;
+  this->ButtonNavIdxFin->Enabled = false;
+  this->ButtonNavIdxIni->Enabled = true;
 }
 //---------------------------------------------------------------------------
 
