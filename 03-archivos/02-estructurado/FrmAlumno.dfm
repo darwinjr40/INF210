@@ -197,6 +197,8 @@ object Form1: TForm1
         OnClick = expandirFileClick
       end
       item
+        Caption = 'Crear por codigo txt'
+        OnClick = createCodigoClick
       end>
     TabOrder = 16
   end

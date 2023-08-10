@@ -512,3 +512,35 @@ void __fastcall TForm1::codigo1Click(TObject *Sender){
 //---------------------------------------------------------------------------
 
 
+void __fastcall TForm1::createCodigoClick(TObject *Sender){
+  RegIdxCod regIdx;
+  RegAlumno reg;
+  AnsiString linea;
+  fstream f(nomArch.c_str(), ios::in | ios::binary);
+  fstream fi(nomArchIdxCod.c_str(), ios::in | ios::binary);
+  fstream ft("listado-alumnos.txt", ios::out);
+  if ( !fi.fail() ) {
+	linea = "LISTADO DE ALUMNOS\nCOD\tNOM";
+	for (Word i =1; i <=  linea.Length(); i++) {
+	  ft.put(linea[i]);
+	}
+	ft.put(10);
+	while ( !fi.eof() ) {
+	  fi.read((char*) &regIdx, sizeof(regIdx));
+	  if ( !fi.eof()) {
+		f.seekg(regIdx.pos, ios::beg);		
+		f.read((char*) &reg, sizeof(reg));
+		linea = IntToStr(reg.cod) +"\t"+ reg.nom;
+		for (Word i =1; i <=  linea.Length(); i++) {
+	      ft.put(linea[i]);
+		}
+		ft.put(10);		
+	  }
+	}
+  }
+  f.close();
+  fi.close();
+  ft.close();
+}
+//---------------------------------------------------------------------------
+
