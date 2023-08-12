@@ -12,8 +12,9 @@ void invertir(TStringGrid*v,byte a,byte b);
 bool BusBin(TStringGrid *v, byte x, byte a, byte b);
 void SelectionSort(TStringGrid *v,byte n);
 byte PosMayor(TStringGrid *v,byte n);
+void BubbleSort(TStringGrid *v,byte n);
+void Burbujear(TStringGrid *v,byte n);
 bool esVocal(char z);
-byte CantVocales(String x);
 void EliminarElemento( TStringGrid *V, Word &n, byte x);
 
 void InsertOrdDesc(TStringGrid *v, byte &n, Cardinal x);
@@ -40,7 +41,7 @@ AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p);
 bool pertenece(TStringGrid * v, int i, int n, int x);
 bool pertenece(TStringGrid * v, int n, int x);
 void Interseccion(TStringGrid * a, int n,TStringGrid * b, int m, String &x);
-void  MergeSort(int *Vec,unsigned int bajo,unsigned int alto,unsigned int n);
+void MergeSort(int *Vec,unsigned int bajo,unsigned int alto,unsigned int n);
 void Mezcla(int *Vec,unsigned int bajo, unsigned int centro,unsigned int alto,unsigned int n);
 
 void exam2022_2(TStringGrid * v, unsigned int n, unsigned int &a );

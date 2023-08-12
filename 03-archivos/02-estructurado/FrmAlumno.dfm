@@ -12,6 +12,7 @@ object Form1: TForm1
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  Position = poMainFormCenter
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -166,8 +167,8 @@ object Form1: TForm1
     OnClick = Button11Click
   end
   object StringGrid1: TStringGrid
-    Left = 160
-    Top = 270
+    Left = 190
+    Top = 238
     Width = 531
     Height = 262
     DefaultColWidth = 100
@@ -176,9 +177,9 @@ object Form1: TForm1
     TabOrder = 14
   end
   object mostrar: TButton
-    Left = 158
-    Top = 239
-    Width = 75
+    Left = 190
+    Top = 207
+    Width = 59
     Height = 25
     Caption = 'mostrar'
     TabOrder = 15
@@ -187,10 +188,10 @@ object Form1: TForm1
   object ButtonGroup1: TButtonGroup
     Left = 8
     Top = 60
-    Width = 129
+    Width = 161
     Height = 381
     ButtonHeight = 32
-    ButtonWidth = 130
+    ButtonWidth = 200
     Items = <
       item
         Caption = 'expandir-file'

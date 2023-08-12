@@ -433,7 +433,8 @@ void CargarSerie(TStringGrid *v, byte n){
   CargarSerie(v, a, b, x, y ,z);
 }
 void __fastcall TForm1::serie1Click(TObject *Sender){
-  CargarSerie(StringGrid1, Edit3->Text.ToInt());
+  CargarSerie(StringGridVector1, StringGridVector1->ColCount);
+//  BubbleSort(StringGridVector1, StringGridVector1->ColCount);
 }
 //---------------------------------------------------------------------------
 
@@ -594,6 +595,14 @@ void __fastcall TForm1::dunniaEnesi(TObject *Sender)
 {
 	unsigned int nro = StrToInt(Edit6->Text);
 	Edit7->Text =  EnesimoTerm(nro);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::invertirClick(TObject *Sender){
+  AnsiString cad;
+  cad = Edit9->Text;
+  Invertir2(cad);
+  Edit9->Text=cad;
 }
 //---------------------------------------------------------------------------
 

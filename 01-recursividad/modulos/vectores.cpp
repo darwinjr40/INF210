@@ -18,45 +18,14 @@ void CargarRandom(TStringGrid *v,byte n,byte a,byte b){
  }
 
 
-byte PosMayor(TStringGrid *v,byte n){
- byte p;
- if (n==0)
-   throw new Exception("Error : vector vacio");
- else if (n==1)
-	p = 0;
- else{
-	p = PosMayor(v,n-1);
-	Cardinal a = (v->Cells[n-1][0].ToInt());
-	Cardinal b = (v->Cells[p][0].ToInt());
-	if (b < a) p = n-1;
- }
- return p;
-}
+
 
 bool EsVocal(char z){
 	AnsiString w = "aeiouAEIOU";
 	return w.Pos(z)>0;
 }
 
-byte CantVocales(AnsiString x){
-  byte c;
-  if (x == "") {
-	c = 0;
-  } else if (x.Length() == 1) {
-	c = (EsVocal(x[1]))? (1) : (0);
-  } else {
-	AnsiString y = x.SubString(x.Length()-1, 2);
-	x.Delete(x.Length()-1, 2);
-	c = CantVocales(x);
-	if (EsVocal(y[1])) {
-	  c++;
-	}
-	if (EsVocal(y[2])) {
-	  c++;
-	}
-  }
-  return c;
-}
+
 
 
 void EliminarElemento( TStringGrid *V, Word &n, byte x){
@@ -80,6 +49,37 @@ void SelectionSort(TStringGrid *v,byte n){
     SelectionSort(v, n-1);
   }
 }
+
+byte PosMayor(TStringGrid *v,byte n){
+ byte p;
+ if (n==0)
+   throw new Exception("Error : vector vacio");
+ else if (n==1)
+	p = 0;
+ else{
+	p = PosMayor(v,n-1);
+	Cardinal a = (v->Cells[n-1][0].ToInt());
+	Cardinal b = (v->Cells[p][0].ToInt());
+	if (b < a) p = n-1;
+ }
+ return p;
+}
+
+void BubbleSort(TStringGrid *v,byte n){
+  if (n>1) {
+	Burbujear(v, n);
+	BubbleSort(v, n-1)
+  }
+}
+void Burbujear(TStringGrid *v,byte n){
+  if (n>1) {
+	Burbujear(v, n-1);
+	if ((v->Cells[n-2][0].ToInt()) > (v->Cells[n-1][0].ToInt())) {
+	  intercambio(v, n-2, n-1);
+	}
+  }
+}
+
 byte elementoMayor(TStringGrid *v,byte n){
  byte p;
  if (n==0)
@@ -129,8 +129,7 @@ bool BusBin(TStringGrid *v, byte x, byte a, byte b){
 	else
 	  h = BusBin (v,x,a,c-1);
   }
-
-
+  return h;
 }
 
 //v[9, 7, 6, 5, 3] (n=5,x=8) --> v[9, 8, 7, 6, 5, 3] n=6

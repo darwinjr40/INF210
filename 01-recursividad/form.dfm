@@ -20,14 +20,11 @@ object Form1: TForm1
     Top = 0
     Width = 931
     Height = 521
-    ActivePage = TabSheet4
+    ActivePage = TabSheet3
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 674
     object TabSheet1: TTabSheet
       Caption = 'numero'
-      ExplicitLeft = 0
-      ExplicitTop = 28
       object Edit6: TEdit
         Left = 472
         Top = 32
@@ -105,11 +102,9 @@ object Form1: TForm1
     object TabSheet2: TTabSheet
       Caption = 'cadena'
       ImageIndex = 1
-      ExplicitLeft = 8
-      ExplicitTop = 28
       object Edit9: TEdit
-        Left = 352
-        Top = 40
+        Left = 304
+        Top = 96
         Width = 393
         Height = 26
         Font.Charset = DEFAULT_CHARSET
@@ -122,8 +117,8 @@ object Form1: TForm1
         TextHint = 'ingrese'
       end
       object Edit10: TEdit
-        Left = 352
-        Top = 136
+        Left = 304
+        Top = 192
         Width = 393
         Height = 26
         Font.Charset = DEFAULT_CHARSET
@@ -136,8 +131,8 @@ object Form1: TForm1
         TextHint = 'salida'
       end
       object Edit11: TEdit
-        Left = 352
-        Top = 72
+        Left = 304
+        Top = 128
         Width = 393
         Height = 26
         Font.Charset = DEFAULT_CHARSET
@@ -149,12 +144,29 @@ object Form1: TForm1
         TabOrder = 2
         TextHint = 'ingrese'
       end
+      object ButtonGroup2: TButtonGroup
+        Left = 0
+        Top = 0
+        Width = 209
+        Height = 449
+        ButtonHeight = 40
+        ButtonWidth = 417
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Items = <
+          item
+            Caption = 'Invertir'
+            OnClick = invertirClick
+          end>
+        TabOrder = 3
+      end
     end
     object TabSheet3: TTabSheet
       Caption = 'vector'
       ImageIndex = 2
-      ExplicitLeft = 8
-      ExplicitTop = 28
       object Button1: TButton
         Left = 184
         Top = 51
@@ -192,9 +204,9 @@ object Form1: TForm1
       end
       object StringGridVector1: TStringGrid
         Left = 184
-        Top = 152
+        Top = 144
         Width = 437
-        Height = 33
+        Height = 49
         DefaultColWidth = 50
         DrawingStyle = gdsClassic
         FixedCols = 0
@@ -329,11 +341,9 @@ object Form1: TForm1
       end
       object Vector1: TMenuItem
         Caption = 'Vector'
-        OnClick = Vector1Click
       end
       object eliminarelementosdeunapos1: TMenuItem
         Caption = 'eliminar elementos de una pos '
-        OnClick = eliminarelementosdeunapos1Click
       end
       object eliminarprimernumero1: TMenuItem
         Caption = 'eliminar primer numero'

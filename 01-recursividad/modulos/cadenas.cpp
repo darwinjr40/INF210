@@ -6,10 +6,123 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
+//invertir menos el primero
+void Invertir1(AnsiString &x){
+  byte n = x.Length();
+  if (n > 1) {
+	char aux = x[1];
+	x.Delete(1, 1);
+	Invertir1(x);
+	x = x + aux;
+  }
+}
+
+//invertir menos el ultimo
+void Invertir2(AnsiString &x){
+  byte n = x.Length();
+  if (n > 1) {
+	char aux = x[n];
+	x.Delete(n, 1);
+	Invertir2(x);
+	x = (AnsiString)aux + x;
+  }
+}
+
+//invertir menos los 2 primeros
+void Invertir3(AnsiString &x){
+  byte n = x.Length();
+  if (n > 1) {
+	AnsiString y = x.SubString(1,2);
+	x.Delete(1, 2);
+	Invertir3(x);
+	x = x + y[2] + y[1];
+  }
+}
+
+//invertir menos los 2 ultimos
+void Invertir4(AnsiString &x){
+  byte n = x.Length();
+  if (n > 1) {
+	AnsiString y = x.SubString(n-1, 2);
+	x.Delete(n-1, 2);
+	Invertir4(x);
+	x = AnsiString(y[2]) + y[1] + x;
+  }
+}
+
+//invertir menos el primero y el ultimo
+void Invertir5(AnsiString &x){
+  byte n = x.Length();
+  if (n > 1) {
+	char a = x[1];
+	char b = x[n];
+	x.Delete(n, 1);
+	x.Delete(1, 1);
+	Invertir5(x);
+	x = (AnsiString)b + x + a ;
+  }
+}
+//invertir menos el primero y el ultimo
+void Invertir51(AnsiString &x){
+  byte n = x.Length();
+  Invertir52(x, 1, n);
+}
+void Invertir52(AnsiString &x, byte a, byte b){
+  byte n = b - a + 1;
+  if (n > 1) {
+	Invertir52(x, a+1, b-1);
+	char aux = x[a];
+	x[a] = x[b];
+    x[b] = aux;
+  }
+}
+
+//invertir mitad izquierda mas corta
+void Invertir6(AnsiString &x){
+  byte n = x.Length();
+  if (n > 1) {
+	AnsiString izq = x.SubString(1, n/2);
+	x.Delete(1, n/2);
+	Invertir6(x);
+	Invertir6(izq);
+	x = x + izq;
+  }
+}
+
+//invertir mitad derecha mas corta
+void Invertir7(AnsiString &x){
+  byte n = x.Length();
+  if (n > 1) {
+	AnsiString der = x.SubString(n/2+1, n - n/2);
+	x.Delete(n/2+1, n - n/2);
+	Invertir7(x);
+	Invertir7(der);
+	x =  der + x;
+  }
+}
+
 bool EsVocal(char c){
 	AnsiString vocales = "aeiouAEIOUáéíóúÁÉÍÓÚäëïööüÄËÏÖÜÑñ";
 	return vocales.Pos(c) > 0;
 }
+// menos los dos ultimos
+byte CantVocales(AnsiString x){
+  byte c;
+  byte n = x.Length();
+  if (x == "") {
+	c = 0;
+  } else if ( n == 1) {
+	c = (EsVocal(x[1]))? (1) : (0);
+  } else {
+	AnsiString y = x.SubString(n-1, 2);
+	x.Delete(n-1, 2);
+	c = CantVocales(x);
+	if (EsVocal(y[1])) c++;
+	if (EsVocal(y[2])) c++;
+  }
+  return c;
+}
+
 //Elimina primer caracter de cada palabra
 void SacaraPrimeraLetra(AnsiString &x){
 	if (x != "") {
