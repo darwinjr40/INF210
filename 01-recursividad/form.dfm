@@ -20,7 +20,7 @@ object Form1: TForm1
     Top = 0
     Width = 931
     Height = 521
-    ActivePage = TabSheet3
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -167,6 +167,8 @@ object Form1: TForm1
     object TabSheet3: TTabSheet
       Caption = 'vector'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 28
       object Button1: TButton
         Left = 184
         Top = 51
@@ -234,6 +236,25 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 4
         TextHint = 'cant de elementos'
+      end
+      object StringGridVector2: TStringGrid
+        Left = 184
+        Top = 248
+        Width = 437
+        Height = 49
+        DefaultColWidth = 50
+        DrawingStyle = gdsClassic
+        FixedCols = 0
+        RowCount = 1
+        FixedRows = 0
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
+        ParentFont = False
+        TabOrder = 5
       end
     end
     object TabSheet4: TTabSheet

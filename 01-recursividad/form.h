@@ -95,6 +95,7 @@ __published:	// IDE-managed Components
 	TEdit *Edit10;
 	TEdit *Edit11;
 	TButtonGroup *ButtonGroup2;
+	TStringGrid *StringGridVector2;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);

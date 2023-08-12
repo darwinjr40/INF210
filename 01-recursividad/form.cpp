@@ -72,10 +72,10 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 void __fastcall TForm1::generarnumeroconunvector1Click(TObject *Sender)
 {
 //  entrada
-	Word n = StringGrid1->ColCount;
+	Word n = StringGridVector1->ColCount;
 	//proceso
 	Cardinal x;
-	GenerarNumeroInvertidoV2(StringGrid1, 0, n-1, x);
+	GenerarNumeroInvertidoV2(StringGridVector1, 0, n-1, x);
     //salida
 	ShowMessage(x);
 }
@@ -165,23 +165,23 @@ void __fastcall TForm1::N202112Click(TObject *Sender)
 void __fastcall TForm1::Insertarunelementoordenado1Click(TObject *Sender)
 {
   //entrada
-  Byte n = StringGrid1->ColCount;
+  Byte n = StringGridVector1->ColCount;
   Cardinal x = Edit3->Text.ToInt();
   //proceso
-  InsertOrdDesc(StringGrid1, n, x);
-  StringGrid1->ColCount = n;
+  InsertOrdDesc(StringGridVector1, n, x);
+  StringGridVector1->ColCount = n;
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::EliminarPrimerosElementos1Click(TObject *Sender)
 {
 //entrada
-   Byte n =StringGrid1->ColCount;
+   Byte n =StringGridVector1->ColCount;
    byte pos = Edit3->Text.ToInt();
    byte cant = Edit4->Text.ToInt();
 // proceso
-   EliminarPrimerosElementos(StringGrid1, n, pos, cant);
-   StringGrid1->ColCount = n;
+   EliminarPrimerosElementos(StringGridVector1, n, pos, cant);
+   StringGridVector1->ColCount = n;
 }
 //---------------------------------------------------------------------------
 
@@ -321,8 +321,8 @@ void __fastcall TForm1::N20222Acargarvectorconlosdigitosdeunnumero1Click(TObject
   Cardinal num = Edit3->Text.ToInt();
   //proceso
   byte n = 0;
-  cargar2022_2A(num, StringGrid1, n);
-  StringGrid1->ColCount = n;
+  cargar2022_2A(num, StringGridVector1, n);
+  StringGridVector1->ColCount = n;
 }
 //---------------------------------------------------------------------------
 
@@ -336,12 +336,12 @@ void __fastcall TForm1::PMadentroToFuera1Click(TObject *Sender)
 
 void __fastcall TForm1::N20223cargarVectorConSerieFibonacci1Click(TObject *Sender)
 {
-// byte n = StringGrid1->ColCount;
+// byte n = StringGridVector1->ColCount;
 // CargarFibonacci(StringGrid1, n);
   byte dim = Edit3->Text.ToInt();
   byte n;
-  CargarFibonacciV2(StringGrid1, n, dim);
-  StringGrid1->ColCount = n;
+  CargarFibonacciV2(StringGridVector1, n, dim);
+  StringGridVector1->ColCount = n;
 }
 //---------------------------------------------------------------------------
 
@@ -350,8 +350,8 @@ void __fastcall TForm1::cargarVectorConPalabras1Click(TObject *Sender)
 {
  String cad = Edit3->Text;
  byte n;
- CargarPalabrasV2(StringGrid1, n , cad);
- StringGrid1->ColCount = n;
+ CargarPalabrasV2(StringGridVector1, n , cad);
+ StringGridVector1->ColCount = n;
 // ShowMessage(UltimaPal(cad));
 }
 //---------------------------------------------------------------------------
@@ -374,9 +374,9 @@ void __fastcall TForm1::prueba2Click(TObject *Sender)
 void __fastcall TForm1::vectorinterseccion1Click(TObject *Sender)
 {
   String cad;
-  byte n = StringGrid1->ColCount;
-  byte m = StringGrid2->ColCount;
-  Interseccion(StringGrid1, n, StringGrid2, m, cad);
+  byte n = StringGridVector1->ColCount;
+  byte m = StringGridVector2->ColCount;
+  Interseccion(StringGridVector1, n, StringGridVector2, m, cad);
   ShowMessage(cad);
 }
 //---------------------------------------------------------------------------
@@ -385,8 +385,8 @@ void __fastcall TForm1::cargarDigitosrep1Click(TObject *Sender)
 {
   Cardinal nro = Edit3->Text.ToInt();
   byte n;
-  CargarToDigitosRep(StringGrid1, n , nro);
-  StringGrid1->ColCount = n;
+  CargarToDigitosRep(StringGridVector1, n , nro);
+  StringGridVector1->ColCount = n;
 }
 //---------------------------------------------------------------------------
 
@@ -394,8 +394,8 @@ void __fastcall TForm1::prueba3Click(TObject *Sender)
 {
  unsigned int n = Edit3->Text.ToInt();
  unsigned int a = 1;
- exam2022_2(StringGrid1, n, a);
- StringGrid1->ColCount = n;
+ exam2022_2(StringGridVector1, n, a);
+ StringGridVector1->ColCount = n;
 }
 //---------------------------------------------------------------------------
 
@@ -404,7 +404,7 @@ void __fastcall TForm1::invertir1Click(TObject *Sender)
 {
   byte a = StrToInt(Edit3->Text); //0..255
   byte b = Edit4->Text.ToInt();
-  invertir(StringGrid1, a, b);
+  invertir(StringGridVector1, a, b);
 }
 //---------------------------------------------------------------------------
 void CargarSerie(TStringGrid *v, byte a, byte b, Word &x, Word &y, Word &z){
@@ -434,7 +434,6 @@ void CargarSerie(TStringGrid *v, byte n){
 }
 void __fastcall TForm1::serie1Click(TObject *Sender){
   CargarSerie(StringGridVector1, StringGridVector1->ColCount);
-//  BubbleSort(StringGridVector1, StringGridVector1->ColCount);
 }
 //---------------------------------------------------------------------------
 
@@ -465,8 +464,8 @@ void __fastcall TForm1::cargar1Click(TObject *Sender)
 {
   String cad = Edit3->Text;
   byte n;
-  Cargar2LetrasPalabras(StringGrid1, n, cad);
-  StringGrid1->ColCount = n;
+  Cargar2LetrasPalabras(StringGridVector1, n, cad);
+  StringGridVector1->ColCount = n;
 }
 //---------------------------------------------------------------------------
 
@@ -506,7 +505,7 @@ signed char PromedioX(TStringGrid *v, byte n){
 void __fastcall TForm1::promedioXElem1Click(TObject *Sender)
 {
   byte n = Edit3->Text.ToInt();
-  Edit2->Text = PromedioX(StringGrid1, n);
+  Edit4->Text = PromedioX(StringGridVector1, n);
 }
 //---------------------------------------------------------------------------
 Cardinal CargarDigitosDeNro(byte a, byte b){
@@ -542,8 +541,8 @@ void __fastcall TForm1::cargarDigRepDesc202311Click(TObject *Sender)
 {
   Cardinal x = Edit3->Text.ToInt();
   byte n;
-  CargarToDigitosDesc(StringGrid1, n, x);
-  StringGrid1->ColCount = n;
+  CargarToDigitosDesc(StringGridVector1, n, x);
+  StringGridVector1->ColCount = n;
 }
 //---------------------------------------------------------------------------
 
@@ -605,4 +604,6 @@ void __fastcall TForm1::invertirClick(TObject *Sender){
   Edit9->Text=cad;
 }
 //---------------------------------------------------------------------------
+
+
 
