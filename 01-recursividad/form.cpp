@@ -607,3 +607,54 @@ void __fastcall TForm1::invertirClick(TObject *Sender){
 
 
 
+bool EsPar(Cardinal n){
+  bool sw;
+  if (n% 2 == 0)
+	sw = true;		 
+  else
+	sw = false;
+  return sw;	
+}
+
+bool EsPar1(Cardinal n){
+  bool sw;
+  sw = (n%2==0)? (true) : (false);
+  return sw;	
+}
+
+bool EsPar3(Cardinal n){
+  bool sw;
+  sw = (n%2==0);
+  return sw;	
+}
+bool EsPar4(Cardinal n){
+   return (n%2==0);
+}
+
+
+ // privado
+bool VerifPrimo(Cardinal n, Cardinal i){
+  bool sw;
+  if (n <= 1)  //caso base `1
+	sw = true;
+  else if (i == 1) //caso base  2
+	sw = true;	
+  else if (n % i == 0) //caso base  3
+	sw = false;
+  else{  //caso general
+	sw =  VerifPrimo(n, i-1);
+  }	
+  return sw;
+}
+//mascara public
+bool VerifPrimo(Cardinal n){
+  return VerifPrimo(n, n-1);
+}
+void __fastcall TForm1::Button4Click(TObject *Sender){
+  //llamado a la funcion
+  Cardinal x = StrToInt(Edit6->Text);
+  bool salida = VerifPrimo(x);
+  Edit7->Text = BoolToStr(salida, true);
+}
+//---------------------------------------------------------------------------
+

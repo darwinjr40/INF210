@@ -20,11 +20,13 @@ object Form1: TForm1
     Top = 0
     Width = 931
     Height = 521
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'numero'
+      ExplicitLeft = 0
+      ExplicitTop = 28
       object Edit6: TEdit
         Left = 472
         Top = 32
@@ -98,6 +100,15 @@ object Form1: TForm1
         TabOrder = 3
         TextHint = 'salida2'
       end
+      object Button4: TButton
+        Left = 656
+        Top = 0
+        Width = 75
+        Height = 25
+        Caption = 'Button4'
+        TabOrder = 4
+        OnClick = Button4Click
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'cadena'
@@ -167,8 +178,6 @@ object Form1: TForm1
     object TabSheet3: TTabSheet
       Caption = 'vector'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 28
       object Button1: TButton
         Left = 184
         Top = 51
@@ -260,8 +269,6 @@ object Form1: TForm1
     object TabSheet4: TTabSheet
       Caption = 'matriz'
       ImageIndex = 3
-      ExplicitLeft = 8
-      ExplicitTop = 28
       object Button2: TButton
         Left = 19
         Top = 88
