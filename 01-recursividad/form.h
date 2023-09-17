@@ -151,6 +151,7 @@ __published:	// IDE-managed Components
 	void __fastcall dunniaEnesi(TObject *Sender);
 	void __fastcall invertirClick(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
+	void __fastcall strtointOnclick(TObject *Sender);
 //	void __fastcall Vector1Click(TObject *Sender);
 //	void __fastcall eliminarelementosdeunapos1Click(TObject *Sender);
 

@@ -658,3 +658,27 @@ void __fastcall TForm1::Button4Click(TObject *Sender){
 }
 //---------------------------------------------------------------------------
 
+Cardinal convertirANumero(AnsiString x){
+  byte n = x.Length();
+  Cardinal s;
+  if(n == 0){  //caso base
+	s = 0;
+  } else {
+	char aux = x[n];
+	x.Delete(n, 1);
+	s = convertirANumero(x);
+	if(esDigito(aux)){
+	 s = s * 10 + StrToInt(aux);
+	}
+  }
+  return s;
+}
+
+void __fastcall TForm1::strtointOnclick(TObject *Sender)
+{
+  AnsiString cad = Edit9->Text;
+  Edit10->Text = convertirANumero(cad);
+
+}
+//---------------------------------------------------------------------------
+
