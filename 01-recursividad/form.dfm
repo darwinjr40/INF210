@@ -20,7 +20,7 @@ object Form1: TForm1
     Top = 0
     Width = 931
     Height = 521
-    ActivePage = TabSheet2
+    ActivePage = TabSheet3
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -111,8 +111,6 @@ object Form1: TForm1
     object TabSheet2: TTabSheet
       Caption = 'cadena'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 28
       object Edit9: TEdit
         Left = 304
         Top = 96
@@ -455,6 +453,10 @@ object Form1: TForm1
       object serie1: TMenuItem
         Caption = 'shirley-serie'
         OnClick = serie1Click
+      end
+      object busqBin1: TMenuItem
+        Caption = 'busqBin'
+        OnClick = busqBin1Click
       end
     end
     object matriz1: TMenuItem

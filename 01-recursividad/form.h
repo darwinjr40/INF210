@@ -97,6 +97,7 @@ __published:	// IDE-managed Components
 	TButtonGroup *ButtonGroup2;
 	TStringGrid *StringGridVector2;
 	TButton *Button4;
+	TMenuItem *busqBin1;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);
@@ -152,6 +153,7 @@ __published:	// IDE-managed Components
 	void __fastcall invertirClick(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
 	void __fastcall strtointOnclick(TObject *Sender);
+	void __fastcall busqBin1Click(TObject *Sender);
 //	void __fastcall Vector1Click(TObject *Sender);
 //	void __fastcall eliminarelementosdeunapos1Click(TObject *Sender);
 

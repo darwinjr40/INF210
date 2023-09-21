@@ -682,3 +682,12 @@ void __fastcall TForm1::strtointOnclick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::busqBin1Click(TObject *Sender)
+{
+  byte n = StringGridVector1->ColCount;
+  byte x = 10;
+  bool salida = BusBin(StringGridVector1, x, 0, n-1);
+  ShowMessage( BoolToStr(salida, true) );
+}
+//---------------------------------------------------------------------------
+
