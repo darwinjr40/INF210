@@ -690,4 +690,42 @@ void __fastcall TForm1::busqBin1Click(TObject *Sender)
   ShowMessage( BoolToStr(salida, true) );
 }
 //---------------------------------------------------------------------------
+Cardinal serFact(byte n){
+  Cardinal s;
+  if (n == 0) {
+   throw new Exception("Error serFact- no soporta el numero 0");
+  }else if (n == 1) {
+	s = 1;     
+  } else {
+	byte d = n;
+	s = serFact(n-1);
+	byte cantD = (s == 0) ? 0 : log10((double)s)+ 1;
+	s = d * pow(10.0, cantD) + s;
+//		s = s * 10 + d;
+  }
+  return s;
+}
+
+void LoadSerFactInv(TStringGrid *v, byte n){
+  if (n > 0) {
+	LoadSerFactInv(v,n-1);
+	v->Cells[n-1][0] = serFact(n);
+  }
+}
+
+void __fastcall TForm1::serFacInvClick(TObject *Sender)
+{
+  byte n = Edit6->Text.ToInt();
+  Edit7->Text = serFact(n);	
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::contreras202311LoadSerFactInv1Click(TObject *Sender)
+{
+  byte n = Edit5->Text.ToInt();
+  StringGridVector1->ColCount = n;
+  LoadSerFactInv(StringGridVector1, n);	
+}
+//---------------------------------------------------------------------------
+
 

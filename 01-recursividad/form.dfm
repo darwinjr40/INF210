@@ -20,7 +20,7 @@ object Form1: TForm1
     Top = 0
     Width = 931
     Height = 521
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -67,6 +67,10 @@ object Form1: TForm1
           item
             Caption = 'dunnia-2023-1 - enesimo termino'
             OnClick = dunniaEnesi
+          end
+          item
+            Caption = 'contreras-2023-1-#1-aux-serFacInv'
+            OnClick = serFacInvClick
           end>
         TabOrder = 1
       end
@@ -457,6 +461,10 @@ object Form1: TForm1
       object busqBin1: TMenuItem
         Caption = 'busqBin'
         OnClick = busqBin1Click
+      end
+      object contreras202311LoadSerFactInv1: TMenuItem
+        Caption = 'contreras-2023-1-#1-LoadSerFactInv'
+        OnClick = contreras202311LoadSerFactInv1Click
       end
     end
     object matriz1: TMenuItem
