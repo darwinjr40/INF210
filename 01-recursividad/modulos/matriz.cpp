@@ -316,20 +316,66 @@ void MayorMenorFil2021_2(TStringGrid *v,byte f, byte c, byte &men, byte &may){
 //	1	2	2	2
 //	1   2	3	3
 //	1	2	3	4     matriz cuadrada
-void cargarCol2022_1(TStringGrid *v, byte f, byte ca, byte cb){
+void LoadColLV01(TStringGrid *v, byte f, byte ca, byte cb){
   byte c = cb-ca+1;
   if (c > 0) {
-	cargarCol2022_1(v, f, ca+1, cb);
+	LoadColLV01(v, f, ca+1, cb);
 	v->Cells[ca][f] = f+1;
 	v->Cells[f][ca] = f+1;
   }
 }
-void cargarFila2022_1(TStringGrid *v, byte f, byte c){
+
+void LoadFilLV01(TStringGrid *v, byte f, byte c){
   if (f > 0) {
-	cargarFila2022_1(v, f-1, c);
-	cargarCol2022_1(v, f-1, f-1, c-1);
+	LoadFilLV01(v, f-1, c);
+	LoadColLV01(v, f-1, f-1, c-1);
   }
 }
+//---------------------------------------------------------------------------
+//2022-1A
+//	5	5	5	5   5
+//	5	4	4	4	4
+//	5	4	3	3	3
+//	5	4	3	2	2
+//	5	4   3	2	1
+void cargarCol2022_2A(TStringGrid *v, byte f, byte ca, byte cb, byte m){
+  byte c = cb-ca+1;
+  if (c > 0) {
+	cargarCol2022_2A(v, f, ca, cb-1, m);
+	v->Cells[cb][f] = m - f;
+	v->Cells[f][cb] = m - f;
+  }
+}
+void cargarFila2022_2A(TStringGrid *v, byte f, byte c){
+  if (f > 0) {
+	cargarFila2022_2A(v, f-1, c);
+	cargarCol2022_2A(v, f-1, f-1, c-1, c);
+  }
+}
+//---------------------------------------------------------------------------
+//	1	1	3   4
+//	1	2	3	3
+//	1   2	2	2
+//	1	1   1   1
+void LoadFilLV03(TStringGrid *v, byte fa, byte fb, byte c, byte x){
+  byte f = fb-fa+1;
+  if (f > 0) {
+	LoadFilLV03(v, fa+1, fb, c, x);
+	f = fa;
+	v->Cells[c][f] = x;
+	c = fb+c-f;
+	f = fb;
+	v->Cells[c][f] = x;
+  }
+}
+void LoadColLV03(TStringGrid *v, byte fa, byte fb, byte ca, byte cb){
+  byte c = cb - ca + 1;
+  if (c > 0) {
+	LoadColLV03(v, fa, fb, ca, cb-1);
+	LoadFilLV03(v, fa, fb-cb, cb, c);
+  }
+}
+
 //---------------------------------------------------------------------------
 //	5   4	3	2   1
 //	5   4	3	2	2
@@ -347,7 +393,6 @@ void cargarCol2022_1B(TStringGrid *v, byte i, byte j, byte fa, byte fb){
 void cargarFila2022_1B(TStringGrid *v, byte f, byte m){
   if (f > 0) {
 	cargarFila2022_1B(v, f-1, m);
-//	ShowMessage(IntToStr(f-1) +","+ IntToStr(0)+","+ IntToStr(f-1));
 	cargarCol2022_1B(v, f-1,m-f, 0, f-1);
   }
 }
@@ -403,27 +448,6 @@ void cargarCaracol(TStringGrid*v,byte fa,byte fb,byte ca,byte cb,byte &k){
 	  llenarc1Inf(v,ca,fa+1,fb,k);
 	  cargarCaracol(v,fa+1,fb-1,ca+1,cb-1,k);
 	}
-  }
-}
-//---------------------------------------------------------------------------
-//2022-1A
-//	5	5	5	5   5
-//	5	4	4	4	4
-//	5	4	3	3	3
-//	5	4	3	2	2
-//	5	4   3	2	1
-void cargarCol2022_2A(TStringGrid *v, byte f, byte ca, byte cb, byte m){
-  byte c = cb-ca+1;
-  if (c > 0) {
-	cargarCol2022_2A(v, f, ca, cb-1, m);
-	v->Cells[cb][f] = m - f;
-	v->Cells[f][cb] = m - f;
-  }
-}
-void cargarFila2022_2A(TStringGrid *v, byte f, byte c){
-  if (f > 0) {
-	cargarFila2022_2A(v, f-1, c);
-	cargarCol2022_2A(v, f-1, f-1, c-1, c);
   }
 }
 
@@ -582,7 +606,6 @@ void cargarCol2022_2(TStringGrid *v, int f, int ca, int cb, int x){
 void cargarFila2022_2(TStringGrid *v, unsigned int fa, unsigned int fb){
   unsigned int f = fb-fa+1;
   if (f > 0) {
-//	ShowMessage(fa);
 	cargarCol2022_2(v, fa, 0, v->ColCount-1, 0);
 	cargarFila2022_2(v, fa+1, fb);
   }
@@ -615,7 +638,6 @@ void cargarFila2023_1A(TStringGrid *v, int fa, int fb, int ca, int cb, byte& x){
   int f = fb-fa+1;
   if (f > 0) {   //fa <= fb
 	cargarFila2023_1A(v, fa, fb-1, ca, cb, x);
-//	ShowMessage(fb);
 	llenarf2Der(v, fb, ca, cb, x);
   }
 }

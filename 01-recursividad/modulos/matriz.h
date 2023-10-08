@@ -45,8 +45,14 @@ void cargarFila2021_1(TStringGrid *v, byte fa, byte fb, byte ca, byte cb);
 void MayorMenorFil2021_2(TStringGrid *v,byte f, byte c, byte &men, byte &may);
 void MayorMenorCol2021_2(TStringGrid *v,byte f, byte c, byte &men, byte &may);
 //2021-3 ^ 2022-1
-void cargarCol2022_1(TStringGrid *v, byte f, byte ca, byte cb);
-void cargarFila2022_1(TStringGrid *v, byte f, byte c);
+void LoadColLV01(TStringGrid *v, byte f, byte ca, byte cb);
+void LoadFilLV01(TStringGrid *v, byte f, byte c);
+//2022-2A
+void cargarCol2022_2A(TStringGrid *v, byte f, byte ca, byte cb, byte m);
+void cargarFila2022_2A(TStringGrid *v, byte f, byte c);
+
+void LoadFilLV03(TStringGrid *v, byte fa, byte fb, byte c, byte x);
+void LoadColLV03(TStringGrid *v, byte fa, byte fb, byte ca, byte cb);
 //2022-1B
 void cargarCol2022_1B(TStringGrid *v, byte i, byte j, byte fa, byte fb);
 void cargarFila2022_1B(TStringGrid *v, byte f, byte c);
@@ -56,10 +62,6 @@ void llenarc1Inf(TStringGrid*v,byte c,byte fa,byte fb,byte &k);
 void llenarf2Der(TStringGrid*v,byte f,byte ca,byte cb,byte &k);
 void llenarc2Sup(TStringGrid*v,byte c, byte fa,byte fb,byte &k);
 void llenarf1Izq(TStringGrid*v,byte f,byte ca,byte cb,byte &k);
-//2022-2A
-void cargarCol2022_2A(TStringGrid *v, byte f, byte ca, byte cb, byte m);
-
-void cargarFila2022_2A(TStringGrid *v, byte f, byte c);
 
  void cargarCol2022_3R(TStringGrid *v, byte f, byte ca, byte cb);
  void cargarFil2022_3R(TStringGrid *v, byte fa, byte fb, byte ca, byte cb);

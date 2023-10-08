@@ -228,7 +228,7 @@ void __fastcall TForm1::N20213202211Click(TObject *Sender)
 {
 	byte f = StringGrid1->RowCount;
 	byte c = StringGrid1->ColCount;
-	cargarFila2022_1(StringGrid1,f, c);
+	LoadFilLV01(StringGrid1,f, c);
 }
 //---------------------------------------------------------------------------
 
@@ -728,4 +728,11 @@ void __fastcall TForm1::contreras202311LoadSerFactInv1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TForm1::contrerasLoadLV031Click(TObject *Sender)
+{
+  byte m = StringGrid1->ColCount;
+  LoadColLV03(StringGrid1, 0, m-1, 0, m-1);
+}
+//---------------------------------------------------------------------------
 

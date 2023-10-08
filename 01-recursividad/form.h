@@ -99,6 +99,7 @@ __published:	// IDE-managed Components
 	TButton *Button4;
 	TMenuItem *busqBin1;
 	TMenuItem *contreras202311LoadSerFactInv1;
+	TMenuItem *contrerasLoadLV031;
 	void __fastcall eliminarprimeraletradecadapalabra1Click(TObject *Sender);
 	void __fastcall prueba1Click(TObject *Sender);
 	void __fastcall PRIMERNumero1Click(TObject *Sender);
@@ -157,6 +158,7 @@ __published:	// IDE-managed Components
 	void __fastcall busqBin1Click(TObject *Sender);
 	void __fastcall contreras202311LoadSerFactInv1Click(TObject *Sender);
 	void __fastcall serFacInvClick(TObject *Sender);
+	void __fastcall contrerasLoadLV031Click(TObject *Sender);
 //	void __fastcall Vector1Click(TObject *Sender);
 //	void __fastcall eliminarelementosdeunapos1Click(TObject *Sender);
 
