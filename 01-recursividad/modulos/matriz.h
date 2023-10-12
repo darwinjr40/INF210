@@ -51,6 +51,10 @@ void LoadFilLV01(TStringGrid *v, byte f, byte c);
 void cargarCol2022_2A(TStringGrid *v, byte f, byte ca, byte cb, byte m);
 void cargarFila2022_2A(TStringGrid *v, byte f, byte c);
 
+
+void LoadColV02(TStringGrid *v, byte f, byte ca, byte cb, byte k, byte fb);
+void LoadFilV02(TStringGrid *v, byte fa, byte fb);
+
 void LoadFilLV03(TStringGrid *v, byte fa, byte fb, byte c, byte x);
 void LoadColLV03(TStringGrid *v, byte fa, byte fb, byte ca, byte cb);
 //2022-1B

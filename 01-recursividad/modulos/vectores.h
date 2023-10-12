@@ -6,6 +6,8 @@
 #include <System.Classes.hpp>
 #include <Vcl.Grids.hpp>
 void CargarRandom(TStringGrid *v,byte n,byte a,byte b);
+byte getSumV01(TStringGrid *v, byte n);
+Cardinal getSumV02(TStringGrid *v, byte a, byte b);
 byte elementoMayor(TStringGrid *v,byte n);
 void intercambio(TStringGrid*v,byte a, byte b );
 void invertir(TStringGrid*v,byte a,byte b);

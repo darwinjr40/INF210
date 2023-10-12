@@ -27,5 +27,7 @@ Cardinal GetDigParesAntesPar(Cardinal n);
 //dunnia-------------------------
 double serie1 (int n);
 unsigned int EnesimoTerm(unsigned int n);
+//shirley------------------------
+byte getSumPosImp(Cardinal x);
 //---------------------------------------------------------------------------
 #endif

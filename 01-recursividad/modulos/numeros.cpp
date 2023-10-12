@@ -172,4 +172,22 @@ unsigned int EnesimoTerm(unsigned int n){
   return res;
 }
 
+//shirley
+//2023-1-----------------------------------------------------
+//-sumar las posiciones impares de un numero ej:587=12;
+
+byte getSumPosImp(Cardinal x){
+  byte s;
+  if (x < 10) { //caso base 1
+	s = x;
+  } else { //caso general
+	byte d = x % 10;
+	s = getSumPosImp(x/100);
+	s = s + d;
+  }
+  return s;
+}
+
+//-----------------------------------------------------
+
 

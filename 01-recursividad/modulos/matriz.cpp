@@ -353,6 +353,29 @@ void cargarFila2022_2A(TStringGrid *v, byte f, byte c){
   }
 }
 //---------------------------------------------------------------------------
+//	1	1	1	1 	1
+//	2	2	2	2	1
+//	3	3	3	2	1
+//	4	4	3	2	1
+//	5	4 	3	2	1
+void LoadColV02(TStringGrid *v, byte f, byte ca, byte cb, byte k, byte fb){
+  byte c = cb-ca+1;
+  if (c > 0) {
+	LoadColV02(v, f, ca+1, cb, k, fb);
+	v->Cells[ca][f] = k;
+	v->Cells[cb][fb-ca] = k;
+  }
+}
+
+void LoadFilV02(TStringGrid *v, byte fa, byte fb){
+  byte f = fb-fa+1;
+  if (f > 0) {
+	LoadFilV02(v, fa+1, fb);
+
+	LoadColV02(v, fa, 0, fb-fa, fa+1, fb);
+  }
+}
+//---------------------------------------------------------------------------
 //	1	1	3   4
 //	1	2	3	3
 //	1   2	2	2

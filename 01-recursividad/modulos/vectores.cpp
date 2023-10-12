@@ -17,7 +17,30 @@ void CargarRandom(TStringGrid *v,byte n,byte a,byte b){
   }
  }
 
+byte getSumV01(TStringGrid *v, byte n){
+ byte s;
+ if (n == 0) {
+   s = 0;
+ } else {
+   byte x = v->Cells[n-1][0].ToInt();
+   s = getSumV01(v, n-1);
+   s = s + x;
+ }
+ return s;
+}
 
+Cardinal getSumV02(TStringGrid *v, byte a, byte b){
+ Cardinal s;
+ byte n = b - a + 1;
+ if (n == 0) {
+   s = 0;
+ } else {
+   Cardinal x = v->Cells[a][0].ToInt();
+   s = getSumV02(v, a+1, b);
+   s = s + x;
+ }
+ return s;
+}
 
 byte elementoMayor(TStringGrid *v,byte n){
  byte p;
