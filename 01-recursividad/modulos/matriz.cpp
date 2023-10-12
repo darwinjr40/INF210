@@ -665,13 +665,13 @@ void cargarFila2023_1A(TStringGrid *v, int fa, int fb, int ca, int cb, byte& x){
   }
 }
 
+//shirley
 //------------------------------------------------
 //	1	1	1   1	1
 //	1	2	2	2   1
 //	1	2   3   2	1
 //	1	2	2	2   1
 //	1	1	1	1   1
-//shirley
 void cargarDentroToFueraCol1(TStringGrid *v, byte f, byte ca, byte cb, byte x){
   byte c = cb-ca+1;
   if (c > 0) {
