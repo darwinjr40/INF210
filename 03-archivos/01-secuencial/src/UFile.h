@@ -15,7 +15,11 @@ bool VerifNivel21(AnsiString nameFile);
 void Limpiar(AnsiString name);
 void CrearNivel21(AnsiString nameFile, AnsiString newNameFile);
 void CrearNivel21V2(AnsiString nameFile, AnsiString newNameFile);
-
+void SearchAndReplace(
+	AnsiString name,
+	AnsiString search,
+	AnsiString replace
+);
 
 //---------------------------------------------------------------------------
 #endif

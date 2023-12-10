@@ -10,7 +10,7 @@
 int GetCantVocales(AnsiString nameFile){
   Cardinal cv;
   char x;
-  ifstream f(nameFile.c_str());
+  ifstream f(nameFile.c_str()); //n : natural; n:=Natural.create();
   cv = 0;
   if ( !f.fail()) {
 	while ( !f.eof()) {
@@ -97,4 +97,52 @@ bool VerifNivel21(AnsiString nameFile){
   pg.flush();
   pg.close();
   return sw;
+}
+
+void SearchAndReplace(
+	AnsiString name,
+	AnsiString search,
+	AnsiString replace
+){
+  char x;
+  byte i, n = search.Length();
+  AnsiString s;
+  AnsiString nameTmp = "temporal.tmp";
+  ifstream fi(name.c_str());
+  ofstream fo(nameTmp.c_str());
+  if ( !fi.fail()) {
+	while ( !fi.eof()) {
+	  x = fi.get();
+	  if (x == search[1]) {
+		 s = "";
+		 i=1;
+		 while(i<=n && !fi.eof() && x==search[i]){
+		   s = s + x;
+		   x = fi.get();
+		   i++;
+		 }
+//		 encontro = true
+//		 while(i<=n && !fi.eof()&& encontro){
+//		   if(x!=search[i]){
+//			 encontro = false;
+//		   } else {
+//			 s = s + x;
+//			 x = fi.get();
+//			 i++;
+//		   }
+//		 }
+		 if (i>n) { //se encontro es identico
+		   fo << (replace+x);
+		 } else { //no se encontro
+		   fo << (s+x);
+		 }
+	  } else {
+		if(!fi.eof()) fo.put(x);
+	  }
+	}
+  }
+  fi.close();
+  fo.close();
+  remove(name.c_str());
+  rename(nameTmp.c_str(),name.c_str());
 }

@@ -36,7 +36,7 @@ char ToMay(char x){
   return (p==0)? (x) : (may[p]);
 }
 
-char ToNivel21(char x){
+char ToNivel21(char x){//# => M
   AnsiString org  = "#hp ";
   AnsiString dest = "M@#c";
   byte p = org.Pos(x);

@@ -20,13 +20,14 @@ __published:	// IDE-managed Components
 	TOpenTextFileDialog *OpenTextFileDialog1;
 	TEdit *Edit1;
 	TButtonGroup *ButtonGroup1;
-	TComboBox *ComboBox1;
+	TEdit *Edit2;
 	void __fastcall ButtonSelectClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall SelectClick(TObject *Sender);
 	void __fastcall LimpiarVocSigClick(TObject *Sender);
 	void __fastcall crearNivel21Form(TObject *Sender);
 	void __fastcall VerificarNivel21Click(TObject *Sender);
+	void __fastcall onSearchAndReplace(TObject *Sender);
 private:	// User declarations
 
 
