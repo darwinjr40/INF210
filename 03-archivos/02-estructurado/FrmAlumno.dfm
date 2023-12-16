@@ -187,19 +187,27 @@ object Form1: TForm1
   end
   object ButtonGroup1: TButtonGroup
     Left = 8
-    Top = 60
+    Top = 58
     Width = 161
     Height = 381
     ButtonHeight = 32
     ButtonWidth = 200
     Items = <
       item
+        Caption = 'cargar datos locales'
+        OnClick = onClickLoad
+      end
+      item
         Caption = 'expandir-file'
         OnClick = expandirFileClick
       end
       item
-        Caption = 'Crear por codigo txt'
+        Caption = 'Crear txt por codigo indexado'
         OnClick = createCodigoClick
+      end
+      item
+        Caption = 'Crear txt de un mes determinado'
+        OnClick = onClickCreateMonthFile
       end>
     TabOrder = 16
   end

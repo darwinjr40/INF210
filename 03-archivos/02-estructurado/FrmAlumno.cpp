@@ -544,3 +544,58 @@ void __fastcall TForm1::createCodigoClick(TObject *Sender){
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::onClickCreateMonthFile(TObject *Sender)
+{
+  fstream fa(
+	this->nomArch.c_str(),
+	ios::in
+  );
+  fstream fb(
+	"listado.txt",
+	ios::out
+  );
+  if(fa.fail()) return;
+  RegAlumno reg;
+  AnsiString line;
+  byte searchMonth = StrToInt(InputBox("","",""));
+  while ( !fa.eof() ) {
+	fa.read((char*)&reg, sizeof(reg));
+	if ( !fa.eof() && (reg.fecha.mes == searchMonth) ) {
+	  line = reg.ToLine();
+	  for (byte i = 1; i <= line.Length(); i++) {
+		fb.put(line[i]);  			
+	  }
+	  fb.put(10);
+	}	
+  }
+  fa.close();
+  fb.close();  
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::onClickLoad(TObject *Sender)
+{
+  pf = new fstream(nomArch.c_str(), ios::in | ios::out | ios::binary);
+//  if( !pf->is_open() ){
+//	this->pf->open(this->nomArch.c_str(), ios::in | ios::out | ios::binary);
+//  }
+  if( this->pf->fail() ) return;
+  const byte n = 7;
+  RegAlumno alumnos[n] = {
+	RegAlumno(120, "Juan", "c1", TFecha(2,1,95)),
+	RegAlumno(130, "pedro", "c2", TFecha(4,2,93)),
+	RegAlumno(140, "maria", "c3", TFecha(7,12,0000)),
+	RegAlumno(150, "josefa", "c4", TFecha(8,2,02)),
+	RegAlumno(160, "roberto", "c5", TFecha(10,10,10)),
+	RegAlumno(170, "betty", "c6", TFecha(6,2,04)),
+	RegAlumno(180, "mario", "c7", TFecha(5,6,07))
+  };
+  RegAlumno reg;
+  for (byte i = 0; i < n; i++) {
+	reg = alumnos[i];
+	pf->write((char *)&reg, sizeof(reg));
+  }  
+  pf->close();
+}
+//---------------------------------------------------------------------------
+

@@ -62,6 +62,13 @@ struct RegAlumno{ //49 bytes
 			   "marca: " +  IntToStr(this->marca)+"\n"+
 				"}";
 	}
+
+	AnsiString ToLine() {
+		return IntToStr(this->cod)+"\t"+
+			   this->nom + "\t"+
+			   this->dir + "\t"+
+			   this->fecha.ToString();
+	}
 };
 
 
