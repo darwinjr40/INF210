@@ -554,22 +554,28 @@ void __fastcall TForm1::onClickCreateMonthFile(TObject *Sender)
 	"listado.txt",
 	ios::out
   );
-  if(fa.fail()) return;
-  RegAlumno reg;
-  AnsiString line;
-  byte searchMonth = StrToInt(InputBox("","",""));
-  while ( !fa.eof() ) {
-	fa.read((char*)&reg, sizeof(reg));
-	if ( !fa.eof() && (reg.fecha.mes == searchMonth) ) {
-	  line = reg.ToLine();
-	  for (byte i = 1; i <= line.Length(); i++) {
-		fb.put(line[i]);  			
+  if(!fa.fail()){
+	  RegAlumno reg;
+	  AnsiString line;
+	  byte searchMonth = StrToInt(InputBox("mes","ingrese",""));
+	  while ( !fa.eof() ) {
+		fa.read((char*)&reg, sizeof(reg));
+		if ( !fa.eof() && (reg.fecha.mes == searchMonth) ) {
+		  line =   IntToStr(reg.cod)+"\t"+
+				   reg.nom + "\t"+
+				   reg.dir + "\t"+
+				   IntToStr(reg.fecha.dia) + "/" +
+				   IntToStr(reg.fecha.mes) + "/" +
+				   IntToStr(reg.fecha.anio);
+		  for (byte i = 1; i <= line.Length(); i++) {
+			fb.put(line[i]);
+		  }
+		  fb.put(10);
+		}
 	  }
-	  fb.put(10);
-	}	
+	  fa.close();
+	  fb.close();
   }
-  fa.close();
-  fb.close();  
 }
 //---------------------------------------------------------------------------
 
@@ -596,6 +602,61 @@ void __fastcall TForm1::onClickLoad(TObject *Sender)
 	pf->write((char *)&reg, sizeof(reg));
   }  
   pf->close();
+}
+//---------------------------------------------------------------------------
+char ToLower(char x){
+  AnsiString MAY = "QWERTYUIOPASDFGHJKLZXCVBNMÑ"; //a..z
+  AnsiString MIN = "qwertyuiopasdfghjklzxcvbnmñ";
+  byte p = MAY.Pos(x);
+  return    (p == 0)
+			? x
+			: MIN[p];
+}
+
+
+bool compare(AnsiString searchName, char nom[21]){
+   AnsiString name = "";
+   char x;
+   byte i = 0;
+   while (i < 21 &&   //dentro del array
+		(i+1<=searchName.Length()) &&  //dentro de la cadena
+		ToLower(searchName[i+1]) == ToLower(nom[i])) {//mientras son caracteres iguales
+	 i++;
+   }
+   return (i+1>searchName.Length());
+}
+
+Word searchName(AnsiString NameFile){
+  fstream fa(NameFile.c_str(),	ios::in);
+  RegAlumno reg;
+  Word cod = 0;
+  if(!fa.fail()){
+	  AnsiString searchName = InputBox("ingrese","Nombre","");
+	  fa.read((char*)&reg, sizeof(reg));
+	  while (  !fa.eof() && !(compare(searchName, reg.nom)) ) {
+		fa.read((char*)&reg, sizeof(reg));
+	  }
+
+	  //opcion1
+//	  if(!fa.eof()) cod=reg.cod;
+
+	  //opcion2
+	  cod = (!fa.eof()) ? reg.cod : 0;
+
+	  //opcion3
+//	  if (!fa.eof()) {
+//		cod = reg.cod;
+//	  } else {
+//		cod = 0;
+//	  }
+	  fa.close();
+  }
+  return cod;
+}
+void __fastcall TForm1::onClickSearchName(TObject *Sender)
+{
+  Word salida = searchName(this->nomArch);
+  ShowMessage(IntToStr(salida));
 }
 //---------------------------------------------------------------------------
 

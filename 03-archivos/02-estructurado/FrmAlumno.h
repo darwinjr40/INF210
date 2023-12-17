@@ -73,6 +73,7 @@ __published:	// IDE-managed Components
 	void __fastcall createCodigoClick(TObject *Sender);
 	void __fastcall onClickCreateMonthFile(TObject *Sender);
 	void __fastcall onClickLoad(TObject *Sender);
+	void __fastcall onClickSearchName(TObject *Sender);
 private:	// User declarations
 	fstream *pf, *pfi;
 	AnsiString nomArch, nomArchIdxCod;

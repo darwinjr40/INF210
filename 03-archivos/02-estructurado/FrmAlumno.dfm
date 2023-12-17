@@ -87,7 +87,7 @@ object Form1: TForm1
   end
   object Button2: TButton
     Left = 190
-    Top = 174
+    Top = 176
     Width = 59
     Height = 25
     Caption = 'Eliminar'
@@ -208,6 +208,10 @@ object Form1: TForm1
       item
         Caption = 'Crear txt de un mes determinado'
         OnClick = onClickCreateMonthFile
+      end
+      item
+        Caption = 'obtener codigo: busqueda por nombre'
+        OnClick = onClickSearchName
       end>
     TabOrder = 16
   end
