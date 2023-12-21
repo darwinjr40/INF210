@@ -15,8 +15,8 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Edit1: TEdit
-    Left = 240
-    Top = 80
+    Left = 312
+    Top = 88
     Width = 121
     Height = 21
     TabOrder = 0
@@ -24,15 +24,11 @@ object Form1: TForm1
   object ButtonGroup1: TButtonGroup
     Left = 0
     Top = 0
-    Width = 129
+    Width = 145
     Height = 369
     ButtonHeight = 30
     ButtonWidth = 150
     Items = <
-      item
-        Caption = 'Select File'
-        OnClick = SelectClick
-      end
       item
         Caption = 'Contar Vocales'
         OnClick = ButtonSelectClick
@@ -56,14 +52,14 @@ object Form1: TForm1
     TabOrder = 1
   end
   object Edit2: TEdit
-    Left = 240
-    Top = 107
+    Left = 312
+    Top = 115
     Width = 121
     Height = 21
     TabOrder = 2
   end
   object OpenTextFileDialog1: TOpenTextFileDialog
-    Left = 176
-    Top = 8
+    Left = 248
+    Top = 16
   end
 end
