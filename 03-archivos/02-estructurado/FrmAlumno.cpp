@@ -24,6 +24,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 {
 	nomArch="Alumno.dat";
 	nomArchIdxCod = "codigo.idx";
+	nomArchIdxFecha = "fecha.idx";
 	pf = new fstream(nomArch.c_str(),ios::in|ios::binary);
 	if (pf->fail()){
 	  delete pf;
@@ -383,7 +384,7 @@ void __fastcall TForm1::codgio1Click(TObject *Sender){
 		  regIdx.pos = f.tellg();
 		  f.read((char *)&reg, sizeof(reg));
 		  if (!f.eof()) {
-            regIdx.cod = reg.cod;
+			regIdx.cod = reg.cod;
 			fi.write((char *)&regIdx, sizeof(regIdx));
 		  }
 		}
@@ -588,13 +589,13 @@ void __fastcall TForm1::onClickLoad(TObject *Sender)
   if( this->pf->fail() ) return;
   const byte n = 7;
   RegAlumno alumnos[n] = {
-	RegAlumno(120, "Juan", "c1", TFecha(2,1,95)),
-	RegAlumno(130, "pedro", "c2", TFecha(4,2,93)),
-	RegAlumno(140, "maria", "c3", TFecha(7,12,0000)),
-	RegAlumno(150, "josefa", "c4", TFecha(8,2,02)),
-	RegAlumno(160, "roberto", "c5", TFecha(10,10,10)),
-	RegAlumno(170, "betty", "c6", TFecha(6,2,04)),
-	RegAlumno(180, "mario", "c7", TFecha(5,6,07))
+	RegAlumno(140, "maria", "c3", TFecha(7,12,2000)),
+	RegAlumno(150, "josefa", "c4", TFecha(8,2,2002)),
+	RegAlumno(160, "roberto", "c5", TFecha(10,10,2010)),
+	RegAlumno(130, "pedro", "c2", TFecha(4,2,1993)),
+	RegAlumno(170, "betty", "c6", TFecha(6,2,2004)),
+	RegAlumno(180, "mario", "c7", TFecha(5,6,2007)),
+	RegAlumno(120, "Juan", "c1", TFecha(2,1,1995))
   };
   RegAlumno reg;
   for (byte i = 0; i < n; i++) {
@@ -659,4 +660,118 @@ void __fastcall TForm1::onClickSearchName(TObject *Sender)
   ShowMessage(IntToStr(salida));
 }
 //---------------------------------------------------------------------------
+void TForm1::CreateIndexCodigo(){
+	RegAlumno reg;
+	RegIdxCod regIdx;
+	fstream f(nomArch.c_str(), ios::in | ios::binary);
+	fstream fi(nomArchIdxCod.c_str(), ios::out | ios::binary);
+	if ( !f.fail() ) {
+		while ( !f.eof() ) {
+		  regIdx.pos = f.tellg();
+		  f.read((char *)&reg, sizeof(reg));
+		  if (!f.eof()) {
+			regIdx.cod = reg.cod;
+			fi.write((char *)&regIdx, sizeof(regIdx));
+		  }
+		}
+	}             //| ios::trunc
+	f.close();
+	fi.close();
+}
+
+void TForm1::CreateIndexFecha(){
+	RegAlumno reg;
+	RegIdxFecha regIdx;
+	fstream f(nomArch.c_str(), ios::in | ios::binary);
+	fstream fi(nomArchIdxFecha.c_str(), ios::out | ios::binary);
+	if ( !f.fail() ) {
+		while ( !f.eof() ) {
+		  regIdx.pos = f.tellg();
+		  f.read((char *)&reg, sizeof(reg));
+		  if (!f.eof()) {
+			regIdx.fecha = reg.fecha;
+			fi.write((char *)&regIdx, sizeof(regIdx));
+		  }
+		}
+	}             //| ios::trunc
+	f.close();
+	fi.close();
+}
+
+void __fastcall TForm1::Button3Click(TObject *Sender){
+  byte p = ComboBox1->ItemIndex;
+  if(p == 0){
+	CreateIndexCodigo();
+	return;
+  }
+  if(p == 3){
+	CreateIndexFecha();
+    return;
+  }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::searchMenByIndex(TObject *Sender){
+  RegIdxFecha regIdx;
+  RegAlumno reg, resp;
+  fstream f(nomArch.c_str(), ios::in | ios::binary);
+  fstream fi(nomArchIdxFecha.c_str(), ios::in | ios::binary);
+  bool sw = true;
+  if ( !fi.fail() ) {
+	while ( !fi.eof() ) {
+	  fi.read((char*) &regIdx, sizeof(regIdx));
+	  if ( !fi.eof()) {
+		f.seekg(regIdx.pos, ios::beg);
+		f.read((char*) &reg, sizeof(reg));
+		if(!f.eof()){
+		  if (sw) {
+			resp = reg;
+			sw = false;
+		  }else if(reg.fecha.anio < resp.fecha.anio
+		   || (reg.fecha.anio == resp.fecha.anio && reg.fecha.mes < resp.fecha.mes)
+		   || (reg.fecha.anio == resp.fecha.anio && reg.fecha.mes == resp.fecha.mes && reg.fecha.dia < resp.fecha.dia)
+		   ){
+			resp = reg;
+		  }
+		}
+	  }
+	}
+  }
+  f.close();
+  fi.close();
+  ShowMessage(resp.ToString());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::searchBinaryCodeByIndex(TObject *Sender){
+	RegIdxCod reg;
+	Cardinal a, b, m ;
+	Cardinal cod = InputBox("Numero?","","").ToInt();
+	fstream fi(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
+	if ( !fi.fail() ) {
+	  fi.seekg(-1*sizeof(RegIdxCod), ios::end); //ojo: puede que el file este vacio
+	  a = 0;
+	  b = fi.tellg();
+	  while (a <= b) {
+		m = (a + b) / 2;
+		fi.seekg(0, ios::beg);
+		fi.seekg(m);
+		fi.read((char*)&reg, sizeof(reg));
+		if ( !fi.eof()){
+			if (reg.cod == cod) {
+			  ShowMessage("true");
+			  return;
+			} else if(cod < reg.cod){
+			  b = m - sizeof(reg);
+			} else {
+			  a = m + sizeof(reg);
+			}
+		}
+	  }
+	}
+	fi.close();
+	ShowMessage("false");
+}
+//---------------------------------------------------------------------------
+
 

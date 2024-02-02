@@ -187,7 +187,7 @@ object Form1: TForm1
   end
   object ButtonGroup1: TButtonGroup
     Left = 8
-    Top = 58
+    Top = 59
     Width = 161
     Height = 381
     ButtonHeight = 32
@@ -212,6 +212,14 @@ object Form1: TForm1
       item
         Caption = 'obtener codigo: busqueda por nombre'
         OnClick = onClickSearchName
+      end
+      item
+        Caption = 'proceso: mostrar el alumno menor por index'
+        OnClick = searchMenByIndex
+      end
+      item
+        Caption = 'busqueda binaria index por codigo'
+        OnClick = searchBinaryCodeByIndex
       end>
     TabOrder = 16
   end
@@ -255,7 +263,7 @@ object Form1: TForm1
     OnClick = ButtonNavIdxFinClick
   end
   object ComboBox1: TComboBox
-    Left = 432
+    Left = 437
     Top = 32
     Width = 81
     Height = 21
@@ -269,6 +277,23 @@ object Form1: TForm1
       'Nombre'
       'Direccion'
       'Fecha')
+  end
+  object Button3: TButton
+    Left = 397
+    Top = 1
+    Width = 75
+    Height = 25
+    Caption = 'CrearIdx'
+    TabOrder = 22
+    OnClick = Button3Click
+  end
+  object Button12: TButton
+    Left = 478
+    Top = 1
+    Width = 75
+    Height = 25
+    Caption = 'OrdenarIdx'
+    TabOrder = 23
   end
   object MainMenu1: TMainMenu
     Left = 16

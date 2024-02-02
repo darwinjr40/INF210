@@ -50,6 +50,8 @@ __published:	// IDE-managed Components
 	TMenuItem *Ordenar1;
 	TMenuItem *codigo1;
 	TComboBox *ComboBox1;
+	TButton *Button3;
+	TButton *Button12;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Edit1Exit(TObject *Sender);
 	void __fastcall GuardarClick(TObject *Sender);
@@ -74,15 +76,21 @@ __published:	// IDE-managed Components
 	void __fastcall onClickCreateMonthFile(TObject *Sender);
 	void __fastcall onClickLoad(TObject *Sender);
 	void __fastcall onClickSearchName(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall searchMenByIndex(TObject *Sender);
+	void __fastcall searchBinaryCodeByIndex(TObject *Sender);
 private:	// User declarations
 	fstream *pf, *pfi;
 	AnsiString nomArch, nomArchIdxCod;
+   	AnsiString nomArchIdxFecha;
 
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
 	void UpdateForm(AnsiString cod,AnsiString nom,AnsiString dir, AnsiString fecha);
 	void ShowAlumno(RegAlumno r);
 	void SaveAlumno(RegAlumno regNuevo);
+	void CreateIndexCodigo();
+	void CreateIndexFecha();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;
