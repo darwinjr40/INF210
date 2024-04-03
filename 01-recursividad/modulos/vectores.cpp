@@ -326,10 +326,10 @@ void CargarFibonacciV2(TStringGrid *v, byte &n, byte x){
 }
 /*carga unicamente con las palabras de un string
 entrada=>
-x ="hola123como,están.esta;mañana##%", v[], n;
-"hola11mañana23como,están.esta;mañana##"
+x ="hola123como,estï¿½n.esta;maï¿½ana##%", v[], n;
+"hola11maï¿½ana23como,estï¿½n.esta;maï¿½ana##"
 salida =>
-v["hola", "como", "están", "esta", "mañana"], n = 5;
+v["hola", "como", "estï¿½n", "esta", "maï¿½ana"], n = 5;
 	 0       1        2       3        4
 	  - pos + 1
 */
@@ -359,12 +359,11 @@ void CargarPalabrasV2(TStringGrid *v, byte &n, AnsiString x){
 	x.Delete(dim, 1);
 	CargarPalabrasV2(v, n, x);
 	if (EsPalabra(e)) {
-	  if ((x=="") || (x != "" && !EsPalabra(x[x.Length()]))) {
+	  if ( x=="" || !EsPalabra(x[x.Length()])) {
 		v->Cells[n][0] = "";
 		n++;
 	  }
-	  v->Cells[n-1][0] = v->Cells[n-1][0] + (AnsiString)e;
-//	  v->Cells[n-1][0] += (AnsiString)e; //este no funciona	  
+	  v->Cells[n-1][0] = v->Cells[n-1][0] + e;
 	}
   }
 }
@@ -436,7 +435,10 @@ AnsiString mayorPromedio(TStringGrid *v, Word i, Word n, Double &p){
 //	int n = StringGrid1->ColCount;
 //	Double a = 0;
 //	Edit2->Text =   mayorPromedio(StringGrid1, 0, n, a);
-//pertenece(vector, i=0, cantVector=3, ele)bool pertenece(TStringGrid * v, int i, int n, int x){  bool b;
+//pertenece(vector, i=0, cantVector=3, ele)
+
+bool pertenece(TStringGrid * v, int i, int n, int x){
+  bool b;
   if (i >= n)
 	b =  false;
   else {
@@ -471,7 +473,8 @@ bool pertenece(TStringGrid * v, int n, int x){
 // int n = StringGrid1->ColCount;
 // int x = Edit1->Text.ToInt();
 // Edit2->Text = BoolToStr(pertenece(StringGrid1, 0, n, x), true);
-//}
+//}
+
 //x = '"  =>  x= "10 30"
 void Interseccion(TStringGrid * a, int n,TStringGrid * b, int m, String &x){
   if (n == 0) {

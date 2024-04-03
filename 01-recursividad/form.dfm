@@ -20,7 +20,7 @@ object Form1: TForm1
     Top = 0
     Width = 931
     Height = 521
-    ActivePage = TabSheet4
+    ActivePage = TabSheet3
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet

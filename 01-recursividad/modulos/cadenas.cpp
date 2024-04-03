@@ -297,6 +297,17 @@ String Invertir(String x){
   return r;
 }
 
+void DeleteFirstWord(AnsiString &x){
+ if (x != ""){
+	 char e = x[1];
+	 x.Delete(1,1);
+	 if (! EsPalabra(e)) {
+	   DeleteFirstWord(x);
+	 } else if(x!="" && EsPalabra(x[1])){
+	   DeleteFirstWord(x);
+	 }
+ }
+}
 
 bool EsAbecedario(char c){
 	return (c >= 'a' && c<= 'z')

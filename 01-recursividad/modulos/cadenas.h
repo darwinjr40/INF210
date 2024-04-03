@@ -29,7 +29,7 @@ String palabralarga(String x);
 String Invertir(String x);
 AnsiString UltimaPal(AnsiString x);
 byte CantVocales(AnsiString x);
-
+void DeleteFirstWord(AnsiString &x);
 //dunnia
 void DeletePrimerCaracterDeUnaPalabra(AnsiString &x);
 void DeletePrimerCaracterDeUnaPalabraV2(AnsiString &x, byte sw);
