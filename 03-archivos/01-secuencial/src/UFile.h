@@ -9,6 +9,7 @@
 
 /*Definicion de metodos*/
 //funciones
+AnsiString FileToStr(AnsiString nameFile);
 int GetCantVocales(AnsiString nameFile);
 bool VerifNivel21(AnsiString nameFile);
 //procesos

@@ -27,6 +27,7 @@ __published:	// IDE-managed Components
 	void __fastcall crearNivel21Form(TObject *Sender);
 	void __fastcall VerificarNivel21Click(TObject *Sender);
 	void __fastcall onSearchAndReplace(TObject *Sender);
+	void __fastcall pruebaClick(TObject *Sender);
 private:	// User declarations
 
 public:		// User declarations

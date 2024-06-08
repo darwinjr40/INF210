@@ -57,3 +57,12 @@ void __fastcall TForm1::onSearchAndReplace(TObject *Sender){
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::pruebaClick(TObject *Sender){
+  bool selectFile = OpenTextFileDialog1->Execute();
+  if( selectFile){
+	AnsiString resp = FileToStr(OpenTextFileDialog1->FileName);
+	ShowMessage(resp);
+  }
+}
+//---------------------------------------------------------------------------
+

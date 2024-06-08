@@ -7,6 +7,23 @@
 #pragma package(smart_init)
 /*Implementar Metodos*/
 
+AnsiString FileToStr(AnsiString nameFile){
+  char x;
+  AnsiString r = "";
+  ifstream f(nameFile.c_str());
+  if ( !f.fail()) {
+	x = f.get();
+	while ( !f.eof()) {
+	  if(x != '\n'){ // x != 10
+		r = r+x;
+	  }
+	  x = f.get();
+	}
+  }
+  f.close();
+  return r;
+}
+
 int GetCantVocales(AnsiString nameFile){
   Cardinal cv;
   char x;
@@ -22,6 +39,7 @@ int GetCantVocales(AnsiString nameFile){
   f.close();
   return cv;
 }
+
 
 void Limpiar(AnsiString name){
   char x;

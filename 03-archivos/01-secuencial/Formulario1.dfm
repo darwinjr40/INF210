@@ -48,6 +48,10 @@ object Form1: TForm1
       item
         Caption = '2023-1-#1-searchAndreplace'
         OnClick = onSearchAndReplace
+      end
+      item
+        Caption = 'Prueba'
+        OnClick = pruebaClick
       end>
     TabOrder = 1
   end
