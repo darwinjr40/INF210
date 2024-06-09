@@ -42,7 +42,6 @@ void __fastcall TForm1::VerificarNivel21Click(TObject *Sender){
   ShowMessage(salida);
 }
 //---------------------------------------------------------------------------
-
 void __fastcall TForm1::onSearchAndReplace(TObject *Sender){
   if( !OpenTextFileDialog1->Execute()) return;
 //  AnsiString search = Edit1->Text;
@@ -60,7 +59,17 @@ void __fastcall TForm1::onSearchAndReplace(TObject *Sender){
 void __fastcall TForm1::pruebaClick(TObject *Sender){
   bool selectFile = OpenTextFileDialog1->Execute();
   if( selectFile){
-	AnsiString resp = FileToStr(OpenTextFileDialog1->FileName);
+	CreateNumbersByLine(
+	  OpenTextFileDialog1->FileName,
+	  "CreateNumbersByLine.txt"
+	);
+  }
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender){
+  bool selectFile = OpenTextFileDialog1->Execute();
+  if( selectFile){
+	AnsiString resp = ToStr(OpenTextFileDialog1->FileName);
 	ShowMessage(resp);
   }
 }

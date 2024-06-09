@@ -10,7 +10,7 @@
 #include <Vcl.Dialogs.hpp>
 #include <Vcl.ExtDlgs.hpp>
 #include <Vcl.ButtonGroup.hpp>
-#include <fstream> void
+#include <fstream>
 /*externos*/
 #include "UFile.h"
 //---------------------------------------------------------------------------
@@ -21,6 +21,7 @@ __published:	// IDE-managed Components
 	TEdit *Edit1;
 	TButtonGroup *ButtonGroup1;
 	TEdit *Edit2;
+	TButton *Button1;
 	void __fastcall ButtonSelectClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall LimpiarVocSigClick(TObject *Sender);
@@ -28,6 +29,7 @@ __published:	// IDE-managed Components
 	void __fastcall VerificarNivel21Click(TObject *Sender);
 	void __fastcall onSearchAndReplace(TObject *Sender);
 	void __fastcall pruebaClick(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
 
 public:		// User declarations

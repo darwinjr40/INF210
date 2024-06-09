@@ -9,12 +9,12 @@
 /*Implementar metodos*/
 
 bool EsVocal(char x){
-  AnsiString vocales = "aeiouáéíóúäüöAEIOUÁÉÍÓÚ";
+  AnsiString vocales = "aeiouáéíóúäüöAEIOUÁÉÍÓÚÄÖÜ";
   return vocales.Pos(x) > 0;
 }
 
 bool EsLetra(char x){
-  AnsiString letras = "QWERTYUIOPASDFGHJKLZXCVBNMÑqwertyuiopasdfghjklzxcvbnmñáéíóúäüöAEIOUÁÉÍÓÚ";
+  AnsiString letras = "qwertyuiopasdfghjklzxcvbnmñáéíóúäöüQWERTYUIOPASDFGHJKLZXCVBNMÑÁÉÍÓÚÄÖÜ";
   return letras.Pos(x) > 0;
 }
 bool EsSigno(char x){
@@ -23,8 +23,7 @@ bool EsSigno(char x){
 }
 
 bool EsDig(char x){
-  AnsiString digitos = "0123456789";
-  return digitos.Pos(x) > 0;
+  return (x>='0' && x<='9');
 }
 
 char ToMay(char x){

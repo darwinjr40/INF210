@@ -9,18 +9,23 @@
 
 /*Definicion de metodos*/
 //funciones
-AnsiString FileToStr(AnsiString nameFile);
+AnsiString ToStr(AnsiString nameFile);
 int GetCantVocales(AnsiString nameFile);
 bool VerifNivel21(AnsiString nameFile);
 //procesos
 void Limpiar(AnsiString name);
 void CrearNivel21(AnsiString nameFile, AnsiString newNameFile);
 void CrearNivel21V2(AnsiString nameFile, AnsiString newNameFile);
+void CreateNumbersByLine(
+	AnsiString nameFile,
+	AnsiString newNameFile
+);
 void SearchAndReplace(
 	AnsiString name,
 	AnsiString search,
 	AnsiString replace
 );
+
 
 //---------------------------------------------------------------------------
 #endif

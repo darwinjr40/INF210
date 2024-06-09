@@ -24,8 +24,8 @@ object Form1: TForm1
   object ButtonGroup1: TButtonGroup
     Left = 0
     Top = 0
-    Width = 145
-    Height = 369
+    Width = 161
+    Height = 482
     ButtonHeight = 30
     ButtonWidth = 150
     Items = <
@@ -50,7 +50,7 @@ object Form1: TForm1
         OnClick = onSearchAndReplace
       end
       item
-        Caption = 'Prueba'
+        Caption = '2023-2-#1-CreateNumbersByLine'
         OnClick = pruebaClick
       end>
     TabOrder = 1
@@ -62,8 +62,17 @@ object Form1: TForm1
     Height = 21
     TabOrder = 2
   end
+  object Button1: TButton
+    Left = 192
+    Top = 86
+    Width = 75
+    Height = 25
+    Caption = 'Mostrar txt'
+    TabOrder = 3
+    OnClick = Button1Click
+  end
   object OpenTextFileDialog1: TOpenTextFileDialog
-    Left = 248
-    Top = 16
+    Left = 176
+    Top = 8
   end
 end

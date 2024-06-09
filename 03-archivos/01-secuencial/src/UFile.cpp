@@ -7,16 +7,16 @@
 #pragma package(smart_init)
 /*Implementar Metodos*/
 
-AnsiString FileToStr(AnsiString nameFile){
+AnsiString ToStr(AnsiString nameFile){
   char x;
   AnsiString r = "";
   ifstream f(nameFile.c_str());
   if ( !f.fail()) {
 	x = f.get();
 	while ( !f.eof()) {
-	  if(x != '\n'){ // x != 10
+//	  if(x != '\n'){ // x != 10
 		r = r+x;
-	  }
+//	  }
 	  x = f.get();
 	}
   }
@@ -97,6 +97,31 @@ void CrearNivel21V2(AnsiString nameFile, AnsiString newNameFile){
 	}
   }
   delete pf;  //<=> delete(pf);
+  pg.close();
+}
+
+void CreateNumbersByLine(AnsiString nameFile, AnsiString newNameFile){
+  char x, ant;
+  Word c;
+  fstream pf(nameFile.c_str(), ios::in);
+  fstream pg(newNameFile.c_str(), ios::trunc | ios::out);
+  if (!pf.fail() && !pg.fail()) {	 
+	c = 0;
+	while ( !pf.eof() ){
+	  x = pf.get();	   
+	  ant = x;
+	  while (!pf.eof() && EsDig(x)) {
+		x = pf.get();
+	  }
+	  if(ant != x)c++;
+	  if(x == '\n'){										 
+		pg << c;
+		pg << '\n';
+		c = 0;
+	  }	  
+	}
+  }
+  pf.close();
   pg.close();
 }
 
