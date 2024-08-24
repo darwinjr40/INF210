@@ -40,18 +40,15 @@ __published:	// IDE-managed Components
 	TStringGrid *StringGrid1;
 	TButton *mostrar;
 	TButtonGroup *ButtonGroup1;
-	TMainMenu *MainMenu1;
-	TMenuItem *indices1;
-	TMenuItem *codgio1;
 	TButton *ButtonNavIdxIni;
 	TButton *ButtonNavIdxSig;
 	TButton *ButtonNavIdxAnt;
 	TButton *ButtonNavIdxFin;
-	TMenuItem *Ordenar1;
-	TMenuItem *codigo1;
-	TComboBox *ComboBox1;
+	TButton *Button13;
+	TComboBox *ComboBoxCreateIdx;
+	TComboBox *ComboBoxOrdenarIdx;
+	TComboBox *ComboBoxExportIdx;
 	TButton *Button3;
-	TButton *Button12;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Edit1Exit(TObject *Sender);
 	void __fastcall GuardarClick(TObject *Sender);
@@ -66,23 +63,25 @@ __published:	// IDE-managed Components
 	void __fastcall mostrarClick(TObject *Sender);
 	void __fastcall expandirFileClick(TObject *Sender);
 	void __fastcall EliminarClick(TObject *Sender);
-	void __fastcall codgio1Click(TObject *Sender);
 	void __fastcall ButtonNavIdxIniClick(TObject *Sender);
 	void __fastcall ButtonNavIdxSigClick(TObject *Sender);
 	void __fastcall ButtonNavIdxAntClick(TObject *Sender);
 	void __fastcall ButtonNavIdxFinClick(TObject *Sender);
-	void __fastcall codigo1Click(TObject *Sender);
 	void __fastcall createCodigoClick(TObject *Sender);
 	void __fastcall onClickCreateMonthFile(TObject *Sender);
 	void __fastcall onClickLoad(TObject *Sender);
 	void __fastcall onClickSearchName(TObject *Sender);
-	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall searchMenByIndex(TObject *Sender);
 	void __fastcall searchBinaryCodeByIndex(TObject *Sender);
+	void __fastcall pregunta2(TObject *Sender);
+	void __fastcall ComboBoxCreateIdxChange(TObject *Sender);
+	void __fastcall ComboBoxOrdenarIdxChange(TObject *Sender);
+	void __fastcall ComboBoxExportIdxChange(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
 private:	// User declarations
 	fstream *pf, *pfi;
 	AnsiString nomArch, nomArchIdxCod;
-   	AnsiString nomArchIdxFecha;
+	AnsiString nomArchIdxFecha;
 
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
@@ -91,6 +90,8 @@ public:		// User declarations
 	void SaveAlumno(RegAlumno regNuevo);
 	void CreateIndexCodigo();
 	void CreateIndexFecha();
+	void OrdenarIdxCodigo();
+	void OrdenarIdxFecha();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;

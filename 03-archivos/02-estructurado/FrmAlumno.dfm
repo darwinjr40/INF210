@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 540
+  ClientHeight = 560
   ClientWidth = 913
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,65 +10,64 @@ object Form1: TForm1
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  Menu = MainMenu1
   OldCreateOrder = False
   Position = poMainFormCenter
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 190
-    Top = 31
+    Left = 246
+    Top = 25
     Width = 33
     Height = 13
     Caption = 'Codigo'
   end
   object Label2: TLabel
-    Left = 190
-    Top = 58
+    Left = 246
+    Top = 52
     Width = 37
     Height = 13
     Caption = 'Nombre'
   end
   object Label3: TLabel
-    Left = 190
-    Top = 90
+    Left = 246
+    Top = 84
     Width = 43
     Height = 13
     Caption = 'Direccion'
   end
   object Label4: TLabel
-    Left = 190
-    Top = 121
+    Left = 246
+    Top = 115
     Width = 29
     Height = 13
     Caption = 'Fecha'
   end
   object Edit1: TEdit
-    Left = 262
-    Top = 33
+    Left = 318
+    Top = 27
     Width = 121
     Height = 21
     TabOrder = 0
     OnExit = Edit1Exit
   end
   object Edit2: TEdit
-    Left = 262
-    Top = 60
+    Left = 318
+    Top = 54
     Width = 121
     Height = 21
     TabOrder = 1
   end
   object Edit3: TEdit
-    Left = 262
-    Top = 87
+    Left = 318
+    Top = 81
     Width = 121
     Height = 21
     TabOrder = 2
   end
   object MaskEdit1: TMaskEdit
-    Left = 262
-    Top = 114
+    Left = 318
+    Top = 108
     Width = 121
     Height = 21
     EditMask = '!99/99/0000;1;_'
@@ -77,7 +76,7 @@ object Form1: TForm1
     Text = '  /  /    '
   end
   object Button1: TButton
-    Left = 190
+    Left = 315
     Top = 143
     Width = 59
     Height = 25
@@ -86,8 +85,8 @@ object Form1: TForm1
     OnClick = GuardarClick
   end
   object Button2: TButton
-    Left = 190
-    Top = 176
+    Left = 380
+    Top = 143
     Width = 59
     Height = 25
     Caption = 'Eliminar'
@@ -95,8 +94,8 @@ object Form1: TForm1
     OnClick = EliminarClick
   end
   object Button4: TButton
-    Left = 577
-    Top = 22
+    Left = 646
+    Top = 8
     Width = 75
     Height = 25
     Caption = 'actualizar'
@@ -104,8 +103,8 @@ object Form1: TForm1
     OnClick = actualizarClick
   end
   object Button5: TButton
-    Left = 577
-    Top = 53
+    Left = 646
+    Top = 39
     Width = 75
     Height = 25
     Caption = 'actualizarv2'
@@ -113,8 +112,8 @@ object Form1: TForm1
     OnClick = actualizarv2Click
   end
   object Button6: TButton
-    Left = 674
-    Top = 22
+    Left = 743
+    Top = 8
     Width = 143
     Height = 25
     Caption = 'expandir-new-file'
@@ -122,8 +121,8 @@ object Form1: TForm1
     OnClick = expandirClick
   end
   object Button7: TButton
-    Left = 577
-    Top = 84
+    Left = 646
+    Top = 70
     Width = 75
     Height = 25
     Caption = 'actualizarv3'
@@ -131,8 +130,8 @@ object Form1: TForm1
     OnClick = actualizarv3
   end
   object Button8: TButton
-    Left = 577
-    Top = 115
+    Left = 646
+    Top = 101
     Width = 75
     Height = 25
     Caption = 'actualizarv4'
@@ -149,8 +148,8 @@ object Form1: TForm1
     OnClick = Button9Click
   end
   object Button10: TButton
-    Left = 674
-    Top = 53
+    Left = 743
+    Top = 39
     Width = 143
     Height = 25
     Caption = 'showExpandir'
@@ -167,9 +166,9 @@ object Form1: TForm1
     OnClick = Button11Click
   end
   object StringGrid1: TStringGrid
-    Left = 190
-    Top = 238
-    Width = 531
+    Left = 199
+    Top = 246
+    Width = 602
     Height = 262
     DefaultColWidth = 100
     DrawingStyle = gdsClassic
@@ -177,7 +176,7 @@ object Form1: TForm1
     TabOrder = 14
   end
   object mostrar: TButton
-    Left = 190
+    Left = 199
     Top = 207
     Width = 59
     Height = 25
@@ -187,9 +186,9 @@ object Form1: TForm1
   end
   object ButtonGroup1: TButtonGroup
     Left = 8
-    Top = 59
-    Width = 161
-    Height = 381
+    Top = 8
+    Width = 185
+    Height = 529
     ButtonHeight = 32
     ButtonWidth = 200
     Items = <
@@ -220,12 +219,14 @@ object Form1: TForm1
       item
         Caption = 'busqueda binaria index por codigo'
         OnClick = searchBinaryCodeByIndex
+      end
+      item
       end>
     TabOrder = 16
   end
   object ButtonNavIdxIni: TButton
-    Left = 431
-    Top = 59
+    Left = 465
+    Top = 22
     Width = 81
     Height = 25
     Caption = 'NavegarIdx'
@@ -233,8 +234,8 @@ object Form1: TForm1
     OnClick = ButtonNavIdxIniClick
   end
   object ButtonNavIdxSig: TButton
-    Left = 478
-    Top = 90
+    Left = 506
+    Top = 53
     Width = 40
     Height = 25
     Caption = '>>'
@@ -243,8 +244,8 @@ object Form1: TForm1
     OnClick = ButtonNavIdxSigClick
   end
   object ButtonNavIdxAnt: TButton
-    Left = 432
-    Top = 90
+    Left = 465
+    Top = 53
     Width = 40
     Height = 25
     Caption = '<<'
@@ -253,8 +254,8 @@ object Form1: TForm1
     OnClick = ButtonNavIdxAntClick
   end
   object ButtonNavIdxFin: TButton
-    Left = 431
-    Top = 121
+    Left = 464
+    Top = 84
     Width = 82
     Height = 25
     Caption = 'FinNavegarIdx'
@@ -262,55 +263,74 @@ object Form1: TForm1
     TabOrder = 20
     OnClick = ButtonNavIdxFinClick
   end
-  object ComboBox1: TComboBox
-    Left = 437
-    Top = 32
-    Width = 81
+  object Button13: TButton
+    Left = 367
+    Top = 207
+    Width = 75
+    Height = 25
+    Caption = 'pregunta2'
+    TabOrder = 21
+    OnClick = pregunta2
+  end
+  object ComboBoxCreateIdx: TComboBox
+    Left = 464
+    Top = 115
+    Width = 121
     Height = 21
     Style = csDropDownList
-    DragCursor = crDefault
     ItemIndex = 0
-    TabOrder = 21
-    Text = 'Codigo'
+    TabOrder = 22
+    Text = 'Seleccione Crear idx'
+    OnChange = ComboBoxCreateIdxChange
     Items.Strings = (
-      'Codigo'
-      'Nombre'
-      'Direccion'
-      'Fecha')
+      'Seleccione Crear idx'
+      'codigo'
+      'nombre'
+      'direccion'
+      'fecha'
+      'telefono')
+  end
+  object ComboBoxOrdenarIdx: TComboBox
+    Left = 464
+    Top = 142
+    Width = 140
+    Height = 21
+    Style = csDropDownList
+    ItemIndex = 0
+    TabOrder = 23
+    Text = 'Seleccione Ordenar Idx'
+    OnChange = ComboBoxOrdenarIdxChange
+    Items.Strings = (
+      'Seleccione Ordenar Idx'
+      'codigo'
+      'nombre'
+      'direccion'
+      'fecha'
+      'telefono')
+  end
+  object ComboBoxExportIdx: TComboBox
+    Left = 464
+    Top = 169
+    Width = 145
+    Height = 21
+    Style = csDropDownList
+    TabOrder = 24
+    OnChange = ComboBoxExportIdxChange
+    Items.Strings = (
+      'Seleccione exportar Idx'
+      'codigo'
+      'nombre'
+      'direccion'
+      'fecha'
+      'telefono')
   end
   object Button3: TButton
-    Left = 397
-    Top = 1
+    Left = 286
+    Top = 207
     Width = 75
     Height = 25
-    Caption = 'CrearIdx'
-    TabOrder = 22
+    Caption = 'pregunta1'
+    TabOrder = 25
     OnClick = Button3Click
-  end
-  object Button12: TButton
-    Left = 478
-    Top = 1
-    Width = 75
-    Height = 25
-    Caption = 'OrdenarIdx'
-    TabOrder = 23
-  end
-  object MainMenu1: TMainMenu
-    Left = 16
-    Top = 8
-    object indices1: TMenuItem
-      Caption = 'Indices'
-      object codgio1: TMenuItem
-        Caption = 'codigo'
-        OnClick = codgio1Click
-      end
-    end
-    object Ordenar1: TMenuItem
-      Caption = 'Ordenar'
-      object codigo1: TMenuItem
-        Caption = 'codigo'
-        OnClick = codigo1Click
-      end
-    end
   end
 end
