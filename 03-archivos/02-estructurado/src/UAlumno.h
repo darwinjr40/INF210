@@ -18,29 +18,33 @@ struct TFecha{
 	/*atributos*/
 	byte dia;
 	byte mes;
-	Word anio;
+	Word año;
 	/*constuctores*/
-	TFecha() : dia(0), mes(0), anio(0) {} 	//predeterminado
-	TFecha(byte d, byte m, Word a): dia(d), mes(m), anio(a){} 	//parametrizado
-	TFecha(const TFecha &f) : dia(f.dia), mes(f.mes), anio(f.anio){}	//copia
+//	TFecha() : dia(0), mes(0), año(0) {} 	//predeterminado
+//	TFecha(byte d, byte m, Word a): dia(d), mes(m), año(a){} 	//parametrizado
+//	TFecha(const TFecha &f) : dia(f.dia), mes(f.mes), año(f.año){}	//copia
 	/*ToStr*/
 	AnsiString ToString() {
-		return IntToStr(dia) + "/" + IntToStr(mes) + "/" + IntToStr(anio);
+		return IntToStr(dia) + "/" + IntToStr(mes) + "/" + IntToStr(año);
 	}
 };
 
 struct RegAlumno{ //49 bytes
 
 	Word cod;      // 2 bytes
-	char nom[21];  // 21 bytes
-	char dir[21];  // 21 bytes
+	char nom[31];  // 21 bytes
+	char dir[26];  // 21 bytes
 	TFecha fecha;  // 4 bytes
 	byte marca;    // 1 byte
-
+	Cardinal telefono;
 
 	RegAlumno(): cod(0), marca(0){};
 
-	RegAlumno(Word c, AnsiString n, AnsiString d, TFecha f) : cod(c), fecha(f), marca(0) {
+	RegAlumno(Word c, AnsiString n, AnsiString d, TFecha f, Cardinal t=0) {
+	   this->telefono = t;
+	   this->cod = c;
+	   this->fecha = f;
+	   this->marca = 0;
 		strcpy(nom, n.c_str());
 		strcpy(dir, d.c_str());
 	}
@@ -72,7 +76,7 @@ struct RegAlumno{ //49 bytes
 };
 
 
-struct RegAlumnoV1{ //48 bytes
+struct RegAlumnoAnt{// bytes
 	Word cod;      // 2 bytes
 	char nom[21];  // 21 bytes
 	char dir[21];  // 21 bytes

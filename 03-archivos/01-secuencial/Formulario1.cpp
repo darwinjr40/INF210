@@ -75,3 +75,57 @@ void __fastcall TForm1::Button1Click(TObject *Sender){
 }
 //---------------------------------------------------------------------------
 
+bool EsLetra1(char x){
+  AnsiString letras = "qwertyuiopasdfghjklzxcvbnmñáéíóúäöüQWERTYUIOPASDFGHJKLZXCVBNMÑÁÉÍÓÚÄÖÜ";
+  return letras.Pos(x) > 0;
+}
+
+void CreateWordByLine(AnsiString nameFile, AnsiString newNameFile){
+  fstream pf( nameFile.c_str(), ios::in );
+  fstream pg( newNameFile.c_str(), ios::out);
+  char x;
+  bool sw;
+  AnsiString pal;
+  if ( !pf.fail() && !pg.fail() ) {
+	while ( !pf.eof() ) {
+	  x = pf.get();
+	  pal = "";
+	  sw = true;
+	  while ( !pf.eof() && x!='\n' ) {
+		if ( EsLetra1(x) && sw ) {
+//		  x = (pal == "") ?  UpCase(x) : x;
+
+//		  if (pal == "")
+//			x = UpCase(x);
+//		  else
+//			x = x;
+
+		  if (pal == "") x = UpCase(x);
+
+		  pal = pal + x;
+		} else if( pal != "" && sw ) {
+		  sw = false;
+		}
+		x = pf.get();
+	  }
+	  if(pal != ""){
+		pg << (pal+", ");
+	  }
+	}
+  }
+  pf.close();
+  pg.close();
+}
+
+void __fastcall TForm1::CreateFirstWord(TObject *Sender){
+  bool selectFile = OpenTextFileDialog1->Execute();
+  if( selectFile ){
+	CreateWordByLine(
+	  OpenTextFileDialog1->FileName,
+	  "CreateWordsByLine.txt"
+	);
+
+  }
+}
+//---------------------------------------------------------------------------
+

@@ -52,6 +52,10 @@ object Form1: TForm1
       item
         Caption = '2023-2-#1-CreateNumbersByLine'
         OnClick = pruebaClick
+      end
+      item
+        Caption = '2023-2-#2-createFirtPal'
+        OnClick = CreateFirstWord
       end>
     TabOrder = 1
   end

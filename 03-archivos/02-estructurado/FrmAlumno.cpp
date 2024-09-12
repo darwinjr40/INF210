@@ -34,11 +34,12 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 	delete pf;
 }
 //---------------------------------------------------------------------------
-void TForm1::UpdateForm(AnsiString cod,AnsiString nom,AnsiString dir, AnsiString fecha){
-  Edit1->Text = (cod==NULL)? (AnsiString)Edit1->Text : cod;
-  Edit2->Text = (nom==NULL)? (AnsiString)Edit1->Text :nom;
-  Edit3->Text = (dir==NULL)? (AnsiString)Edit1->Text :dir;
-  MaskEdit1->Text = (fecha==NULL)? (AnsiString)Edit1->Text :fecha;
+
+void TForm1::UpdateForm(AnsiString cod="",AnsiString nom="",AnsiString dir="", AnsiString fecha=""){
+  Edit1->Text = cod;
+  Edit2->Text = nom;
+  Edit3->Text = dir;
+  MaskEdit1->Text = fecha;
 }
 
 void TForm1::ShowAlumno(RegAlumno r){
@@ -71,7 +72,7 @@ void __fastcall TForm1::Edit1Exit(TObject *Sender)
 		  pf->read((char*)&reg, sizeof(reg));
 		};
 		if (pf->eof()) //es fin de archivo
-		  UpdateForm(NULL,"","","");
+		  UpdateForm(IntToStr(cod));
 		else
 		  ShowAlumno(reg);
 	}
@@ -91,7 +92,7 @@ void TForm1::SaveAlumno(RegAlumno regNuevo){
 		else
 		  pf->seekg(-sizeof(reg), ios::cur); //update
 		pf->write((char *)&regNuevo, sizeof(regNuevo));
-		UpdateForm("","","","");
+		UpdateForm();
 	}
 }
 
@@ -182,7 +183,7 @@ void __fastcall TForm1::Button9Click(TObject *Sender){
 //		(f.read((char*)&reg, sizeof(reg)));
 
 		// Aquí estaba el error: se debe crear el nuevo registro antes de realizar la escritura
-		reg = RegAlumno(300, "Juan Perez", "calle 123", TFecha(10,10,1010));
+//		reg = RegAlumno(300, "Juan Perez", "calle 123", TFecha(10,10,1010));
 //		ShowMessage(IntToStr(f.tellg()));
 		f.write((char*)&reg, sizeof(reg));
 
@@ -300,10 +301,9 @@ void __fastcall TForm1::Button11Click(TObject *Sender)
 
 void __fastcall TForm1::mostrarClick(TObject *Sender)
 {
-	const byte n = 5;
-	AnsiString datos[n] = {"cod", "nombre", "direccion", "fecha", "marca"};
+	AnsiString datos[] = {"cod", "nombre", "direccion", "fecha", "marca", "telefono"};
 	byte c = 0;
-
+	int n = sizeof(datos) / sizeof(datos[0]);
 	RegAlumno reg;
 	fstream fi(nomArch.c_str(), ios::in | ios::binary);
 	if ( !fi.fail() ) {
@@ -315,6 +315,7 @@ void __fastcall TForm1::mostrarClick(TObject *Sender)
 		  StringGrid1->Cells[2][c] = reg.dir;
 		  StringGrid1->Cells[3][c] = reg.fecha.ToString();
 		  StringGrid1->Cells[4][c] = reg.marca;
+		  StringGrid1->Cells[5][c] = reg.telefono;
 		  fi.read((char*)&reg, sizeof(reg));
 		};
 	}
@@ -334,7 +335,7 @@ void __fastcall TForm1::mostrarClick(TObject *Sender)
 
 void __fastcall TForm1::expandirFileClick(TObject *Sender)
 {
-  RegAlumnoV1 regAnt;
+  RegAlumnoAnt regAnt;
   RegAlumno reg;
   fstream fa(nomArch.c_str(),ios::in|ios::out|ios::binary);
   fstream fb( AnsiString("temporal.tmp").c_str(),ios::out|ios::trunc|ios::binary);
@@ -365,7 +366,7 @@ void __fastcall TForm1::EliminarClick(TObject *Sender)
 		 rg.marca = 1;
 		 f.seekg(-sizeof(rg), ios::cur);
 		 f.write((char*)&rg, sizeof(rg));
-		 UpdateForm("","","","");
+		 UpdateForm();
 	  }
   }
   f.close();
@@ -373,25 +374,6 @@ void __fastcall TForm1::EliminarClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-
-void __fastcall TForm1::codgio1Click(TObject *Sender){
-	RegAlumno reg;
-	RegIdxCod regIdx;
-	fstream f(nomArch.c_str(), ios::in | ios::binary);
-	fstream fi(nomArchIdxCod.c_str(), ios::out | ios::binary);
-	if ( !f.fail() ) {
-		while ( !f.eof() ) {
-		  regIdx.pos = f.tellg();
-		  f.read((char *)&reg, sizeof(reg));
-		  if (!f.eof()) {
-			regIdx.cod = reg.cod;
-			fi.write((char *)&regIdx, sizeof(regIdx));
-		  }
-		}
-	}             //| ios::trunc
-	f.close();
-	fi.close();
-}
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::ButtonNavIdxIniClick(TObject *Sender){
@@ -462,25 +444,19 @@ void __fastcall TForm1::ButtonNavIdxAntClick(TObject *Sender){
 
 void __fastcall TForm1::ButtonNavIdxFinClick(TObject *Sender)
 {
-  pf->close();	
+  pf->close();
   delete pf;
   pfi->close();
   delete pfi;
+  this->UpdateForm();
   this->ButtonNavIdxAnt->Enabled = false;
   this->ButtonNavIdxSig->Enabled = false;
   this->ButtonNavIdxFin->Enabled = false;
   this->ButtonNavIdxIni->Enabled = true;
 }
 //---------------------------------------------------------------------------
-void permutar(fstream &fi, Cardinal pa, RegIdxCod ra, Cardinal pb, RegIdxCod rb){
-	fi.seekg(0, ios::beg);
-	fi.seekg(pa);
-	fi.write((char*)&rb, sizeof(rb));
-	fi.seekg(pb);
-	fi.write((char*)&ra, sizeof(ra));
-}
 
-void __fastcall TForm1::codigo1Click(TObject *Sender){
+void TForm1::OrdenarIdxCodigo(){
 	RegIdxCod ireg, jreg, menReg;
 	Cardinal i, j, menPos, ultPosValida;
 	fstream fi(nomArchIdxCod.c_str(), ios::in | ios::out | ios::binary);
@@ -504,7 +480,50 @@ void __fastcall TForm1::codigo1Click(TObject *Sender){
 			  menReg = jreg;
 		  }
 		}
-		if ( i != menPos) permutar(fi, i,ireg, menPos,menReg);
+		if ( i != menPos){ //permutas posiciones
+			fi.seekg(0, ios::beg);
+			fi.seekg(i);
+			fi.write((char*)&menReg, sizeof(menReg));
+			fi.seekg(menPos);
+			fi.write((char*)&ireg, sizeof(ireg));
+		}
+		i = i + sizeof(ireg);
+	  }
+	}
+	fi.close();
+}
+
+void TForm1::OrdenarIdxFecha(){
+	RegIdxFecha ireg, jreg, menReg;
+	Cardinal i, j, menPos, ultPosValida;
+	fstream fi(nomArchIdxFecha.c_str(), ios::in | ios::out | ios::binary);
+	if ( !fi.fail() ) {
+	  fi.seekg(-1*sizeof(ireg), ios::end); //ojo: puede que el file este vacio
+	  ultPosValida = fi.tellg();
+	  i=0;
+	  while (i < ultPosValida) {
+		fi.seekg(0, ios::beg);
+		fi.seekg(i);
+		fi.read((char*)&ireg, sizeof(ireg));
+		if ( !fi.eof()){ //guardar el primer registro
+		  menPos = i;
+		  menReg = ireg;
+		}
+		while ( !fi.eof() ) { //buscar el menor
+		  j = fi.tellg();
+		  fi.read((char*)&jreg, sizeof(jreg));
+		  if ( !fi.eof() && jreg.fecha.dia < menReg.fecha.dia  ){
+			  menPos = j;
+			  menReg = jreg;
+		  }
+		}
+		if ( i != menPos){ //permutas posiciones
+			fi.seekg(0, ios::beg);
+			fi.seekg(i);
+			fi.write((char*)&menReg, sizeof(menReg));
+			fi.seekg(menPos);
+			fi.write((char*)&ireg, sizeof(ireg));
+		}
 		i = i + sizeof(ireg);
 	  }
 	}
@@ -535,7 +554,7 @@ void __fastcall TForm1::createCodigoClick(TObject *Sender){
 		for (Word i =1; i <=  linea.Length(); i++) {
 	      ft.put(linea[i]);
 		}
-		ft.put(10);		
+		ft.put(10);
 	  }
 	}
   }
@@ -567,7 +586,7 @@ void __fastcall TForm1::onClickCreateMonthFile(TObject *Sender)
 				   reg.dir + "\t"+
 				   IntToStr(reg.fecha.dia) + "/" +
 				   IntToStr(reg.fecha.mes) + "/" +
-				   IntToStr(reg.fecha.anio);
+				   IntToStr(reg.fecha.año);
 		  for (byte i = 1; i <= line.Length(); i++) {
 			fb.put(line[i]);
 		  }
@@ -582,26 +601,42 @@ void __fastcall TForm1::onClickCreateMonthFile(TObject *Sender)
 
 void __fastcall TForm1::onClickLoad(TObject *Sender)
 {
-  pf = new fstream(nomArch.c_str(), ios::in | ios::out | ios::binary);
+  pf = new fstream(nomArch.c_str(), ios::trunc | ios::out | ios::binary);
 //  if( !pf->is_open() ){
 //	this->pf->open(this->nomArch.c_str(), ios::in | ios::out | ios::binary);
 //  }
-  if( this->pf->fail() ) return;
-  const byte n = 7;
-  RegAlumno alumnos[n] = {
-	RegAlumno(140, "maria", "c3", TFecha(7,12,2000)),
-	RegAlumno(150, "josefa", "c4", TFecha(8,2,2002)),
-	RegAlumno(160, "roberto", "c5", TFecha(10,10,2010)),
-	RegAlumno(130, "pedro", "c2", TFecha(4,2,1993)),
-	RegAlumno(170, "betty", "c6", TFecha(6,2,2004)),
-	RegAlumno(180, "mario", "c7", TFecha(5,6,2007)),
-	RegAlumno(120, "Juan", "c1", TFecha(2,1,1995))
+  if( this->pf->fail() ) {
+	ShowMessage("ocurrio un error");
+	return;
+  }
+  RegAlumno alumnos[] = {
+//	RegAlumno(140, "maria", "c3", TFecha(7,12,2000)),
+//	RegAlumno(150, "josefa", "c4", TFecha(8,2,2002)),
+//	RegAlumno(160, "roberto", "c5", TFecha(10,10,2010)),
+//	RegAlumno(130, "pedro", "c2", TFecha(4,2,1993)),
+//	RegAlumno(170, "betty", "c6", TFecha(6,2,2004)),
+//	RegAlumno(180, "mario", "c7", TFecha(5,6,2007)),
+//	RegAlumno(120, "Juan", "c1", TFecha(2,1,1995))
+
+//	RegAlumno(120, "Juan", "c1", TFecha(20,1,1972)),
+//	RegAlumno(130, "Pedro", "c2", TFecha(21,02,1982)),
+//	RegAlumno(140, "María", "c3", TFecha(21,04,1992)),
+//	RegAlumno(150, "Josefa", "c4", TFecha(22,2,1995)),
+//	RegAlumno(160, "Roberto", "c5", TFecha(23,3,1999)),
+//	RegAlumno(170, "Josué", "c6", TFecha(24,06,2000)),
+//	RegAlumno(180, "Betty", "c7", TFecha(25,04,2005)),
+
+	RegAlumno(150, "Pedro", "c1", TFecha(29,02,2001)),
+	RegAlumno(120, "María", "c2", TFecha(15,04,2000)),
+	RegAlumno(160, "Jose", "c3", TFecha(10,3,2002)),
+	RegAlumno(130, "Betty", "c4", TFecha(20,6,2003)),
+	RegAlumno(140, "Jorge", "c5", TFecha(17,5,2002)),
+	RegAlumno(170, "Jacinto", "c6", TFecha(20,2,2001)),
   };
-  RegAlumno reg;
+  int n = sizeof(alumnos) / sizeof(alumnos[0]);
   for (byte i = 0; i < n; i++) {
-	reg = alumnos[i];
-	pf->write((char *)&reg, sizeof(reg));
-  }  
+	pf->write((char *)&alumnos[i], sizeof(alumnos[i]));
+  }
   pf->close();
 }
 //---------------------------------------------------------------------------
@@ -674,7 +709,7 @@ void TForm1::CreateIndexCodigo(){
 			fi.write((char *)&regIdx, sizeof(regIdx));
 		  }
 		}
-	}             //| ios::trunc
+	}
 	f.close();
 	fi.close();
 }
@@ -693,23 +728,11 @@ void TForm1::CreateIndexFecha(){
 			fi.write((char *)&regIdx, sizeof(regIdx));
 		  }
 		}
-	}             //| ios::trunc
+	}
 	f.close();
 	fi.close();
 }
 
-void __fastcall TForm1::Button3Click(TObject *Sender){
-  byte p = ComboBox1->ItemIndex;
-  if(p == 0){
-	CreateIndexCodigo();
-	return;
-  }
-  if(p == 3){
-	CreateIndexFecha();
-    return;
-  }
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::searchMenByIndex(TObject *Sender){
   RegIdxFecha regIdx;
@@ -727,9 +750,9 @@ void __fastcall TForm1::searchMenByIndex(TObject *Sender){
 		  if (sw) {
 			resp = reg;
 			sw = false;
-		  }else if(reg.fecha.anio < resp.fecha.anio
-		   || (reg.fecha.anio == resp.fecha.anio && reg.fecha.mes < resp.fecha.mes)
-		   || (reg.fecha.anio == resp.fecha.anio && reg.fecha.mes == resp.fecha.mes && reg.fecha.dia < resp.fecha.dia)
+		  }else if(reg.fecha.año < resp.fecha.año
+		   || (reg.fecha.año == resp.fecha.año && reg.fecha.mes < resp.fecha.mes)
+		   || (reg.fecha.año == resp.fecha.año && reg.fecha.mes == resp.fecha.mes && reg.fecha.dia < resp.fecha.dia)
 		   ){
 			resp = reg;
 		  }
@@ -774,4 +797,142 @@ void __fastcall TForm1::searchBinaryCodeByIndex(TObject *Sender){
 }
 //---------------------------------------------------------------------------
 
+
+//paso 1 - crear archivo indexado por fecha
+
+//paso 2 ordenar archivo indexado fecha por dia
+
+//paso 3 - exportar archivo txt
+void __fastcall TForm1::pregunta2(TObject *Sender)
+{
+  RegIdxFecha regIdx;
+  RegAlumno reg;
+  AnsiString linea;
+  fstream f(nomArch.c_str(), ios::in | ios::binary);
+  fstream ft("ArchivoListado.txt", ios::out);
+  if ( !f.fail() ) {
+	linea = "LISTADO DE ALUMNOS";
+	for (Word i =1; i <=  linea.Length(); i++) {
+	  ft.put(linea[i]);
+	}
+	ft.put(10);
+	while ( !fi.eof() ) {
+	  if ( !fi.eof()) {
+		f.seekg(regIdx.pos, ios::beg);
+		f.read((char*) &reg, sizeof(reg));
+		linea = IntToStr(reg.cod) +", "+ reg.nom + ", " + reg.fecha.ToString();
+		for (Word i =1; i <=  linea.Length(); i++) {
+		  ft.put(linea[i]);
+		}
+		ft.put(10);
+	  }
+	}
+  }
+  f.close();
+  ft.close();
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::ComboBoxCreateIdxChange(TObject *Sender){
+  byte p = ComboBoxCreateIdx->ItemIndex;
+  switch (p) {
+	case 1:
+		this->CreateIndexCodigo();
+		break;
+	case 2:
+		//nombre
+		break;
+	case 3:
+		//direccion
+		break;
+	case 4:
+		CreateIndexFecha();
+		break;
+	case 5:
+		//telefono
+		break;
+  }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ComboBoxOrdenarIdxChange(TObject *Sender){
+  byte p = ComboBoxOrdenarIdx->ItemIndex;
+  switch (p) {
+	case 1:  //codigo
+		this->OrdenarIdxCodigo();
+		break;
+	case 2: //nombre
+
+		break;
+	case 3: //direccion
+
+		break;
+	case 4:  //fecha
+		this->OrdenarIdxFecha();
+		break;
+	case 5:  //telefono
+		break;
+  }
+}
+//---------------------------------------------------------------------------
+
+
+
+
+void __fastcall TForm1::ComboBoxExportIdxChange(TObject *Sender){
+  byte p = ComboBoxExportIdx->ItemIndex;
+  switch (p) {
+	case 1:  //codigo
+//		this->exportarIdxCodigo();
+		break;
+	case 2: //nombre
+
+		break;
+	case 3: //direccion
+
+		break;
+	case 4:  //fecha
+//		this->exportarIdxCodigoIdxFecha()
+		break;
+	case 5:  //telefono
+		break;
+  }
+}
+//---------------------------------------------------------------------------
+Cardinal GetNumero(Word year){
+  Word cantDig = log10((double)year*10);
+  return 6543 * (pow10(cantDig)) + year;
+}
+void pregunta1(AnsiString nameFile){
+	RegAlumno regAct, regAnt;
+	AnsiString nameTmp = "temporal.tmp";
+	fstream fe(nameFile.c_str(), ios::in | ios::binary);
+	fstream fs(nameTmp.c_str(), ios::trunc | ios::out | ios::binary);
+	bool sw = true;
+	if ( !fe.fail() ) {
+		fe.read((char*)&regAct, sizeof(regAct));
+		while( !fe.eof()) {
+		  if (sw) {
+			regAct.telefono = 6543 * 1000;
+			sw = false;
+		  } else {
+			regAct.telefono = GetNumero(regAnt.fecha.año);
+		  }
+		  fs.write((char *)&regAct, sizeof(regAct));
+		  regAnt = regAct;
+		  fe.read((char*)&regAct, sizeof(regAct));
+		};
+	}
+	fe.close();
+	fs.close();
+	remove(nameFile.c_str());
+	rename(nameTmp.c_str(),nameFile.c_str());
+}
+//llamada al algoritmo
+void __fastcall TForm1::Button3Click(TObject *Sender){
+  pregunta1(this->nomArch);
+}
+//---------------------------------------------------------------------------
 
