@@ -14,7 +14,7 @@ byte GetCantDigPares(Cardinal n){
   if ( n < 10 ) {   // #caso base
 	r = 0;
   } else { //asumimos que hay mas de 2 digitos  #caso general
-	//n := n /10;
+//	n := n /10;
 	r = GetCantDigPares(n / 10);
 	byte izq = (n /10) % 10;
 	byte der = (n % 10);
